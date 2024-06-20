@@ -1,7 +1,5 @@
-import { IRecipe } from './IRecipe';
-
 export interface IMeal {
-  breakfast: IRecipe;
-  lunch: IRecipe;
-  dinner: IRecipe;
+  breakfast: number;
+  lunch: number;
+  dinner: number;
 }
