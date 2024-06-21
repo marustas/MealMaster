@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+body,
+html {
+  padding: 0;
+  margin: 0;
+  background-color: #d9d9d9;
+  font-family: 'Inter', sans-serif;
+}
+
+//app palette
+$dark-green: #207918;
+$highlight-green: #399a18;
+$bright-green: #47c41c;
+$swamp-green: #11712d;
+$grass-green: #04952d;
+$grey-text: #3c3e3c;

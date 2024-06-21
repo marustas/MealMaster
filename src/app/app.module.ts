@@ -5,9 +5,11 @@ import { HomepageModule } from './pages/homepage/homepage.module';
 import { FridgeModule } from './pages/fridge/fridge.module';
 import { RecipesModule } from './pages/recipes/recipes.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent],
   imports: [BrowserModule, AppRoutingModule, HomepageModule, FridgeModule, RecipesModule],
   providers: [],
   bootstrap: [AppComponent],
