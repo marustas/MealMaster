@@ -1,0 +1,21 @@
+@import '../../../styles.scss';
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px 0px;
+}
+
+.title {
+  color: $grey;
+  font-weight: 400;
+}
+
+.meals {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}

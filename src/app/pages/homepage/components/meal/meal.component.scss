@@ -1,0 +1,60 @@
+@import '../../../../../styles.scss';
+.meal-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: 20px;
+  width: 550px;
+}
+
+.meal-details {
+  border: 1px solid #3c3e3c;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #e5e5e5;
+  padding-bottom: 10px;
+}
+
+.meal-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+img {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  width: 100%;
+  height: auto;
+}
+
+.meal-description,
+.meal-title {
+  margin: 5px 0;
+}
+
+.meal-description,
+.meal-title,
+.missing-details {
+  padding: 0 30px;
+}
+
+.change-btn,
+.delete-btn {
+  border: none;
+  border-radius: 3px;
+  color: #ffff;
+  padding: 8px;
+  font-size: medium;
+}
+
+.change-btn {
+  background-color: $grass-green;
+}
+
+.delete-btn {
+  background-color: $swamp-green;
+}
