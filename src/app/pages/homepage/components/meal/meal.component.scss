@@ -54,6 +54,9 @@ img {
   color: #ffff;
   padding: 8px;
   font-size: medium;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .change-btn {

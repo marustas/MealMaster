@@ -4,18 +4,21 @@
   color: #ffff;
   position: fixed;
   top: 0;
-  display: flex;
-  align-items: stretch;
   font-size: 18px;
   height: 80px;
   width: 100%;
+  display: flex;
+  align-items: stretch;
+  padding: 0 90px;
+  @media (max-width: 720px) {
+    padding: 0 55px;
+  }
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 0px 90px;
+  width: 1734px;
 }
 
 .navigation,
@@ -34,6 +37,7 @@
     &:visited {
       color: white;
       text-decoration: none;
+      cursor: pointer;
     }
     &:hover,
     &:focus {
@@ -44,7 +48,15 @@
   }
 }
 
-@media (max-width: 768px) {
+.logout-btn {
+  background-color: transparent;
+  border: none;
+  color: #ffff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
   .header-content {
     display: flex;
     justify-content: space-between;
