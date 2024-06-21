@@ -7,8 +7,10 @@
   justify-content: center;
   padding: 20px;
   width: 100%;
-  position: fixed;
-  bottom: 0;
+  @media (min-width: 768px) {
+    position: fixed;
+    bottom: 0;
+  }
   font-size: 22px;
   height: 40px;
 }

@@ -4,18 +4,33 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 20px 0px;
+  margin: 120px 0px 80px 0px;
 }
 
 .title {
   color: $grey;
   font-weight: 400;
+  margin-bottom: 30px;
 }
 
 .meals {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
+  width: 100%;
+  overflow-x: scroll;
+  gap: 40px;
+}
+
+@media (max-width: 720px) {
+  .meals {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-x: scroll;
+    gap: 40px;
+  }
 }

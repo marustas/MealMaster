@@ -21,7 +21,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  gap: 15px;
+  gap: 17px;
 }
 
 img {
@@ -29,17 +29,22 @@ img {
   border-top-left-radius: 8px;
   width: 100%;
   height: auto;
-}
-
-.meal-description,
-.meal-title {
-  margin: 5px 0;
+  margin-bottom: 5px;
 }
 
 .meal-description,
 .meal-title,
 .missing-details {
   padding: 0 30px;
+}
+
+.meal-description,
+.meal-title {
+  margin: 7px 0;
+}
+
+.missing-details {
+  margin-top: 27px;
 }
 
 .change-btn,
