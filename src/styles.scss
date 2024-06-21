@@ -4,16 +4,5 @@ html {
   margin: 0;
   background-color: #d9d9d9;
   font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
-
-main {
-  padding: 130px 0px;
-}
-
-//app palette
-$dark-green: #207918;
-$highlight-green: #399a18;
-$bright-green: #47c41c;
-$swamp-green: #11712d;
-$grass-green: #04952d;
-$grey: #3c3e3c;

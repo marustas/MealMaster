@@ -1,10 +1,8 @@
-@import '../../../../../styles.scss';
+@import '../../../../shared/styles/variables.scss';
 .meal-container {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  margin-bottom: 20px;
-  width: 550px;
+  width: 450px;
 }
 
 .meal-details {
@@ -35,7 +33,7 @@ img {
 .meal-description,
 .meal-title,
 .missing-details {
-  padding: 0 30px;
+  padding: 0 20px;
 }
 
 .meal-description,
@@ -65,4 +63,10 @@ img {
 
 .delete-btn {
   background-color: $swamp-green;
+}
+
+@media (max-width: 720px) {
+  .meal-container {
+    width: 550px;
+  }
 }
