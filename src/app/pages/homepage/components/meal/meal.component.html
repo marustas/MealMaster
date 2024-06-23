@@ -1,11 +1,9 @@
 <div class="meal-container">
   <div class="meal-details">
-    <img alt="recipe" src="../../../../../assets/lunch.webp" />
-    <h2 class="meal-title">Recipe title</h2>
+    <img alt="recipe" [src]="meal.image" />
+    <h2 class="meal-title">{{ meal.title }}</h2>
     <p class="meal-description">
-      Recipe details Recipe details Recipe details Recipe details Recipe details
-      Recipe details Recipe details Recipe details Recipe details Recipe details
-      Recipe details
+      {{ meal.description }}
     </p>
     <p class="missing-details">
       <b>Missing:</b> <span>Missing ingredient</span>
@@ -16,6 +14,6 @@
   </div>
   <div class="meal-actions">
     <button class="change-btn">Change</button>
-    <button class="delete-btn">Delete</button>
+    <button (click)="onDeleteMeal()" class="delete-btn">Delete</button>
   </div>
 </div>

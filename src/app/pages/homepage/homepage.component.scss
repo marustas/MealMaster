@@ -17,13 +17,12 @@
 .meals {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
   gap: 40px;
   max-width: 1240px;
   width: 100%;
   overflow-x: auto;
   box-sizing: border-box;
+  padding-bottom: 20px;
 }
 
 @media (max-width: 720px) {
@@ -34,4 +33,21 @@
     width: 100%;
     box-sizing: border-box;
   }
+}
+
+.btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.add-btn {
+  border: none;
+  border-radius: 4px;
+  background-color: $grass-green;
+  padding: 10px;
+  color: #ffff;
+  font-size: 20px;
 }

@@ -7,10 +7,11 @@ import { RecipesModule } from './pages/recipes/recipes.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, HomepageModule, FridgeModule, RecipesModule],
+  imports: [BrowserModule, AppRoutingModule, HomepageModule, FridgeModule, RecipesModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
