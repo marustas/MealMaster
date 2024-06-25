@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
+
 import { MealService } from './services/meal.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { MealService } from './services/meal.service';
 })
 export class HomepageComponent {
   meals$: Observable<IRecipe[]>;
-  i: number = 1;
+  i = 1;
   constructor(private mealService: MealService) {
     this.meals$ = mealService.meals$;
   }

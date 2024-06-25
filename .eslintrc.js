@@ -4,7 +4,7 @@ module.exports = {
     parserOptions: {
         project: ['tsconfig.json'],
     },
-    plugins: ['simple-import-sort', 'import'],
+    plugins: ['unused-imports', 'simple-import-sort', 'import'],
     rules: {
         'simple-import-sort/imports': 'error',
         'simple-import-sort/exports': 'error',

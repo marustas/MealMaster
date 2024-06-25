@@ -1,20 +1,24 @@
 <div class="meal-container">
-    <div class="badge">
-        <img *ngIf="meal.special" src="../../../../../assets/stamp.svg" alt="badge" />
-    </div>
-    <div class="meal-details">
-        <img alt="recipe" [src]="meal.image" />
-        <h2 class="meal-title">{{ meal.title }}</h2>
-        <p class="meal-description">{{ meal.description | uppercase }}</p>
-        <p class="missing-details">
-            <b>Missing:</b> <span>Missing ingredient</span>
-            <span>Missing ingredient</span> <span>Missing ingredient</span>
-            <span>Missing ingredient</span>
-            <span>Missing ingredient</span>
-        </p>
-    </div>
-    <div class="meal-actions">
-        <button class="change-btn">Change</button>
-        <button (click)="onDeleteMeal()" class="delete-btn">Delete</button>
-    </div>
+  <div class="badge">
+    <img
+      *ngIf="meal.special"
+      src="../../../../../assets/stamp.svg"
+      alt="badge"
+    />
+  </div>
+  <div class="meal-details">
+    <img alt="recipe" [src]="meal.image" />
+    <h2 class="meal-title">{{ meal.title }}</h2>
+    <p class="meal-description">{{ meal.description | uppercase }}</p>
+    <p class="missing-details">
+      <b>Missing:</b> <span>Missing ingredient</span>
+      <span>Missing ingredient</span> <span>Missing ingredient</span>
+      <span>Missing ingredient</span>
+      <span>Missing ingredient</span>
+    </p>
+  </div>
+  <div class="meal-actions">
+    <button class="change-btn">Change</button>
+    <button (click)="onDeleteMeal()" class="delete-btn">Delete</button>
+  </div>
 </div>
