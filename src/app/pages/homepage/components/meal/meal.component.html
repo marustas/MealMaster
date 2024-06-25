@@ -1,5 +1,9 @@
 <div class="meal-container">
-  <app-modal #deleteModal></app-modal>
+  <app-modal
+    [isVisible]="isModalVisible"
+    (confirm)="onDeleteMeal()"
+    (cancel)="hideModal()"
+  ></app-modal>
   <div class="badge">
     <img
       *ngIf="meal.special"
@@ -20,6 +24,6 @@
   </div>
   <div class="meal-actions">
     <button class="change-btn">Change</button>
-    <button (click)="onDeleteMeal()" class="delete-btn">Delete</button>
+    <button (click)="showModal()" class="delete-btn">Delete</button>
   </div>
 </div>

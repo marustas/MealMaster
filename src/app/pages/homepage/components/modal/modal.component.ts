@@ -1,28 +1,20 @@
-import { Component } from '@angular/core';
-import { MealService } from '../../services/meal.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'app-modal[isVisible]',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent {
-  recipeToDelete: number = -1;
-  isVisible: boolean = false;
-
-  constructor(private mealService: MealService) {}
-
-  showModal(recipeID: number): void {
-    this.recipeToDelete = recipeID;
-    this.isVisible = true;
-  }
-
-  hideModal(): void {
-    this.isVisible = false;
-  }
+  @Input() isVisible!: boolean;
+  @Output() confirm = new EventEmitter<void>();
+  @Output() cancel = new EventEmitter<void>();
 
   onConfirm(): void {
-    this.mealService.deleteMeal(this.recipeToDelete);
-    this.hideModal();
+    this.confirm.emit();
+  }
+
+  onCancel(): void {
+    this.cancel.emit();
   }
 }
