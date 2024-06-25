@@ -35,6 +35,12 @@
     width: 100%;
     box-sizing: border-box;
   }
+  .btn-container {
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 .btn-container {

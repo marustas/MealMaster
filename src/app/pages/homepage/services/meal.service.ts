@@ -33,11 +33,11 @@ export class MealService {
 
   private getMealIndex(mealType: MealType): number {
     switch (mealType) {
-      case 'breakfast':
+      case MealType.breakfast:
         return 0;
-      case 'lunch':
+      case MealType.lunch:
         return 1;
-      case 'dinner':
+      case MealType.dinner:
         return 2;
       default:
         throw new Error('Invalid meal type');

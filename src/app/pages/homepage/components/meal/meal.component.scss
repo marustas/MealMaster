@@ -5,6 +5,7 @@
   width: 500px;
   flex-grow: 1;
   position: relative;
+  color: $grey;
 }
 
 .badge {
@@ -55,6 +56,10 @@
 
 .missing-details {
   margin-top: 27px;
+}
+
+.meal-title {
+  font-size: large;
 }
 
 .change-btn,
