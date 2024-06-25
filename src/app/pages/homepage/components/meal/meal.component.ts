@@ -3,7 +3,7 @@ import { IRecipe } from 'src/app/models/IRecipe';
 import { MealService } from '../../services/meal.service';
 
 @Component({
-  selector: 'app-meal',
+  selector: 'app-meal[meal]',
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.scss'],
 })

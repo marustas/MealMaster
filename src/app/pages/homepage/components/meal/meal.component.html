@@ -1,4 +1,11 @@
 <div class="meal-container">
+  <div class="badge">
+    <img
+      *ngIf="meal.special"
+      src="../../../../../assets/stamp.svg"
+      alt="badge"
+    />
+  </div>
   <div class="meal-details">
     <img alt="recipe" [src]="meal.image" />
     <h2 class="meal-title">{{ meal.title }}</h2>

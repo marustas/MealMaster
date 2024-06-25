@@ -19,6 +19,7 @@ export class HomepageComponent {
     return Array(3 - meals.length).fill(0);
   }
 
+  // For testing purposes
   onAddMeal(): void {
     this.mealService.addMeal(this.i);
     this.i++;

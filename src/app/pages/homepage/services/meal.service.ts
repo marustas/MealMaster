@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
+import { MealType } from '../../../shared/meal-type.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class MealService {
     this.mealSubject.next(newMeals);
   }
 
-  private getMealIndex(mealType: 'breakfast' | 'lunch' | 'dinner'): number {
+  private getMealIndex(mealType: MealType): number {
     switch (mealType) {
       case 'breakfast':
         return 0;
