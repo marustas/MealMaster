@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { IRecipe } from 'src/app/models/IRecipe';
-import { MealService } from '../../services/meal.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-meal[meal]',
@@ -10,9 +10,9 @@ import { MealService } from '../../services/meal.service';
 export class MealComponent {
   @Input() meal!: IRecipe;
 
-  constructor(private mealService: MealService) {}
+  @ViewChild('deleteModal') modal!: ModalComponent;
 
   onDeleteMeal(): void {
-    this.mealService.deleteMeal(this.meal.id);
+    this.modal.showModal(this.meal.id);
   }
 }
