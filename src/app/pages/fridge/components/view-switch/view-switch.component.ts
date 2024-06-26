@@ -11,6 +11,14 @@ export class ViewSwitchComponent {
 
   constructor(private router: Router) {}
 
+  ngOnInit() {
+    this.setViewSwitched(this.router.url);
+  }
+
+  setViewSwitched(url: string) {
+    this.cardView = url.includes('cards');
+  }
+
   onToggleView(event: Event) {
     this.cardView = (event.target as HTMLInputElement).checked;
     const route = this.cardView ? 'cards' : 'table';

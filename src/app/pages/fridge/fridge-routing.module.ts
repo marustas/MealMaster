@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { FridgeComponent } from './fridge.component';
 import { ProductsTableComponent } from './components/products-table/products-table.component';
+import { ProductsCardsComponent } from './components/products-cards/products-cards.component';
 
 const routes: Routes = [
   {
@@ -11,7 +12,7 @@ const routes: Routes = [
     component: FridgeComponent,
     children: [
       { path: 'table', component: ProductsTableComponent },
-      // { path: 'cards', component: CardsComponent },
+      { path: 'cards', component: ProductsCardsComponent },
       { path: '', redirectTo: 'table', pathMatch: 'full' },
     ],
   },
