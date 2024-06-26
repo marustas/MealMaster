@@ -1,0 +1,12 @@
+<table class="products-table">
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Expires At</th>
+  </tr>
+  <tr *ngFor="let product of products">
+    <td>{{ product.name }}</td>
+    <td>{{ product.quantity }}</td>
+    <td>{{ product.expiresAt }}</td>
+  </tr>
+</table>

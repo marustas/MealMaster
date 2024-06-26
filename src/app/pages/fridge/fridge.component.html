@@ -1,1 +1,8 @@
-<p>fridge works!</p>
+<div class="main">
+  <h1>Your products</h1>
+  <div class="main-content">
+    <app-products-table
+      [products]="(products$ | async) || []"
+    ></app-products-table>
+  </div>
+</div>
