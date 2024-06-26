@@ -1,5 +1,5 @@
-import { Component, Input, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
 import { ProductsService } from '../../services/products.service';
 
@@ -8,18 +8,10 @@ import { ProductsService } from '../../services/products.service';
   templateUrl: './products-table.component.html',
   styleUrls: ['./products-table.component.scss'],
 })
-export class ProductsTableComponent implements OnDestroy {
+export class ProductsTableComponent {
   products$: Observable<Ingredient[]>;
-  private subscription: Subscription;
 
   constructor(private productsService: ProductsService) {
     this.products$ = productsService.products$;
-    this.subscription = this.products$.subscribe();
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

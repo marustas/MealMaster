@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { productCardsRoute, productTableRoute } from '../../fridge-routing.module';
 
 @Component({
   selector: 'app-view-switch',
@@ -11,17 +12,17 @@ export class ViewSwitchComponent {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.setViewSwitched(this.router.url);
   }
 
-  setViewSwitched(url: string) {
+  setViewSwitched(url: string): void {
     this.cardView = url.includes('cards');
   }
 
   onToggleView(event: Event) {
     this.cardView = (event.target as HTMLInputElement).checked;
-    const route = this.cardView ? 'cards' : 'table';
+    const route = this.cardView ? productCardsRoute : productTableRoute;
     this.router.navigate([`fridge/${route}`]);
   }
 }

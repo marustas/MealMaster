@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
 import { ProductsService } from '../../services/products.service';
 
@@ -10,16 +10,8 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ProductsCardsComponent {
   products$: Observable<Ingredient[]>;
-  private subscription: Subscription;
 
-  constructor(private productsService: ProductsService) {
+  constructor(productsService: ProductsService) {
     this.products$ = productsService.products$;
-    this.subscription = this.products$.subscribe();
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 }

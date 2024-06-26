@@ -20,6 +20,8 @@ const routes: Routes = [
 ];
 
 export const fridgeRouting = RouterModule.forChild(routes);
+export const productCardsRoute: string = 'cards';
+export const productTableRoute: string = 'table';
 
 @NgModule({
   imports: [fridgeRouting],
