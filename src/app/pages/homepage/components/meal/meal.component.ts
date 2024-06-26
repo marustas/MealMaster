@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IRecipe } from 'src/app/models/IRecipe';
+
 import { MealService } from '../../services/meal.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { MealService } from '../../services/meal.service';
 })
 export class MealComponent {
   @Input() meal!: IRecipe;
-  isModalVisible: boolean = false;
+  isModalVisible = false;
 
   constructor(private mealService: MealService) {}
 

@@ -1,0 +1,12 @@
+<table class="products-table">
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Expiry date</th>
+  </tr>
+  <tr *ngFor="let product of products$ | async">
+    <td>{{ product.name }}</td>
+    <td>{{ product.quantity }}</td>
+    <td>{{ product.expiresAt | stringToDate | date: 'd MMM, yyyy' }}</td>
+  </tr>
+</table>
