@@ -2,11 +2,11 @@
   <tr>
     <th>Product</th>
     <th>Quantity</th>
-    <th>Expires At</th>
+    <th>Expiry date</th>
   </tr>
   <tr *ngFor="let product of products">
     <td>{{ product.name }}</td>
     <td>{{ product.quantity }}</td>
-    <td>{{ product.expiresAt }}</td>
+    <td>{{ product.expiresAt | stringToDate | date: 'd MMM, yyyy' }}</td>
   </tr>
 </table>
