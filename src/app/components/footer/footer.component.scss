@@ -1,0 +1,16 @@
+@import '../../shared/styles/variables.scss';
+.footer {
+  background-color: $dark-green;
+  color: #ffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+  @media (min-width: 768px) {
+    position: fixed;
+    bottom: 0;
+  }
+  font-size: 22px;
+  height: 20px;
+}

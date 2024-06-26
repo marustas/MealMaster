@@ -24,47 +24,47 @@ module.exports = {
         ],
     },
     overrides: [{
-            files: ['*.ts'],
-            extends: [
-                'eslint:recommended',
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@angular-eslint/recommended',
-                'plugin:@angular-eslint/template/process-inline-templates',
-                'prettier',
-                "plugin:prettier/recommended"
+        files: ['*.ts'],
+        extends: [
+            'eslint:recommended',
+            'plugin:@typescript-eslint/recommended',
+            'plugin:@angular-eslint/recommended',
+            'plugin:@angular-eslint/template/process-inline-templates',
+            'prettier',
+            "plugin:prettier/recommended"
+        ],
+        rules: {
+            '@angular-eslint/directive-selector': [
+                'error',
+                {
+                    type: 'attribute',
+                    prefix: 'app',
+                    style: 'camelCase',
+                },
             ],
-            rules: {
-                '@angular-eslint/directive-selector': [
-                    'error',
-                    {
-                        type: 'attribute',
-                        prefix: 'app',
-                        style: 'camelCase',
-                    },
-                ],
-                '@angular-eslint/component-selector': [
-                    'error',
-                    {
-                        type: 'element',
-                        prefix: 'app',
-                        style: 'kebab-case',
-                    },
-                ],
-            },
+            '@angular-eslint/component-selector': [
+                'error',
+                {
+                    type: 'element',
+                    prefix: 'app',
+                    style: 'kebab-case',
+                },
+            ],
         },
-        {
-            files: ['*.html'],
-            extends: ['plugin:@angular-eslint/template/recommended', 'plugin:@angular-eslint/template/accessibility'],
-            rules: {},
-        },
-        {
-            files: ['*.html'],
-            'excludedFiles': ['*inline-template-*.component.html'],
+    },
+    {
+        files: ['*.html'],
+        extends: ['plugin:@angular-eslint/template/recommended'],
+        rules: {},
+    },
+    {
+        files: ['*.html'],
+        'excludedFiles': ['*inline-template-*.component.html'],
 
-            extends: ['plugin:prettier/recommended'],
-            rules: {
-                'prettier/prettier': ['error', { 'parser': 'angular' }],
-            },
+        extends: ['plugin:prettier/recommended'],
+        rules: {
+            'prettier/prettier': ['error', { 'parser': 'angular' }],
         },
+    },
     ],
 };

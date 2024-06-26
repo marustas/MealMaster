@@ -1,0 +1,33 @@
+<div class="meal-container">
+  <app-modal
+    [isVisible]="isModalVisible"
+    (confirm)="onDeleteMeal()"
+    (cancel)="hideModal()"
+  ></app-modal>
+  <div class="badge">
+    <img
+      *ngIf="meal.special"
+      src="../../../../../assets/stamp.svg"
+      alt="badge"
+    />
+  </div>
+  <div class="meal-details">
+    <img alt="recipe" [src]="meal.image" />
+    <h2 class="meal-title">{{ meal.title }}</h2>
+    <p class="meal-description">{{ meal.description | uppercase }}</p>
+    <p class="missing-details">
+      <b>Missing:</b> <span>Missing ingredient</span>
+      <span>Missing ingredient</span> <span>Missing ingredient</span>
+      <span>Missing ingredient</span>
+      <span>Missing ingredient</span>
+    </p>
+  </div>
+  <div class="meal-actions">
+    <button class="change-btn">
+      <img src="../../../../../assets/edit.svg" alt="edit" />
+    </button>
+    <button (click)="showModal()" class="delete-btn">
+      <img src="../../../../../assets/delete.svg" alt="delete" />
+    </button>
+  </div>
+</div>

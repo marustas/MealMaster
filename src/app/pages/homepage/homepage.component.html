@@ -1,1 +1,17 @@
-<p>homepage works!</p>
+<div class="main">
+  <h1 class="title">{{ "today's meal" | uppercase }}</h1>
+  <div class="meals">
+    <ng-container *ngIf="meals$ | async as meals">
+      <app-meal *ngFor="let meal of meals" [meal]="meal"></app-meal>
+      <div class="btn-container">
+        <button
+          class="add-btn"
+          *ngFor="let button of getRemainingMealSlots(meals)"
+          (click)="onAddMeal()"
+        >
+          Add a Recipe
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>

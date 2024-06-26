@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FallbackRoutingModule } from './fallback-routing.module';
+import { NgModule } from '@angular/core';
 import { FallbackComponent } from './fallback.component';
+import { FallbackRoutingModule } from './fallback-routing.module';
 
 @NgModule({
   declarations: [FallbackComponent],

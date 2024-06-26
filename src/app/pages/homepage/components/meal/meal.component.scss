@@ -1,0 +1,94 @@
+@import '../../../../shared/styles/variables.scss';
+.meal-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  color: $grey;
+  border: 1px solid #3c3e3c;
+  border-radius: 8px;
+  background-color: #e5e5e5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  transform: rotate(-30deg);
+  img {
+    width: 120px;
+    z-index: 10;
+  }
+}
+
+.meal-details {
+  flex-grow: 1;
+  img {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 5px;
+  }
+}
+
+.meal-actions {
+  margin: 0px 5px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 17px;
+}
+
+.meal-description,
+.meal-title,
+.missing-details {
+  padding: 0 20px;
+}
+
+.meal-description,
+.meal-title {
+  margin: 7px 0;
+}
+
+.missing-details {
+  margin-top: 27px;
+}
+
+.meal-title {
+  font-size: large;
+}
+
+.change-btn,
+.delete-btn {
+  border: none;
+  border-radius: 3px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+  img {
+    width: 20px;
+    filter: invert(100%);
+  }
+}
+
+.change-btn {
+  background-color: $grass-green;
+}
+
+.delete-btn {
+  background-color: $swamp-green;
+}
+
+@media (max-width: 780px) {
+  .meal-container {
+    width: 550px;
+  }
+}
