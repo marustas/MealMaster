@@ -1,5 +1,6 @@
 export interface Ingredient {
+  id: number;
   name: string;
-  quanity: number;
+  quantity: number;
   expiresAt: string;
 }
