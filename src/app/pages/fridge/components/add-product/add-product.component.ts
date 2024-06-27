@@ -26,13 +26,39 @@ export class AddProductComponent {
   }
 
   onSubmit(): void {
-    const newProductID = Math.floor(Math.random() * 1000) + this.productService.currentLength;
-    const newProduct: Ingredient = { ...this.productForm.value, id: newProductID };
-    this.productService.addProduct(newProduct);
+    this.productService.addProduct(this.buildNewProduct());
     this.router.navigate(['products']);
   }
 
   onCancel(): void {
     this.router.navigate(['products']);
+  }
+
+  private buildNewProduct(): Ingredient {
+    const newProductID: number = Math.floor(Math.random() * 1000) + this.productService.currentLength;
+    let newProductName: string = this.productForm.get('name')?.value;
+    let newProductExpiration: string = this.productForm.get('expiresAt')?.value;
+
+    let quantity: string = this.productForm.get('quantity')?.value.split(' ');
+    const [splitQuantity, unit] = quantity;
+    quantity = unit === 'N/A' ? splitQuantity : quantity;
+
+    if (!newProductExpiration) {
+      const currentDate = new Date();
+      currentDate.setDate(currentDate.getDate() + 12);
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth() + 1;
+      const year = currentDate.getFullYear();
+      newProductExpiration = `${day}/${month}/${year}`;
+    }
+
+    const newProduct: Ingredient = {
+      id: newProductID,
+      quantity: quantity,
+      name: newProductName,
+      expiresAt: newProductExpiration,
+    };
+
+    return newProduct;
   }
 }
