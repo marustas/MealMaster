@@ -17,6 +17,7 @@ const routes: Routes = [
     ],
   },
   { path: 'new', component: AddProductComponent },
+  { path: ':id', component: AddProductComponent },
 ];
 
 export const fridgeRouting = RouterModule.forChild(routes);
