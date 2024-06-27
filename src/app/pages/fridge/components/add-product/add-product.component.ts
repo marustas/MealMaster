@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/Ingredient';
 import { ProductsService } from '../../services/products.service';
+import { expirationDateValidator } from '../../validators/expirationDateValidator';
+import { productQuantityValidator } from '../../validators/productQuantityValidator';
 
 @Component({
   selector: 'app-add-product',
@@ -19,8 +21,8 @@ export class AddProductComponent {
   ) {
     this.productForm = formBuilder.group({
       productName: ['', [Validators.required]],
-      productExpiration: ['', [Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/)]],
-      productQuantity: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      productExpiration: ['', [expirationDateValidator()]],
+      productQuantity: ['', [Validators.required, productQuantityValidator()]],
       unit: ['N/A'],
     });
   }
