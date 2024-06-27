@@ -1,8 +1,6 @@
 <table class="products-table">
   <tr>
-    <th>Product</th>
-    <th>Quantity</th>
-    <th>Expiry date</th>
+    <th *ngFor="let title of titles">{{ title | uppercase }}</th>
   </tr>
   <tr *ngFor="let product of products$ | async">
     <td>{{ product.name }}</td>

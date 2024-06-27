@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
-import { ProductsService } from '../../services/products.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-products-table',
@@ -9,9 +9,10 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./products-table.component.scss'],
 })
 export class ProductsTableComponent {
+  titles: string[] = ['product', 'quantity', 'expiration date'];
   products$: Observable<Ingredient[]>;
 
-  constructor(private productsService: ProductsService) {
-    this.products$ = productsService.products$;
+  constructor(searchService: SearchService) {
+    this.products$ = searchService.searchQuery$.pipe(switchMap((search) => searchService.searchProducts(search)));
   }
 }

@@ -9,6 +9,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ViewSwitchComponent } from './components/view-switch/view-switch.component';
 import { FridgeRoutingModule } from './fridge-routing.module';
 import { StringToDatePipe } from './pipes/string-to-date.pipe';
+import { SearchComponent } from './components/search/search.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,8 +21,9 @@ import { StringToDatePipe } from './pipes/string-to-date.pipe';
     ViewSwitchComponent,
     ProductsCardsComponent,
     ProductCardComponent,
+    SearchComponent,
   ],
-  imports: [CommonModule, FridgeRoutingModule],
+  imports: [CommonModule, FridgeRoutingModule, ReactiveFormsModule],
   exports: [FridgeComponent],
 })
 export class FridgeModule {}
