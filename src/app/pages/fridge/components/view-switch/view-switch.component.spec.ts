@@ -8,9 +8,8 @@ describe('ViewSwitchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewSwitchComponent ]
-    })
-    .compileComponents();
+      declarations: [ViewSwitchComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ViewSwitchComponent);
     component = fixture.componentInstance;

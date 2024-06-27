@@ -1,4 +1,11 @@
-<label class="switch">
-  <input (change)="onToggleView($event)" type="checkbox" [checked]="cardView" />
-  <span class="slider round"></span>
-</label>
+<div class="switch-container">
+  <h4>Card View</h4>
+  <label class="switch">
+    <input
+      (change)="onToggleView($event)"
+      type="checkbox"
+      [checked]="cardView"
+    />
+    <span class="slider round"></span>
+  </label>
+</div>

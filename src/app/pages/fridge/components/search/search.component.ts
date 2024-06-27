@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SearchService } from '../../services/search.service';
 import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
+
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-search',

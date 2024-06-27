@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
+
 import { SearchService } from '../../services/search.service';
 
 @Component({
