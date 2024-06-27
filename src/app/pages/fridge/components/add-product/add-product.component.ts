@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/Ingredient';
 import { ProductsService } from '../../services/products.service';
 import { expirationDateValidator } from '../../validators/expirationDateValidator';
@@ -12,11 +12,13 @@ import { expirationDateValidator } from '../../validators/expirationDateValidato
 })
 export class AddProductComponent {
   productForm: FormGroup;
+  productID: string = '';
 
   constructor(
     formBuilder: FormBuilder,
     private productService: ProductsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.productForm = formBuilder.group({
       name: ['', [Validators.required]],
@@ -25,8 +27,22 @@ export class AddProductComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.productID = params.get('id') || '';
+    });
+    if (this.productID) {
+      this.productService.getProduct(+this.productID).subscribe((product) => this.productForm.patchValue(product));
+    }
+    console.log(this.productID);
+  }
+
   onSubmit(): void {
-    this.productService.addProduct(this.buildNewProduct());
+    if (this.productID) {
+      this.productService.changeProduct(+this.productID, this.productForm.value);
+    } else {
+      this.productService.addProduct(this.buildNewProduct());
+    }
     this.router.navigate(['products']);
   }
 

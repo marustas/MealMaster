@@ -1,5 +1,5 @@
 <div class="main">
-  <h1>Add new product</h1>
+  <h1>{{ productID ? 'Update product' : 'Add new product' }}</h1>
   <form class="product-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">Product name <span class="required">*</span></label>
@@ -70,7 +70,7 @@
         Cancel
       </button>
       <button type="submit" class="btn-add" [disabled]="productForm.invalid">
-        Add
+        {{ productID ? 'Update' : 'Add' }}
       </button>
     </div>
   </form>
