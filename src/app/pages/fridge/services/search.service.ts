@@ -23,17 +23,10 @@ export class SearchService {
 
   setQuery(searchValue: string): void {
     this.searchSubject.next(searchValue);
-    if (searchValue) {
-      this.router.navigate([], {
-        queryParams: { q: searchValue },
-        queryParamsHandling: 'merge',
-      });
-    } else {
-      this.router.navigate([], {
-        queryParams: { q: null },
-        queryParamsHandling: 'merge',
-      });
-    }
+    this.router.navigate([], {
+      queryParams: { q: searchValue || null },
+      queryParamsHandling: 'merge',
+    });
   }
 
   searchProducts(query: string): Observable<Ingredient[]> {

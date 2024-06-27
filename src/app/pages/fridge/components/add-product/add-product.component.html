@@ -1,67 +1,90 @@
-<div>
-  <h2>Add new Product</h2>
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="productName">Product Name:</label>
+<div class="main">
+  <h1>Add new product</h1>
+  <form class="product-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="productName"
+        >Product name <span class="required">*</span></label
+      >
       <input type="text" id="productName" formControlName="productName" />
-      <div *ngIf="productForm.get('productName')?.errors?.['required']">
-        Product Name is required.
+      <div
+        class="error"
+        *ngIf="
+          productForm.get('productName')?.errors?.['required'] &&
+          productForm.get('productName')?.touched
+        "
+      >
+        Product name is required
       </div>
-      <div *ngIf="productForm.get('productName')?.errors?.['nameInvalid']">
-        Product Name cannot contain numbers.
+      <div
+        class="error"
+        *ngIf="
+          productForm.get('productName')?.errors?.['nameInvalid'] &&
+          productForm.get('productName')?.touched
+        "
+      >
+        Product Name cannot contain numbers
       </div>
     </div>
 
-    <div>
-      <label for="productQuantity">Quantity:</label>
-      <input
-        type="text"
-        id="productQuantity"
-        formControlName="productQuantity"
-      />
-      <div *ngIf="productForm.get('productQuantity')?.errors?.['required']">
+    <div class="form-group">
+      <label for="productQuantity"
+        >Product quantity <span class="required">*</span></label
+      >
+      <div class="quantity-group">
+        <input
+          type="text"
+          id="productQuantity"
+          formControlName="productQuantity"
+        />
+        <select id="unit" formControlName="unit">
+          <option value="N/A">N/A</option>
+          <option value="ml">ml</option>
+          <option value="g">g</option>
+        </select>
+      </div>
+      <div
+        class="error"
+        *ngIf="
+          productForm.get('productQuantity')?.errors?.['required'] &&
+          productForm.get('productQuantity')?.touched
+        "
+      >
         Quantity is required.
       </div>
       <div
-        *ngIf="productForm.get('productQuantity')?.errors?.['quantityInvalid']"
+        class="error"
+        *ngIf="
+          productForm.get('productQuantity')?.errors?.['quantityInvalid'] &&
+          productForm.get('productQuantity')?.touched
+        "
       >
-        Quantity should only contain numbers.
+        Quantity should only contain numbers
       </div>
     </div>
 
-    <div>
-      <label for="productExpiration">Expiration date</label>
+    <div class="form-group">
+      <label for="productExpiration">Product expiration date</label>
       <input
         type="text"
         id="productExpiration"
         formControlName="productExpiration"
-        placeholder="DD/MM/YYYY"
+        placeholder="DD/MM//YYYY"
       />
       <div
+        class="error"
         *ngIf="productForm.get('productExpiration')?.errors?.['dateInvalid']"
       >
-        Please enter date in DD/MM/YYYY format.
+        Please enter date in DD/MM/YYYY format
       </div>
     </div>
 
-    <div>
-      <label for="unit">Unit:</label>
-      <select id="unit" formControlName="unit">
-        <option value="N/A">N/A</option>
-        <option value="ml">ml</option>
-        <option value="g">g</option>
-      </select>
-    </div>
-
-    <div>
-      <button
-        type="submit"
-        [disabled]="productForm.invalid"
-        [ngClass]="productForm.invalid ? 'disabled-btn' : 'save-btn'"
-      >
-        Submit
+    <div class="form-buttons">
+      <button type="button" class="btn-cancel" (click)="onCancel()">
+        Cancel
       </button>
-      <button (click)="onCancel()">Cancel</button>
+      <button type="submit" class="btn-add" [disabled]="productForm.invalid">
+        Add
+      </button>
     </div>
   </form>
 </div>

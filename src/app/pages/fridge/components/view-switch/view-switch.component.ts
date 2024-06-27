@@ -24,6 +24,6 @@ export class ViewSwitchComponent {
   onToggleView(event: Event) {
     this.cardView = (event.target as HTMLInputElement).checked;
     const route = this.cardView ? productCardsRoute : productTableRoute;
-    this.router.navigate([`fridge/${route}`]);
+    this.router.navigate([`products/${route}`]);
   }
 }

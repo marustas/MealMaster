@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/Ingredient';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-add-product',
@@ -14,12 +14,12 @@ export class AddProductComponent {
 
   constructor(
     formBuilder: FormBuilder,
-    private httpService: HttpService,
+    private productService: ProductsService,
     private router: Router
   ) {
     this.productForm = formBuilder.group({
       productName: ['', [Validators.required]],
-      prdouctExpiration: ['', [Validators.required, Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/)]],
+      productExpiration: ['', [Validators.pattern(/^\d{2}\/\d{2}\/\d{4}$/)]],
       productQuantity: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       unit: ['N/A'],
     });
@@ -27,7 +27,7 @@ export class AddProductComponent {
 
   onSubmit(): void {
     const newProduct: Ingredient = { ...this.productForm.value };
-    this.httpService.post('ingredients', newProduct);
+    this.productService.addProduct(newProduct);
     this.router.navigate(['products']);
   }
 

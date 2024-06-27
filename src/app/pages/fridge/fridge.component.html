@@ -2,7 +2,10 @@
   <h1>Your products</h1>
   <div class="actions">
     <app-view-switch></app-view-switch>
-    <app-search></app-search>
+    <div class="table-actions">
+      <app-search></app-search>
+      <button class="add-btn" (click)="onAddProduct()">Add product</button>
+    </div>
   </div>
   <div class="main-content">
     <router-outlet></router-outlet>

@@ -26,6 +26,16 @@ export class ProductsService {
     return this.httpService.get<Ingredient>(`ingredients/${productID}`);
   }
 
+  addProduct(newProduct: Ingredient): void {
+    this.httpService.post<Ingredient>(`ingredients`, newProduct).pipe(
+      tap(() => {
+        const currentProducts = this.productsSubject.getValue();
+        const updatedProducts = [...currentProducts, newProduct];
+        this.productsSubject.next(updatedProducts);
+      })
+    );
+  }
+
   deleteProduct(productID: number): void {
     this.httpService.delete<void>(`ingredients/${productID}`).pipe(
       tap(() => {
