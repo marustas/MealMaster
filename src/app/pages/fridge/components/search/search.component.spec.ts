@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewSwitchComponent } from './view-switch.component';
+import { SearchComponent } from './search.component';
 
-describe('ViewSwitchComponent', () => {
-  let component: ViewSwitchComponent;
-  let fixture: ComponentFixture<ViewSwitchComponent>;
+describe('SearchComponent', () => {
+  let component: SearchComponent;
+  let fixture: ComponentFixture<SearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ViewSwitchComponent],
+      declarations: [SearchComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ViewSwitchComponent);
+    fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

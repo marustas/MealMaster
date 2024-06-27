@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
-import { ProductsService } from '../../services/products.service';
+
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-products-cards',
@@ -11,7 +12,7 @@ import { ProductsService } from '../../services/products.service';
 export class ProductsCardsComponent {
   products$: Observable<Ingredient[]>;
 
-  constructor(productsService: ProductsService) {
-    this.products$ = productsService.products$;
+  constructor(searchService: SearchService) {
+    this.products$ = searchService.searchQuery$.pipe(switchMap((query) => searchService.searchProducts(query)));
   }
 }

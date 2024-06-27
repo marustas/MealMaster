@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { productCardsRoute, productTableRoute } from '../../fridge-routing.module';
 
 @Component({
@@ -8,7 +9,7 @@ import { productCardsRoute, productTableRoute } from '../../fridge-routing.modul
   styleUrls: ['./view-switch.component.scss'],
 })
 export class ViewSwitchComponent {
-  cardView: boolean = false;
+  cardView = false;
 
   constructor(private router: Router) {}
 

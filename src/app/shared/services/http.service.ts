@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,8 +10,12 @@ export class HttpService {
 
   constructor(private http: HttpClient) {}
 
-  get<T>(endpoint: string): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}/${endpoint}`);
+  get<T>(url: string, params?: any): Observable<T> {
+    let httpParams = new HttpParams();
+    if (params) {
+      Object.keys(params).forEach((key) => (httpParams = httpParams.set(key, params[key])));
+    }
+    return this.http.get<T>(`${this.baseUrl}/${url}`, { params: httpParams });
   }
 
   post<T>(endpoint: string, body: any): Observable<T> {

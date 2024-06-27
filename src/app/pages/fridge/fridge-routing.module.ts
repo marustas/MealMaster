@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AddProductComponent } from './components/add-product/add-product.component';
-import { FridgeComponent } from './fridge.component';
-import { ProductsTableComponent } from './components/products-table/products-table.component';
 import { ProductsCardsComponent } from './components/products-cards/products-cards.component';
+import { ProductsTableComponent } from './components/products-table/products-table.component';
+import { FridgeComponent } from './fridge.component';
 
 const routes: Routes = [
   {
@@ -20,8 +20,8 @@ const routes: Routes = [
 ];
 
 export const fridgeRouting = RouterModule.forChild(routes);
-export const productCardsRoute: string = 'cards';
-export const productTableRoute: string = 'table';
+export const productCardsRoute = 'cards';
+export const productTableRoute = 'table';
 
 @NgModule({
   imports: [fridgeRouting],
