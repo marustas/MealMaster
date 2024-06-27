@@ -13,9 +13,7 @@ export class HttpService {
   get<T>(url: string, params?: any): Observable<T> {
     let httpParams = new HttpParams();
     if (params) {
-      for (const key of Object.keys(params)) {
-        httpParams = httpParams.set(key, params[key]);
-      }
+      Object.keys(params).forEach((key) => (httpParams = httpParams.set(key, params[key])));
     }
     return this.http.get<T>(`${this.baseUrl}/${url}`, { params: httpParams });
   }

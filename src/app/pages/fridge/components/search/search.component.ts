@@ -12,11 +12,9 @@ export class SearchComponent {
   searchControl = new FormControl();
 
   constructor(private searchService: SearchService) {
-    this.searchControl.valueChanges
-      .pipe(startWith(''), debounceTime(400), distinctUntilChanged())
-      .subscribe((searchValue) => {
-        this.onSearch(searchValue);
-      });
+    this.searchControl.valueChanges.pipe(debounceTime(400), distinctUntilChanged()).subscribe((searchValue) => {
+      this.onSearch(searchValue);
+    });
   }
 
   private onSearch(searchValue: string): void {

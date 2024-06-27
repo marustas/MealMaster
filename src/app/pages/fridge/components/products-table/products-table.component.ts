@@ -13,6 +13,6 @@ export class ProductsTableComponent {
   products$: Observable<Ingredient[]>;
 
   constructor(searchService: SearchService) {
-    this.products$ = searchService.searchQuery$.pipe(switchMap((search) => searchService.searchProducts(search)));
+    this.products$ = searchService.searchQuery$.pipe(switchMap((query) => searchService.searchProducts(query)));
   }
 }
