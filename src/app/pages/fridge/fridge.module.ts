@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { FridgeComponent } from './fridge.component';
@@ -20,7 +21,7 @@ import { StringToDatePipe } from './pipes/string-to-date.pipe';
     ProductsCardsComponent,
     ProductCardComponent,
   ],
-  imports: [CommonModule, FridgeRoutingModule],
+  imports: [CommonModule, FridgeRoutingModule, ReactiveFormsModule],
   exports: [FridgeComponent],
 })
 export class FridgeModule {}

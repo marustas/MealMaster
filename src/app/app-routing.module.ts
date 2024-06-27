@@ -16,7 +16,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/recipes/recipes.module').then((m) => m.RecipesModule),
   },
   {
-    path: 'fridge',
+    path: 'products',
     loadChildren: () => import('./pages/fridge/fridge.module').then((m) => m.FridgeModule),
   },
   {

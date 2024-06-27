@@ -1,1 +1,67 @@
-<p>add-product works!</p>
+<div>
+  <h2>Add new Product</h2>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" formControlName="productName" />
+      <div *ngIf="productForm.get('productName')?.errors?.['required']">
+        Product Name is required.
+      </div>
+      <div *ngIf="productForm.get('productName')?.errors?.['nameInvalid']">
+        Product Name cannot contain numbers.
+      </div>
+    </div>
+
+    <div>
+      <label for="productQuantity">Quantity:</label>
+      <input
+        type="text"
+        id="productQuantity"
+        formControlName="productQuantity"
+      />
+      <div *ngIf="productForm.get('productQuantity')?.errors?.['required']">
+        Quantity is required.
+      </div>
+      <div
+        *ngIf="productForm.get('productQuantity')?.errors?.['quantityInvalid']"
+      >
+        Quantity should only contain numbers.
+      </div>
+    </div>
+
+    <div>
+      <label for="productExpiration">Expiration date</label>
+      <input
+        type="text"
+        id="productExpiration"
+        formControlName="productExpiration"
+        placeholder="DD/MM/YYYY"
+      />
+      <div
+        *ngIf="productForm.get('productExpiration')?.errors?.['dateInvalid']"
+      >
+        Please enter date in DD/MM/YYYY format.
+      </div>
+    </div>
+
+    <div>
+      <label for="unit">Unit:</label>
+      <select id="unit" formControlName="unit">
+        <option value="N/A">N/A</option>
+        <option value="ml">ml</option>
+        <option value="g">g</option>
+      </select>
+    </div>
+
+    <div>
+      <button
+        type="submit"
+        [disabled]="productForm.invalid"
+        [ngClass]="productForm.invalid ? 'disabled-btn' : 'save-btn'"
+      >
+        Submit
+      </button>
+      <button (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

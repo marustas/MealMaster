@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Ingredient } from 'src/app/models/Ingredient';
-
-import { ProductsService } from './services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fridge',
@@ -10,9 +7,9 @@ import { ProductsService } from './services/products.service';
   styleUrls: ['./fridge.component.scss'],
 })
 export class FridgeComponent {
-  products$: Observable<Ingredient[]>;
+  constructor(private router: Router) {}
 
-  constructor(private productService: ProductsService) {
-    this.products$ = productService.products$;
+  onAddProduct(): void {
+    this.router.navigate(['products', 'new']);
   }
 }
