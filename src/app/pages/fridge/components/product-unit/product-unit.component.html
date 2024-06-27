@@ -1,0 +1,11 @@
+<div class="quantity-group">
+  <input
+    type="text"
+    [value]="quantity"
+    (input)="updateQuantity($event)"
+    (blur)="onTouched()"
+  />
+  <select [value]="unit" (change)="updateUnit($event)">
+    <option *ngFor="let unit of units" [value]="unit">{{ unit }}</option>
+  </select>
+</div>

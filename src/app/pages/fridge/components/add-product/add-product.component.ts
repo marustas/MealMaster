@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/Ingredient';
 import { ProductsService } from '../../services/products.service';
 import { expirationDateValidator } from '../../validators/expirationDateValidator';
-import { productQuantityValidator } from '../../validators/productQuantityValidator';
 
 @Component({
   selector: 'app-add-product',
@@ -20,15 +19,15 @@ export class AddProductComponent {
     private router: Router
   ) {
     this.productForm = formBuilder.group({
-      productName: ['', [Validators.required]],
-      productExpiration: ['', [expirationDateValidator()]],
-      productQuantity: ['', [Validators.required, productQuantityValidator()]],
-      unit: ['N/A'],
+      name: ['', [Validators.required]],
+      expiresAt: ['', [expirationDateValidator()]],
+      quantity: ['', [Validators.required]],
     });
   }
 
   onSubmit(): void {
-    const newProduct: Ingredient = { ...this.productForm.value };
+    const newProductID = Math.floor(Math.random() * 1000) + this.productService.currentLength;
+    const newProduct: Ingredient = { ...this.productForm.value, id: newProductID };
     this.productService.addProduct(newProduct);
     this.router.navigate(['products']);
   }

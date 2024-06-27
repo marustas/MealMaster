@@ -2,15 +2,13 @@
   <h1>Add new product</h1>
   <form class="product-form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="productName"
-        >Product name <span class="required">*</span></label
-      >
-      <input type="text" id="productName" formControlName="productName" />
+      <label for="name">Product name <span class="required">*</span></label>
+      <input type="text" id="name" formControlName="name" />
       <div
         class="error"
         *ngIf="
-          productForm.get('productName')?.errors?.['required'] &&
-          productForm.get('productName')?.touched
+          productForm.get('name')?.errors?.['required'] &&
+          productForm.get('name')?.touched
         "
       >
         Product name is required
@@ -18,8 +16,8 @@
       <div
         class="error"
         *ngIf="
-          productForm.get('productName')?.errors?.['nameInvalid'] &&
-          productForm.get('productName')?.touched
+          productForm.get('name')?.errors?.['nameInvalid'] &&
+          productForm.get('name')?.touched
         "
       >
         Product Name cannot contain numbers
@@ -27,35 +25,24 @@
     </div>
 
     <div class="form-group">
-      <label for="productQuantity"
+      <label for="quantity"
         >Product quantity <span class="required">*</span></label
       >
-      <div class="quantity-group">
-        <input
-          type="text"
-          id="productQuantity"
-          formControlName="productQuantity"
-        />
-        <select id="unit" formControlName="unit">
-          <option value="N/A">N/A</option>
-          <option value="ml">ml</option>
-          <option value="g">g</option>
-        </select>
-      </div>
+      <app-product-unit formControlName="quantity"></app-product-unit>
       <div
         class="error"
         *ngIf="
-          productForm.get('productQuantity')?.errors?.['required'] &&
-          productForm.get('productQuantity')?.touched
+          productForm.get('quantity')?.hasError('required') &&
+          productForm.get('quantity')?.touched
         "
       >
-        Quantity is required.
+        Quantity is required
       </div>
       <div
         class="error"
         *ngIf="
-          productForm.get('productQuantity')?.errors?.['quantityInvalid'] &&
-          productForm.get('productQuantity')?.touched
+          productForm.get('quantity')?.hasError('quantityInvalid') &&
+          productForm.get('quantity')?.touched
         "
       >
         Quantity should only contain numbers
@@ -63,16 +50,16 @@
     </div>
 
     <div class="form-group">
-      <label for="productExpiration">Product expiration date</label>
+      <label for="expiresAt">Product expiration date</label>
       <input
         type="text"
-        id="productExpiration"
-        formControlName="productExpiration"
+        id="expiresAt"
+        formControlName="expiresAt"
         placeholder="DD/MM//YYYY"
       />
       <div
         class="error"
-        *ngIf="productForm.get('productExpiration')?.errors?.['dateInvalid']"
+        *ngIf="productForm.get('expiresAt')?.errors?.['dateInvalid']"
       >
         Please enter date in DD/MM/YYYY format
       </div>

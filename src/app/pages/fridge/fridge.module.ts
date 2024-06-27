@@ -11,6 +11,7 @@ import { ViewSwitchComponent } from './components/view-switch/view-switch.compon
 import { FridgeComponent } from './fridge.component';
 import { FridgeRoutingModule } from './fridge-routing.module';
 import { StringToDatePipe } from './pipes/string-to-date.pipe';
+import { ProductUnitComponent } from './components/product-unit/product-unit.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { StringToDatePipe } from './pipes/string-to-date.pipe';
     ProductsCardsComponent,
     ProductCardComponent,
     SearchComponent,
+    ProductUnitComponent,
   ],
   imports: [CommonModule, FridgeRoutingModule, ReactiveFormsModule],
   exports: [FridgeComponent],
