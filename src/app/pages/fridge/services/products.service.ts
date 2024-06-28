@@ -35,7 +35,6 @@ export class ProductsService {
         tap(() => {
           const currentProducts = this.productsSubject.getValue();
           const updatedProducts = [...currentProducts, newProduct];
-          console.log(updatedProducts);
           this.productsSubject.next(updatedProducts);
         })
       )

@@ -34,14 +34,13 @@ export class AddProductComponent {
     if (this.productID) {
       this.productService.getProduct(+this.productID).subscribe((product) => this.productForm.patchValue(product));
     }
-    console.log(this.productID);
   }
 
   onSubmit(): void {
     if (this.productID) {
-      this.productService.changeProduct(+this.productID, this.productForm.value);
+      this.productService.changeProduct(+this.productID, this.buildProduct());
     } else {
-      this.productService.addProduct(this.buildNewProduct());
+      this.productService.addProduct(this.buildProduct());
     }
     this.router.navigate(['products']);
   }
@@ -50,14 +49,13 @@ export class AddProductComponent {
     this.router.navigate(['products']);
   }
 
-  private buildNewProduct(): Ingredient {
-    const newProductID: number = Math.floor(Math.random() * 1000) + this.productService.currentLength;
+  private buildProduct(): Ingredient {
     let newProductName: string = this.productForm.get('name')?.value;
     let newProductExpiration: string = this.productForm.get('expiresAt')?.value;
 
     let quantity: string = this.productForm.get('quantity')?.value.split(' ');
     const [splitQuantity, unit] = quantity;
-    quantity = unit === 'N/A' ? splitQuantity : quantity;
+    quantity = unit === 'N/A' || 'undefined' ? splitQuantity : quantity;
 
     if (!newProductExpiration) {
       const currentDate = new Date();
@@ -69,12 +67,18 @@ export class AddProductComponent {
     }
 
     const newProduct: Ingredient = {
-      id: newProductID,
+      id: 0,
       quantity: quantity,
       name: newProductName,
       expiresAt: newProductExpiration,
     };
 
+    if (this.productID) {
+      newProduct.id = +this.productID;
+    } else {
+      newProduct.id = Math.floor(Math.random() * 1000) + this.productService.currentLength;
+    }
+    console.log(newProduct);
     return newProduct;
   }
 }
