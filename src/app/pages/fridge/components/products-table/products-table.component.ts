@@ -13,6 +13,7 @@ import { SearchService } from '../../services/search.service';
 })
 export class ProductsTableComponent {
   titles: string[] = ['product', 'quantity', 'expiration date'];
+  isModalVisible: boolean = false;
   hoverIndex = -1;
   products$: Observable<Ingredient[]>;
 
@@ -34,5 +35,15 @@ export class ProductsTableComponent {
 
   onDeleteProduct(): void {
     this.productsService.deleteProduct(this.hoverIndex);
+    this.products$ = this.productsService.products$;
+    this.hideModal();
+  }
+
+  showModal(): void {
+    this.isModalVisible = true;
+  }
+
+  hideModal(): void {
+    this.isModalVisible = false;
   }
 }

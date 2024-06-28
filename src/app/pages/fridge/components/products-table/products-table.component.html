@@ -1,4 +1,9 @@
 <table class="products-table">
+  <app-modal
+    [isVisible]="isModalVisible"
+    (confirm)="onDeleteProduct()"
+    (cancel)="hideModal()"
+  ></app-modal>
   <tr>
     <th *ngFor="let title of titles">{{ title | uppercase }}</th>
   </tr>
@@ -14,7 +19,7 @@
       <button class="edit-btn" (click)="onEditProduct()">
         <img src="../../../../../assets/edit.svg" />
       </button>
-      <button class="delete-btn" (click)="onDeleteProduct()">
+      <button class="delete-btn" (click)="showModal()">
         <img src="../../../../../assets/delete.svg" />
       </button>
     </div>

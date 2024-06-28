@@ -12,6 +12,7 @@ import { ViewSwitchComponent } from './components/view-switch/view-switch.compon
 import { FridgeComponent } from './fridge.component';
 import { FridgeRoutingModule } from './fridge-routing.module';
 import { StringToDatePipe } from './pipes/string-to-date.pipe';
+import { ModalModule } from 'src/app/components/shared/modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { StringToDatePipe } from './pipes/string-to-date.pipe';
     SearchComponent,
     ProductUnitComponent,
   ],
-  imports: [CommonModule, FridgeRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, FridgeRoutingModule, ReactiveFormsModule, ModalModule],
   exports: [FridgeComponent],
 })
 export class FridgeModule {}
