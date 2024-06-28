@@ -3,11 +3,6 @@
     *ngIf="products.length > 0; else noDataTemplate"
     class="products-table"
   >
-    <app-modal
-      [isVisible]="isModalVisible"
-      (confirm)="onDeleteProduct()"
-      (cancel)="hideModal()"
-    ></app-modal>
     <tr>
       <th *ngFor="let title of titles">{{ title | uppercase }}</th>
     </tr>
@@ -19,16 +14,21 @@
       <td>{{ product.name }}</td>
       <td>{{ product.quantity }}</td>
       <td>{{ product.expiresAt | stringToDate | date: 'd MMM, yyyy' }}</td>
-      <td *ngIf="product.id === hoverIndex" class="action-icons">
+      <div *ngIf="product.id === hoverIndex" class="action-icons">
         <button class="edit-btn" (click)="onEditProduct()">
           <img src="../../../../../assets/edit.svg" />
         </button>
         <button class="delete-btn" (click)="showModal()">
           <img src="../../../../../assets/delete.svg" />
         </button>
-      </td>
+      </div>
     </tr>
   </table>
+  <app-modal
+    [isVisible]="isModalVisible"
+    (confirm)="onDeleteProduct()"
+    (cancel)="hideModal()"
+  ></app-modal>
 
   <ng-template #noDataTemplate>
     <p class="no-data">
