@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
 
-import { SearchService } from '../../services/search.service';
 import { ProductsService } from '../../services/products.service';
-import { Router } from '@angular/router';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-products-table',
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ProductsTableComponent {
   titles: string[] = ['product', 'quantity', 'expiration date'];
-  hoverIndex: number = -1;
+  hoverIndex = -1;
   products$: Observable<Ingredient[]>;
 
   constructor(

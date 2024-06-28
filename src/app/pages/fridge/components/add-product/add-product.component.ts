@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/Ingredient';
+
 import { ProductsService } from '../../services/products.service';
 import { expirationDateValidator } from '../../validators/expirationDateValidator';
 
@@ -12,7 +13,7 @@ import { expirationDateValidator } from '../../validators/expirationDateValidato
 })
 export class AddProductComponent {
   productForm: FormGroup;
-  productID: string = '';
+  productID = '';
 
   constructor(
     formBuilder: FormBuilder,
@@ -50,7 +51,7 @@ export class AddProductComponent {
   }
 
   private buildProduct(): Ingredient {
-    let newProductName: string = this.productForm.get('name')?.value;
+    const newProductName: string = this.productForm.get('name')?.value;
     let newProductExpiration: string = this.productForm.get('expiresAt')?.value;
 
     let quantity: string = this.productForm.get('quantity')?.value.split(' ');

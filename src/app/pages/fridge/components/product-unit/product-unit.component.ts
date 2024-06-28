@@ -26,8 +26,8 @@ import {
 })
 export class ProductUnitComponent implements ControlValueAccessor {
   units: string[] = ['N/A', 'ml', 'g'];
-  quantity: string = '';
-  unit: string = 'N/A';
+  quantity = '';
+  unit = 'N/A';
 
   onChange = (value: string) => {};
   onTouched = () => {};

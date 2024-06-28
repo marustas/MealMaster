@@ -9,7 +9,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 export class ProductsService {
   private productsSubject: BehaviorSubject<Ingredient[]>;
   public products$: Observable<Ingredient[]>;
-  public currentLength: number = 0;
+  public currentLength = 0;
 
   constructor(private httpService: HttpService) {
     this.productsSubject = new BehaviorSubject<Ingredient[]>([]);
