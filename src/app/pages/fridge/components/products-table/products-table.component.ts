@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
 
 import { ProductsService } from '../../services/products.service';
 import { SearchService } from '../../services/search.service';
+import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
   selector: 'app-products-table',
@@ -15,14 +16,17 @@ export class ProductsTableComponent {
   titles: string[] = ['product', 'quantity', 'expiration date'];
   isModalVisible: boolean = false;
   hoverIndex = -1;
+  isLoading: boolean = false;
   products$: Observable<Ingredient[]>;
 
   constructor(
     searchService: SearchService,
     private productsService: ProductsService,
+    loaderService: LoaderService,
     private router: Router
   ) {
-    this.products$ = searchService.searchQuery$.pipe(switchMap((query) => searchService.searchProducts(query)));
+    this.products$ = searchService.searchQuery$.pipe(switchMap((query) => searchService.searchProducts(query))).pipe();
+    loaderService.isLoading$.subscribe((isLoading) => (this.isLoading = isLoading));
   }
 
   onToggleHover(index: number, isHovering: boolean): void {

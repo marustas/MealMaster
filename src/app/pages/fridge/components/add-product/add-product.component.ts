@@ -79,7 +79,6 @@ export class AddProductComponent {
     } else {
       newProduct.id = Math.floor(Math.random() * 1000) + this.productService.currentLength;
     }
-    console.log(newProduct);
     return newProduct;
   }
 }

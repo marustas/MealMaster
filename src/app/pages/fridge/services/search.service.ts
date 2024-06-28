@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, delay, Observable, tap } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
 import { IRecipe } from 'src/app/models/IRecipe';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class SearchService {
 
   constructor(
     private httpService: HttpService,
+    private loader: LoaderService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -30,10 +32,18 @@ export class SearchService {
   }
 
   searchProducts(query: string): Observable<Ingredient[]> {
-    return this.httpService.get<Ingredient[]>('ingredients', query ? { q: query } : {});
+    this.loader.showLoader();
+    return this.httpService.get<Ingredient[]>('ingredients', query ? { q: query } : {}).pipe(
+      delay(400),
+      tap(() => this.loader.hideLoader())
+    );
   }
 
   searchRecipes(query: string): Observable<IRecipe[]> {
-    return this.httpService.get<IRecipe[]>('recipes', query ? { q: query } : {});
+    this.loader.showLoader();
+    return this.httpService.get<IRecipe[]>('recipes', query ? { q: query } : {}).pipe(
+      delay(400),
+      tap(() => this.loader.hideLoader())
+    );
   }
 }
