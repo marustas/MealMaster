@@ -54,22 +54,15 @@ export class AddProductComponent {
     const newProductName: string = this.productForm.get('name')?.value;
     let newProductExpiration: string = this.productForm.get('expiresAt')?.value;
 
-    let quantity: string = this.productForm.get('quantity')?.value.split(' ');
-    const [splitQuantity, unit] = quantity;
-    quantity = unit === 'N/A' || 'undefined' ? splitQuantity : quantity;
+    let quantity: string = this.productForm.get('quantity')?.value;
+    const [splitQuantity, unit] = quantity.split(' ');
+    quantity = unit === 'N/A' || unit === 'undefined' ? splitQuantity : quantity;
 
-    if (!newProductExpiration) {
-      const currentDate = new Date();
-      currentDate.setDate(currentDate.getDate() + 12);
-      const day = currentDate.getDate();
-      const month = currentDate.getMonth() + 1;
-      const year = currentDate.getFullYear();
-      newProductExpiration = `${day}/${month}/${year}`;
-    }
+    if (!newProductExpiration) newProductExpiration = this.createExpirationDate();
 
     const newProduct: Ingredient = {
       id: 0,
-      quantity: quantity,
+      quantity,
       name: newProductName,
       expiresAt: newProductExpiration,
     };
@@ -80,5 +73,14 @@ export class AddProductComponent {
       newProduct.id = Math.floor(Math.random() * 1000) + this.productService.currentLength;
     }
     return newProduct;
+  }
+
+  private createExpirationDate(): string {
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 12);
+    const day = currentDate.getDate();
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 }

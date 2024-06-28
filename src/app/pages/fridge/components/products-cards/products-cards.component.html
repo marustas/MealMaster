@@ -1,5 +1,5 @@
 <ng-container *ngIf="products$ | async as products; else spinnerTemplate">
-  <div class="cards-container" *ngIf="products.length > 0; else noDataTemplate">
+  <div class="cards-container" *ngIf="products.length; else noDataTemplate">
     <app-product-card
       *ngFor="let product of products"
       [product]="product"

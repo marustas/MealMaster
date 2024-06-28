@@ -1,15 +1,11 @@
 <ng-container *ngIf="products$ | async as products; else spinnerTemplate">
-  <table
-    *ngIf="products.length > 0; else noDataTemplate"
-    class="products-table"
-  >
+  <table *ngIf="products.length; else noDataTemplate" class="products-table">
     <tr>
       <th *ngFor="let title of titles">{{ title | uppercase }}</th>
     </tr>
     <tr
       *ngFor="let product of products"
-      (mouseenter)="onToggleHover(product.id, true)"
-      (mouseleave)="onToggleHover(product.id, false)"
+      (mouseenter)="onToggleHover(product.id)"
     >
       <td>{{ product.name }}</td>
       <td>{{ product.quantity }}</td>

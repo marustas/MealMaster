@@ -34,7 +34,7 @@ export class SearchService {
   searchProducts(query: string): Observable<Ingredient[]> {
     this.loader.showLoader();
     return this.httpService.get<Ingredient[]>('ingredients', query ? { q: query } : {}).pipe(
-      delay(400),
+      delay(500),
       tap(() => this.loader.hideLoader())
     );
   }
@@ -42,7 +42,7 @@ export class SearchService {
   searchRecipes(query: string): Observable<IRecipe[]> {
     this.loader.showLoader();
     return this.httpService.get<IRecipe[]>('recipes', query ? { q: query } : {}).pipe(
-      delay(400),
+      delay(500),
       tap(() => this.loader.hideLoader())
     );
   }

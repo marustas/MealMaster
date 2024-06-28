@@ -66,9 +66,7 @@
     </div>
 
     <div class="form-buttons">
-      <button type="button" class="btn-cancel" (click)="onCancel()">
-        Cancel
-      </button>
+      <button class="btn-cancel" (click)="onCancel()">Cancel</button>
       <button type="submit" class="btn-add" [disabled]="productForm.invalid">
         {{ productID ? 'Update' : 'Add' }}
       </button>
