@@ -5,6 +5,7 @@ import { Ingredient } from 'src/app/models/Ingredient';
 
 import { ProductsService } from '../../services/products.service';
 import { expirationDateValidator } from '../../validators/expirationDateValidator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-product',
@@ -14,6 +15,7 @@ import { expirationDateValidator } from '../../validators/expirationDateValidato
 export class AddProductComponent {
   productForm: FormGroup;
   productID = '';
+  private routeSubscription!: Subscription;
 
   constructor(
     formBuilder: FormBuilder,
@@ -29,12 +31,16 @@ export class AddProductComponent {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    this.routeSubscription = this.route.paramMap.subscribe((params) => {
       this.productID = params.get('id') || '';
     });
     if (this.productID) {
       this.productService.getProduct(+this.productID).subscribe((product) => this.productForm.patchValue(product));
     }
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
   }
 
   onSubmit(): void {
