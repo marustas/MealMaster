@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, delay, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, delay, Observable, switchMap, tap } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
 import { IRecipe } from 'src/app/models/IRecipe';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
+import { PaginationService } from '../../recipes/services/pagination.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,8 @@ export class SearchService {
     private httpService: HttpService,
     private loader: LoaderService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private paginationService: PaginationService
   ) {
     const initialQuery = this.route.snapshot.queryParams['q'] || '';
     this.setQuery(initialQuery);
@@ -39,11 +41,16 @@ export class SearchService {
     );
   }
 
-  searchRecipes(query: string): Observable<IRecipe[]> {
+  searchRecipes(query: string, page: number, itemsPerPage: number): Observable<any> {
     this.loader.showLoader();
-    return this.httpService.get<IRecipe[]>('recipes', query ? { q: query } : {}).pipe(
-      delay(500),
-      tap(() => this.loader.hideLoader())
+
+    const params = { q: query, page, itemsPerPage };
+
+    return this.httpService.get<any>('recipes', params).pipe(
+      tap((response) => {
+        this.paginationService.getPages(response.totalItems);
+        this.loader.hideLoader();
+      })
     );
   }
 }

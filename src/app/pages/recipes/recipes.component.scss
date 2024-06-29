@@ -4,8 +4,8 @@
   box-sizing: border-box;
   height: 100vh;
   overflow: hidden;
-  grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr 5fr 5fr;
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 4fr 5fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas: 'Pagination actions actions' 'Pagination Recipe-photo Recipe-photo' 'Pagination Recipe-details Recipe-details';
@@ -14,6 +14,11 @@
 
 .recipe-menu {
   grid-area: Pagination;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  padding: 10px;
 }
 
 .recipe-actions {

@@ -10,8 +10,8 @@ import { HttpService } from './http.service';
 export class RecipesService {
   constructor(private httpService: HttpService) {}
 
-  getRecipes(): Observable<IRecipe[]> {
-    return this.httpService.get<IRecipe[]>('recipes');
+  getRecipes(currentPage: number): Observable<IRecipe[]> {
+    return this.httpService.get<IRecipe[]>('recipes', currentPage);
   }
 
   getRecipeById(id: number): Observable<IRecipe> {
