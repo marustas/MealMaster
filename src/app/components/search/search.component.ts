@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
-
-import { SearchService } from '../../services/search.service';
+import { SearchService } from 'src/app/pages/fridge/services/search.service';
 
 @Component({
   selector: 'app-search',

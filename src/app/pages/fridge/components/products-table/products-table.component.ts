@@ -13,7 +13,7 @@ import { SearchService } from '../../services/search.service';
 })
 export class ProductsTableComponent {
   titles: string[] = ['product', 'quantity', 'expiration date'];
-  isModalVisible: boolean = false;
+  isModalVisible = false;
   hoverIndex = -1;
   products$: Observable<Ingredient[]>;
 

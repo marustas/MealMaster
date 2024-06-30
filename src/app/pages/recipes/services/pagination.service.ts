@@ -7,8 +7,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class PaginationService {
   private currentPageSubject: BehaviorSubject<number>;
   public currentPage$: Observable<number>;
-  itemsPerPage: number = 5;
-  totalPages: number = 1;
+  itemsPerPage = 3;
+  totalPages = 1;
 
   constructor() {
     this.currentPageSubject = new BehaviorSubject<number>(1);
