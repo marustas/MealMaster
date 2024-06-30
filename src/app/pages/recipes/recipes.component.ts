@@ -4,6 +4,7 @@ import { IRecipe } from 'src/app/models/IRecipe';
 
 import { SearchService } from '../fridge/services/search.service';
 import { PaginationService } from './services/pagination.service';
+import { FilterService } from './services/filter.service';
 
 @Component({
   selector: 'app-recipes',
@@ -12,15 +13,22 @@ import { PaginationService } from './services/pagination.service';
 })
 export class RecipesComponent {
   recipes$: Observable<IRecipe[]>;
-  currentPage = 1;
-  totalPages = 1;
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   constructor(
     private paginationService: PaginationService,
+    private filterService: FilterService,
     searchService: SearchService
   ) {
-    this.recipes$ = combineLatest([this.paginationService.currentPage$, searchService.searchQuery$]).pipe(
-      switchMap(([page, query]) => searchService.searchRecipes(query, page, this.paginationService.itemsPerPage)),
+    this.recipes$ = combineLatest([
+      this.paginationService.currentPage$,
+      searchService.searchQuery$,
+      this.filterService.filter$,
+    ]).pipe(
+      switchMap(([page, query, filters]) =>
+        searchService.searchRecipes(query, filters, page, this.paginationService.itemsPerPage)
+      ),
       map((response) => {
         this.paginationService.getPages(response.totalItems);
         this.currentPage = +response.currentPage;

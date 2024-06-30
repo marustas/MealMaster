@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-meal-filter',
@@ -6,17 +7,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./meal-filter.component.scss'],
 })
 export class MealFilterComponent {
-  @Output() filterChanged = new EventEmitter<string[]>();
-
   filters: { [key: string]: boolean } = {
     breakfast: false,
     lunch: false,
     dinner: false,
   };
 
+  constructor(private filterService: FilterService) {}
+
   onCheckboxChange(filter: string, isChecked: Event): void {
     this.filters[filter] = (isChecked.target as HTMLInputElement).checked;
     const activeFilters = Object.keys(this.filters).filter((key) => this.filters[key]);
-    this.filterChanged.emit(activeFilters);
+    this.filterService.setFilters(activeFilters);
   }
 }
