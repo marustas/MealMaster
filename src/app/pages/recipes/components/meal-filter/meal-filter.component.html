@@ -1,5 +1,14 @@
-<form>
-  <input type="checkbox" />
-  <input type="checkbox" />
-  <input type="checkbox" />
-</form>
+<div class="filter-container">
+  <label>
+    <input type="checkbox" (change)="onCheckboxChange('breakfast', $event)" />
+    breakfast
+  </label>
+  <label>
+    <input type="checkbox" (change)="onCheckboxChange('lunch', $event)" />
+    lunch
+  </label>
+  <label>
+    <input type="checkbox" (change)="onCheckboxChange('dinner', $event)" />
+    dinner
+  </label>
+</div>
