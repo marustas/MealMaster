@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { combineLatest, map, Observable, switchMap } from 'rxjs';
+import { combineLatest, map, Observable, switchMap, tap } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 
 import { SearchService } from '../fridge/services/search.service';
@@ -18,13 +18,13 @@ export class RecipesComponent {
 
   constructor(
     private paginationService: PaginationService,
-    private filterService: FilterService,
+    filterService: FilterService,
     searchService: SearchService
   ) {
     this.recipes$ = combineLatest([
       this.paginationService.currentPage$,
       searchService.searchQuery$,
-      this.filterService.filter$,
+      filterService.filter$,
     ]).pipe(
       switchMap(([page, query, filters]) =>
         searchService.searchRecipes(query, filters, page, this.paginationService.itemsPerPage)
@@ -32,9 +32,10 @@ export class RecipesComponent {
       map((response) => {
         this.paginationService.getPages(response.totalItems);
         this.currentPage = +response.currentPage;
-        this.totalPages = paginationService.totalPages;
+
         return response.items;
-      })
+      }),
+      tap(() => (this.totalPages = paginationService.totalPages))
     );
   }
 

@@ -1,12 +1,60 @@
+@import '../../../../shared/styles/variables.scss';
 .filter-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
-  gap: 20px;
+  gap: 30px;
+}
+
+.custom-checkbox {
+  cursor: pointer;
+  position: relative;
+  padding-left: 30px;
+  font-size: medium;
+  color: $grey;
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    &:checked ~ .checkmark {
+      background-color: $grass-green;
+      border-color: $grass-green;
+      &::after {
+        display: block;
+      }
+    }
+  }
   label {
     display: flex;
     align-items: center;
-    input {
-      margin-right: 0.5rem;
+    justify-content: center;
+  }
+  .checkmark {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition:
+      background-color 0.3s,
+      border-color 0.3s;
+    &::after {
+      content: '';
+      position: absolute;
+      display: none;
+      left: 7px;
+      top: 2px;
+      width: 5px;
+      height: 9px;
+      border: solid #ffff;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
     }
   }
 }

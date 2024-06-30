@@ -1,14 +1,17 @@
 <div class="filter-container">
-  <label>
+  <label class="custom-checkbox">
     <input type="checkbox" (change)="onCheckboxChange('breakfast', $event)" />
+    <span class="checkmark"></span>
     breakfast
   </label>
-  <label>
+  <label class="custom-checkbox">
     <input type="checkbox" (change)="onCheckboxChange('lunch', $event)" />
+    <span class="checkmark"></span>
     lunch
   </label>
-  <label>
+  <label class="custom-checkbox">
     <input type="checkbox" (change)="onCheckboxChange('dinner', $event)" />
+    <span class="checkmark"></span>
     dinner
   </label>
 </div>
