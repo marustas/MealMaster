@@ -5,7 +5,7 @@
   box-sizing: border-box;
   height: 100vh;
   overflow: hidden;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1.1fr 5fr;
   grid-template-rows: 1fr 4fr 5fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -25,6 +25,7 @@
 .recipe-actions {
   background-color: #d9d9d9;
   grid-area: actions;
+  padding: 10px;
 }
 
 .recipe-photo {
@@ -36,12 +37,21 @@
   grid-area: Recipe-details;
 }
 
+.pagination-btns {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .next-btn,
 .prev-btn {
   color: #ffff;
   padding: 5px;
   border: none;
   border-radius: 4px;
+  font-size: medium;
 }
 
 .next-btn {

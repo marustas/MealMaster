@@ -12,8 +12,8 @@ import { PaginationService } from './services/pagination.service';
 })
 export class RecipesComponent {
   recipes$: Observable<IRecipe[]>;
-  currentPage: number = 1;
-  totalPages: number = 1;
+  currentPage = 1;
+  totalPages = 1;
 
   constructor(
     private paginationService: PaginationService,
