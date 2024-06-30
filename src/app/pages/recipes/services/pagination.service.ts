@@ -24,7 +24,6 @@ export class PaginationService {
     if (currentPage < this.totalPages) {
       this.currentPageSubject.next(currentPage + 1);
     }
-    console.log(this.currentPageSubject.getValue());
   }
 
   previousPage(): void {

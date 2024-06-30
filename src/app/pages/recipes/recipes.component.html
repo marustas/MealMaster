@@ -1,29 +1,18 @@
 <div class="main">
-  <div class="recipe-menu">
-    <app-recipe
-      *ngFor="let recipe of recipes$ | async; trackBy: trackById"
-      [recipe]="recipe"
-    ></app-recipe>
-    <div class="pagination-btns">
-      <button
-        class="next-btn"
-        [disabled]="currentPage === 1"
-        (click)="onPreviousPage()"
-      >
+    <div class="recipe-menu">
+        <app-recipe *ngFor="let recipe of recipes$ | async; trackBy: trackById" [recipe]="recipe"></app-recipe>
+        <div class="pagination-btns">
+            <button class="next-btn" [disabled]="currentPage === 1" (click)="onPreviousPage()">
         Previous
       </button>
-      <button
-        class="prev-btn"
-        [disabled]="currentPage === totalPages"
-        (click)="onNextPage()"
-      >
+            <button class="prev-btn" [disabled]="currentPage === totalPages" (click)="onNextPage()">
         Next
       </button>
+        </div>
     </div>
-  </div>
-  <div class="recipe-actions">
-    <app-search></app-search>
-  </div>
-  <div class="recipe-photo"></div>
-  <div class="recipe-details"></div>
+    <div class="recipe-actions">
+        <app-search></app-search>
+    </div>
+    <div class="recipe-photo"></div>
+    <div class="recipe-details"></div>
 </div>

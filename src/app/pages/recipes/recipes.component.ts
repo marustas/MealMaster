@@ -12,17 +12,19 @@ import { PaginationService } from './services/pagination.service';
 })
 export class RecipesComponent {
   recipes$: Observable<IRecipe[]>;
-  currentPage!: number;
-  totalPages: number = this.paginationService.totalPages;
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   constructor(
     private paginationService: PaginationService,
     searchService: SearchService
   ) {
-    this.paginationService.currentPage$.subscribe((page) => (this.currentPage = page));
     this.recipes$ = combineLatest([this.paginationService.currentPage$, searchService.searchQuery$]).pipe(
       switchMap(([page, query]) => searchService.searchRecipes(query, page, this.paginationService.itemsPerPage)),
       map((response) => {
+        this.paginationService.getPages(response.totalItems);
+        this.currentPage = +response.currentPage;
+        this.totalPages = paginationService.totalPages;
         return response.items;
       })
     );

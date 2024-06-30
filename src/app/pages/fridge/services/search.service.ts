@@ -47,10 +47,8 @@ export class SearchService {
     const params = { q: query, page, itemsPerPage };
 
     return this.httpService.get<any>('recipes', params).pipe(
-      tap((response) => {
-        this.paginationService.getPages(response.totalItems);
-        this.loader.hideLoader();
-      })
+      delay(500),
+      tap(() => this.loader.hideLoader())
     );
   }
 }
