@@ -6,9 +6,10 @@ import { MealFilterComponent } from './components/meal-filter/meal-filter.compon
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { RecipesComponent } from './recipes.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
+import { RecipeExtendedComponent } from './components/recipe-extended/recipe-extended.component';
 
 @NgModule({
-  declarations: [RecipesComponent, RecipeComponent, MealFilterComponent],
+  declarations: [RecipesComponent, RecipeComponent, MealFilterComponent, RecipeExtendedComponent],
   imports: [CommonModule, RecipesRoutingModule, SharedModule],
   exports: [RecipesComponent],
 })

@@ -1,0 +1,12 @@
+<div class="recipe-container">
+  <ng-container *ngIf="recipe$ | async as recipe; else spinnerTemplate">
+    <div class="recipe-photo">
+      <img [src]="recipe.image" alt="recipe" />
+    </div>
+    <div class="recipe-details">{{ recipe.description }}</div>
+  </ng-container>
+</div>
+
+<ng-template #spinnerTemplate>
+  <app-spinner></app-spinner>
+</ng-template>

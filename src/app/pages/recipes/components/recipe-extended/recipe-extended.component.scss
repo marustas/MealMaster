@@ -1,0 +1,13 @@
+.recipe-container {
+  display: grid;
+  grid-template-areas: 'Recipe-photo' 'Recipe-details';
+}
+
+.recipe-photo {
+  grid-area: Recipe-photo;
+}
+
+.recipe-details {
+  background-color: #d9d9d9;
+  grid-area: Recipe-details;
+}
