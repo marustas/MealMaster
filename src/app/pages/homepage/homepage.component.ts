@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 
 import { MealService } from './services/meal.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -11,18 +12,20 @@ import { MealService } from './services/meal.service';
 })
 export class HomepageComponent {
   meals$: Observable<IRecipe[]>;
-  i = 1;
-  constructor(private mealService: MealService) {
+  mealSections = ['breakfast', 'lunch', 'dinner'];
+
+  constructor(
+    mealService: MealService,
+    private router: Router
+  ) {
     this.meals$ = mealService.meals$;
   }
 
-  getRemainingMealSlots(meals: IRecipe[]): number[] {
-    return Array(3 - meals.length).fill(0);
+  onAddMeal(mealSection: string): void {
+    this.router.navigate([`/recipes/${mealSection}`]);
   }
 
-  // For testing purposes
-  onAddMeal(): void {
-    this.mealService.addMeal(this.i);
-    this.i++;
+  shouldDisplayButton(meals: IRecipe[], mealSection: string): boolean {
+    return !meals.some((meal) => meal.section === mealSection);
   }
 }

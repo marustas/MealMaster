@@ -4,13 +4,15 @@
     <ng-container *ngIf="meals$ | async as meals">
       <app-meal *ngFor="let meal of meals" [meal]="meal"></app-meal>
       <div class="btn-container">
-        <button
-          class="add-btn"
-          *ngFor="let button of getRemainingMealSlots(meals)"
-          (click)="onAddMeal()"
-        >
-          Add a Recipe
-        </button>
+        <ng-container *ngFor="let mealSection of mealSections">
+          <button
+            class="add-btn"
+            *ngIf="shouldDisplayButton(meals, mealSection)"
+            (click)="onAddMeal(mealSection)"
+          >
+            Add {{ mealSection | titlecase }} Recipe
+          </button>
+        </ng-container>
       </div>
     </ng-container>
   </div>
