@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, delay, Observable, tap } from 'rxjs';
+import { BehaviorSubject, delay, finalize, Observable, tap } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
@@ -42,10 +42,10 @@ export class SearchService {
     this.loader.showLoader();
 
     const params = { q: query, page, itemsPerPage, filters };
-
+    console.log(this.loader);
     return this.httpService.get<any>('recipes', params).pipe(
       delay(500),
-      tap(() => this.loader.hideLoader())
+      finalize(() => this.loader.hideLoader())
     );
   }
 }

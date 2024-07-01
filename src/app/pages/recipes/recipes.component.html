@@ -1,30 +1,26 @@
 <div class="main">
-  <div class="recipe-menu">
-    <app-recipe
-      *ngFor="let recipe of recipes$ | async; trackBy: trackById"
-      [recipe]="recipe"
-    ></app-recipe>
-    <div class="pagination-btns">
-      <button
-        class="next-btn"
-        [disabled]="currentPage === 1"
-        (click)="onPreviousPage()"
-      >
-        Previous
-      </button>
-      <button
-        class="prev-btn"
-        [disabled]="currentPage === totalPages"
-        (click)="onNextPage()"
-      >
-        Next
-      </button>
+    <div class="recipe-menu">
+        {{ isLoading$ }}
+        <div *ngIf="!isLoading$; else spinnerTemplate">
+            <app-recipe *ngFor="let recipe of recipes$ | async; trackBy: trackById" [recipe]="recipe"></app-recipe>
+            <div class="pagination-btns">
+                <button class="next-btn" [disabled]="currentPage === 1" (click)="onPreviousPage()">
+          Previous
+        </button>
+                <button class="prev-btn" [disabled]="currentPage === totalPages" (click)="onNextPage()">
+          Next
+        </button>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="recipe-actions">
-    <app-search></app-search>
-    <app-meal-filter></app-meal-filter>
-  </div>
-  <div class="recipe-photo"></div>
-  <div class="recipe-details"></div>
+    <div class="recipe-actions">
+        <app-search></app-search>
+        <app-meal-filter></app-meal-filter>
+    </div>
+    <div class="recipe-photo"></div>
+    <div class="recipe-details"></div>
+
+    <ng-template #spinnerTemplate>
+        <app-spinner></app-spinner>
+    </ng-template>
 </div>

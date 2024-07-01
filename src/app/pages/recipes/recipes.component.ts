@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { combineLatest, map, Observable, switchMap, tap } from 'rxjs';
+import { combineLatest, map, Observable, of, switchMap, tap } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 
 import { SearchService } from '../fridge/services/search.service';
 import { PaginationService } from './services/pagination.service';
 import { FilterService } from './services/filter.service';
+import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
   selector: 'app-recipes',
@@ -13,29 +14,35 @@ import { FilterService } from './services/filter.service';
 })
 export class RecipesComponent {
   recipes$: Observable<IRecipe[]>;
+  isLoading$: boolean = false;
   currentPage: number = 1;
   totalPages: number = 1;
 
   constructor(
     private paginationService: PaginationService,
+    private loaderService: LoaderService,
     filterService: FilterService,
     searchService: SearchService
   ) {
+    this.loaderService.isLoading$.subscribe((r) => this.isLoading$ = r);
+   // this.loaderService.isLoading$;
     this.recipes$ = combineLatest([
       this.paginationService.currentPage$,
       searchService.searchQuery$,
       filterService.filter$,
     ]).pipe(
-      switchMap(([page, query, filters]) =>
-        searchService.searchRecipes(query, filters, page, this.paginationService.itemsPerPage)
-      ),
-      map((response) => {
-        this.paginationService.getPages(response.totalItems);
-        this.currentPage = +response.currentPage;
-
-        return response.items;
-      }),
-      tap(() => (this.totalPages = paginationService.totalPages))
+      switchMap(([page, query, filters]) => {
+        return searchService.searchRecipes(query, filters, page, this.paginationService.itemsPerPage).pipe(
+          map((response) => {
+            console.log(this.loaderService);
+            this.loaderService.hideLoader();
+            this.paginationService.getPages(response.totalItems);
+            this.currentPage = +response.currentPage;
+            return response.items;
+          }),
+          tap(() => (this.totalPages = paginationService.totalPages))
+        );
+      })
     );
   }
 

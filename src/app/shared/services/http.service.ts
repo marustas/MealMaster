@@ -15,6 +15,7 @@ export class HttpService {
     if (params) {
       Object.keys(params).forEach((key) => (httpParams = httpParams.set(key, params[key])));
     }
+
     return this.http.get<T>(`${this.baseUrl}/${url}`, { params: httpParams });
   }
 

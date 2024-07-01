@@ -8,11 +8,13 @@ export class LoaderService {
   private isLoading = new BehaviorSubject<boolean>(false);
   public isLoading$: Observable<boolean> = this.isLoading.asObservable();
 
-  public showLoader() {
+  public showLoader(): void {
     this.isLoading.next(true);
+    console.log(this.isLoading.getValue());
   }
 
-  public hideLoader() {
+  public hideLoader(): void {
     this.isLoading.next(false);
+    console.log(this.isLoading.getValue());
   }
 }
