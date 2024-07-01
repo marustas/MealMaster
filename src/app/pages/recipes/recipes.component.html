@@ -1,13 +1,18 @@
 <div class="main">
   <div class="recipe-menu">
     <ng-container *ngIf="recipes$ | async as recipes; else spinnerTemplate">
-      <div *ngIf="isLoading$ | async">
+      <div *ngIf="isLoading$ | async; else dataTemplate">
         <app-spinner></app-spinner>
       </div>
-      <app-recipe
-        *ngFor="let recipe of recipes; trackBy: trackById"
-        [recipe]="recipe"
-      ></app-recipe>
+      <ng-template #dataTemplate>
+        <div class="recipe-content">
+          <app-recipe
+            *ngFor="let recipe of recipes; trackBy: trackById"
+            [recipe]="recipe"
+          ></app-recipe>
+        </div>
+      </ng-template>
+
       <div class="pagination-btns">
         <button
           class="next-btn"
