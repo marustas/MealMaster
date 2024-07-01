@@ -22,7 +22,7 @@ export class HomepageComponent {
   }
 
   onAddMeal(mealSection: string): void {
-    this.router.navigate([`/recipes/${mealSection}`]);
+    this.router.navigate(['recipes', mealSection]);
   }
 
   shouldDisplayButton(meals: IRecipe[], mealSection: string): boolean {

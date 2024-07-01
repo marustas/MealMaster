@@ -8,6 +8,7 @@ const routes: Routes = [
     path: '',
     component: RecipesComponent,
   },
+  { path: ':section', component: RecipesComponent },
 ];
 
 export const recipesRouting = RouterModule.forChild(routes);

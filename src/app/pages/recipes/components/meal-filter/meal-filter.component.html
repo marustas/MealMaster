@@ -1,16 +1,28 @@
 <div class="filter-container">
   <label class="custom-checkbox">
-    <input type="checkbox" (change)="onCheckboxChange('breakfast', $event)" />
+    <input
+      type="checkbox"
+      (change)="onCheckboxChange('breakfast', $event)"
+      [checked]="filters['breakfast']"
+    />
     <span class="checkmark"></span>
     breakfast
   </label>
   <label class="custom-checkbox">
-    <input type="checkbox" (change)="onCheckboxChange('lunch', $event)" />
+    <input
+      type="checkbox"
+      (change)="onCheckboxChange('lunch', $event)"
+      [checked]="filters['lunch']"
+    />
     <span class="checkmark"></span>
     lunch
   </label>
   <label class="custom-checkbox">
-    <input type="checkbox" (change)="onCheckboxChange('dinner', $event)" />
+    <input
+      type="checkbox"
+      (change)="onCheckboxChange('dinner', $event)"
+      [checked]="filters['dinner']"
+    />
     <span class="checkmark"></span>
     dinner
   </label>
