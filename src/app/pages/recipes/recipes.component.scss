@@ -64,10 +64,21 @@
   font-size: medium;
 }
 
+.next-btn:hover,
+.prev-btn:hover {
+  cursor: pointer;
+}
+
 .next-btn {
   background-color: $grass-green;
 }
 
 .prev-btn {
   background-color: $swamp-green;
+}
+
+.next-btn[disabled],
+.prev-btn[disabled] {
+  background-color: $disabled-grey;
+  cursor: not-allowed;
 }
