@@ -10,11 +10,9 @@ export class LoaderService {
 
   public showLoader(): void {
     this.isLoading.next(true);
-    console.log(this.isLoading.getValue());
   }
 
   public hideLoader(): void {
     this.isLoading.next(false);
-    console.log(this.isLoading.getValue());
   }
 }

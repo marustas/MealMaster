@@ -42,7 +42,6 @@ export class SearchService {
     this.loader.showLoader();
 
     const params = { q: query, page, itemsPerPage, filters };
-    console.log(this.loader);
     return this.httpService.get<any>('recipes', params).pipe(
       delay(500),
       finalize(() => this.loader.hideLoader())

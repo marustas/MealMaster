@@ -14,7 +14,7 @@ import { LoaderService } from 'src/app/shared/services/loader.service';
 })
 export class RecipesComponent {
   recipes$: Observable<IRecipe[]>;
-  isLoading$: boolean = false;
+  isLoading$: Observable<boolean>;
   currentPage: number = 1;
   totalPages: number = 1;
 
@@ -24,25 +24,22 @@ export class RecipesComponent {
     filterService: FilterService,
     searchService: SearchService
   ) {
-    this.loaderService.isLoading$.subscribe((r) => this.isLoading$ = r);
-   // this.loaderService.isLoading$;
+    this.isLoading$ = this.loaderService.isLoading$;
     this.recipes$ = combineLatest([
       this.paginationService.currentPage$,
       searchService.searchQuery$,
       filterService.filter$,
     ]).pipe(
-      switchMap(([page, query, filters]) => {
-        return searchService.searchRecipes(query, filters, page, this.paginationService.itemsPerPage).pipe(
+      switchMap(([page, query, filters]) =>
+        searchService.searchRecipes(query, filters, page, this.paginationService.itemsPerPage).pipe(
           map((response) => {
-            console.log(this.loaderService);
-            this.loaderService.hideLoader();
             this.paginationService.getPages(response.totalItems);
             this.currentPage = +response.currentPage;
             return response.items;
           }),
           tap(() => (this.totalPages = paginationService.totalPages))
-        );
-      })
+        )
+      )
     );
   }
 
