@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/fridge/fridge.module').then((m) => m.FridgeModule),
   },
   {
+    path: 'user',
+    loadChildren: () => import('./pages/user/user.module').then((m) => m.UserModule),
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/fallback/fallback.module').then((m) => m.FallbackModule),
   },

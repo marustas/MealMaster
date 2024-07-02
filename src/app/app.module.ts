@@ -9,10 +9,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FridgeModule } from './pages/fridge/fridge.module';
 import { HomepageModule } from './pages/homepage/homepage.module';
 import { RecipesModule } from './pages/recipes/recipes.module';
+import { UserModule } from './pages/user/user.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, HomepageModule, FridgeModule, RecipesModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HomepageModule, FridgeModule, RecipesModule, HttpClientModule, UserModule],
   providers: [],
   bootstrap: [AppComponent],
 })
