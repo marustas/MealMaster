@@ -9,12 +9,14 @@
       </div>
     </div>
     <div class="recipe-details">
-      <div class="recipe-description">{{ recipe.description | uppercase }}</div>
+      <div class="recipe-description">{{ recipe.description | titlecase }}</div>
       <div class="recipe-stats">
-        <p>
+        <p class="stat">
+          <img src="../../../../../assets/clock.svg" alt="time" />
           <b>{{ recipe.cookingTime }}</b> min
         </p>
-        <p>
+        <p class="stat">
+          <img src="../../../../../assets/users.svg" alt="servings" />
           <b>{{ recipe.servings }}</b> servings
         </p>
         <button (click)="onAddToMeal(recipe.id)" class="add-btn">

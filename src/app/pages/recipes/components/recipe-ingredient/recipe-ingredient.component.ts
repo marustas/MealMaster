@@ -28,7 +28,7 @@ export class RecipeIngredientComponent implements OnDestroy {
   isPresent(): boolean {
     return this.products.some(
       (product) =>
-        product.name === this.ingredient.name &&
+        product.name.toLowerCase() === this.ingredient.name.toLowerCase() &&
         this.parseQuantity(product.quantity) >= this.parseQuantity(this.ingredient.quantity)
     );
   }
@@ -36,7 +36,6 @@ export class RecipeIngredientComponent implements OnDestroy {
   private parseQuantity(quantity: string): number {
     const parts = quantity.split(' ');
     const value = parseFloat(parts[0]);
-    console.log(+value);
     return +value;
   }
 }

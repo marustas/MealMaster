@@ -26,9 +26,9 @@
 .recipe-description {
   font-size: large;
   font-weight: 300;
-  margin: 5px 0px;
-  padding: 0px 20px;
-  margin-top: 10px;
+  padding: 0px 40px;
+  margin: 20px 0px 10px;
+  max-width: 1000px;
 }
 
 .recipe-stats {
@@ -43,7 +43,7 @@
 
 .recipe-ingredients {
   grid-area: Ingredients;
-  padding: 0px 20px;
+  padding: 0px 40px;
 }
 
 .ingredients {
@@ -92,4 +92,12 @@ hr.line-break {
   color: $grey;
   font-weight: 600;
   font-size: xx-large;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 5px;
 }
