@@ -1,0 +1,10 @@
+@import '../../../../shared/styles/variables.scss';
+.ingredient {
+  font-size: medium;
+  font-weight: 300;
+  color: $grey;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

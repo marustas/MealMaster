@@ -25,7 +25,12 @@
     </div>
     <div class="recipe-ingredients">
       <h2>Recipe Ingredients</h2>
-      {{ recipe.ingredients }}
+      <div class="ingredients">
+        <app-recipe-ingredient
+          *ngFor="let ingredient of recipe.ingredients"
+          [ingredient]="ingredient"
+        ></app-recipe-ingredient>
+      </div>
     </div>
   </ng-container>
 </div>
