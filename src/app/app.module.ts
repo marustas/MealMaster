@@ -10,11 +10,22 @@ import { FridgeModule } from './pages/fridge/fridge.module';
 import { HomepageModule } from './pages/homepage/homepage.module';
 import { RecipesModule } from './pages/recipes/recipes.module';
 import { UserModule } from './pages/user/user.module';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, HomepageModule, FridgeModule, RecipesModule, HttpClientModule, UserModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HomepageModule,
+    FridgeModule,
+    RecipesModule,
+    HttpClientModule,
+    UserModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
