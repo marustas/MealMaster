@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { iif, Observable, switchMap } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
+import { MealService } from 'src/app/pages/homepage/services/meal.service';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class RecipeExtendedComponent {
 
   constructor(
     recipesService: RecipesService,
-    private activeRoute: ActivatedRoute
+    private mealService: MealService,
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.recipe$ = this.activeRoute.paramMap.pipe(
       switchMap((params) => {
@@ -23,5 +26,10 @@ export class RecipeExtendedComponent {
         return iif(() => isNaN(+recipeID!), recipesService.getRecipeById(1), recipesService.getRecipeById(+recipeID!));
       })
     );
+  }
+
+  onAddToMeal(recipeID: number): void {
+    this.mealService.addMeal(recipeID);
+    this.router.navigate(['']);
   }
 }

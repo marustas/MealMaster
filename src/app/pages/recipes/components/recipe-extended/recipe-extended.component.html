@@ -1,12 +1,28 @@
 <div class="recipe-container">
   <ng-container *ngIf="recipe$ | async as recipe; else spinnerTemplate">
-    <div class="recipe-image">
-      <img [src]="recipe.image" alt="recipe" />
+    <div
+      [style.background-image]="'url(' + recipe.image + ')'"
+      class="recipe-image"
+    ></div>
+    <div class="recipe-details">
+      <div class="recipe-description">{{ recipe.description | uppercase }}</div>
+      <div class="recipe-stats">
+        <p>
+          <b>{{ recipe.cookingTime }}</b> min
+        </p>
+        <p>
+          <b>{{ recipe.servings }}</b> servings
+        </p>
+        <button (click)="onAddToMeal(recipe.id)" class="add-btn">
+          Add to meal
+        </button>
+      </div>
+      <hr class="line-break" />
     </div>
-    <div class="recipe-deetails">
-      <div class="recipe-details">{{ recipe.description }}</div>
+    <div class="recipe-ingredients">
+      <h2>Recipe Ingredients</h2>
+      {{ recipe.ingredients }}
     </div>
-    <div class="recipe-ingredients"></div>
   </ng-container>
 </div>
 
