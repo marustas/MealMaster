@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { LoaderService } from './loader.service';
 
@@ -20,11 +20,7 @@ export class HttpService {
     if (params) {
       Object.keys(params).forEach((key) => (httpParams = httpParams.set(key, params[key])));
     }
-    this.loader.showLoader();
-    return this.http.get<T>(`${this.baseUrl}/${url}`, { params: httpParams }).pipe(
-      delay(500),
-      tap(() => this.loader.hideLoader())
-    );
+    return this.http.get<T>(`${this.baseUrl}/${url}`, { params: httpParams }).pipe();
   }
 
   post<T>(endpoint: string, body: any): Observable<T> {

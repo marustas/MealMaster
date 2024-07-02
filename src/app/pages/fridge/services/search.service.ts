@@ -15,7 +15,8 @@ export class SearchService {
   constructor(
     private httpService: HttpService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loader: LoaderService
   ) {
     const initialQuery = this.route.snapshot.queryParams['q'] || '';
     this.setQuery(initialQuery);
@@ -30,11 +31,19 @@ export class SearchService {
   }
 
   searchProducts(query: string): Observable<Ingredient[]> {
-    return this.httpService.get<Ingredient[]>('ingredients', query ? { q: query } : {}).pipe();
+    this.loader.showLoader();
+    return this.httpService.get<Ingredient[]>('ingredients', query ? { q: query } : {}).pipe(
+      delay(500),
+      tap(() => this.loader.hideLoader())
+    );
   }
 
   searchRecipes(query: string, filters: string[], page: number, itemsPerPage: number): Observable<any> {
     const params = { q: query, page, itemsPerPage, filters };
-    return this.httpService.get<any>('recipes', params).pipe();
+    this.loader.showLoader();
+    return this.httpService.get<any>('recipes', params).pipe(
+      delay(500),
+      tap(() => this.loader.hideLoader())
+    );
   }
 }

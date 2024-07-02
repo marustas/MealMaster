@@ -1,19 +1,41 @@
 @import '../../../../shared/styles/variables.scss';
-.recipe-image {
-  border-radius: 50%;
-  width: 50px;
-  min-height: 50px;
-}
-
-.recipe-content {
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: row;
-  gap: 15px;
-  color: $grey;
-  font-size: medium;
-  font-weight: 500;
-  padding: 5px;
+a {
+  text-decoration: none;
+  color: inherit;
+  .recipe-content {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 15px;
+    color: $grey;
+    font-size: medium;
+    font-weight: 500;
+    padding: 5px;
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    }
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    .recipe-image {
+      border-radius: 50%;
+      width: 50px;
+      min-height: 50px;
+    }
+    p {
+      transition: color 0.3s ease;
+    }
+  }
+  &.active-recipe {
+    .recipe-content {
+      transform: scale(1.02);
+      border-bottom: 1px solid $dark-green;
+      border-radius: 4px;
+    }
+  }
 }
