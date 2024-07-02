@@ -16,6 +16,7 @@
   padding: 0px;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 
 .recipe-details {
@@ -65,4 +66,24 @@ h2 {
 
 hr.line-break {
   border: 1px solid $grey;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay h1 {
+  margin: 0;
+  color: $grey;
+  font-weight: 600;
+  font-size: xx-large;
 }
