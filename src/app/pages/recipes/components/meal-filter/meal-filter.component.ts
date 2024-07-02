@@ -1,7 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FilterService } from '../../services/filter.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-meal-filter',
@@ -24,7 +25,6 @@ export class MealFilterComponent implements OnDestroy {
     if (this.activeRoute.firstChild) {
       this.routeSubscription = this.activeRoute.firstChild.paramMap.subscribe((params) => {
         const section = params.get('section');
-        console.log(section);
         if (section && this.filters.hasOwnProperty(section)) {
           this.filters[section] = true;
         }

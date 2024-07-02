@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 
 import { MealService } from './services/meal.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',

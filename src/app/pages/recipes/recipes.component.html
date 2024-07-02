@@ -1,36 +1,47 @@
 <div class="main">
-    <div class="recipe-menu">
-        <ng-container *ngIf="recipes$ | async as recipes; else spinnerTemplate">
-            <div *ngIf="isLoading$ | async; else dataTemplate">
-                <app-spinner></app-spinner>
-            </div>
-            <ng-template #dataTemplate>
-                <div class="recipe-content">
-                    <app-recipe *ngFor="let recipe of recipes; trackBy: trackById" [recipe]="recipe"></app-recipe>
-                </div>
-            </ng-template>
+  <div class="recipe-menu">
+    <ng-container *ngIf="recipes$ | async as recipes; else spinnerTemplate">
+      <div *ngIf="isLoading$ | async; else dataTemplate">
+        <app-spinner></app-spinner>
+      </div>
+      <ng-template #dataTemplate>
+        <div class="recipe-content">
+          <app-recipe
+            *ngFor="let recipe of recipes; trackBy: trackById"
+            [recipe]="recipe"
+          ></app-recipe>
+        </div>
+      </ng-template>
 
-            <div class="pagination-btns">
-                <button class="prev-btn" [disabled]="currentPage === 1" (click)="onPreviousPage()">
+      <div class="pagination-btns">
+        <button
+          class="prev-btn"
+          [disabled]="currentPage === 1"
+          (click)="onPreviousPage()"
+        >
           Previous
         </button>
-                <button class="next-btn" [disabled]="currentPage === totalPages" (click)="onNextPage()">
+        <button
+          class="next-btn"
+          [disabled]="currentPage === totalPages"
+          (click)="onNextPage()"
+        >
           Next
         </button>
-            </div>
-        </ng-container>
+      </div>
+    </ng-container>
 
-        <ng-template #spinnerTemplate>
-            <app-spinner></app-spinner>
-        </ng-template>
-    </div>
+    <ng-template #spinnerTemplate>
+      <app-spinner></app-spinner>
+    </ng-template>
+  </div>
 
-    <div class="recipe-actions">
-        <app-search></app-search>
-        <app-meal-filter></app-meal-filter>
-    </div>
+  <div class="recipe-actions">
+    <app-search></app-search>
+    <app-meal-filter></app-meal-filter>
+  </div>
 
-    <div class="recipe-extended">
-        <router-outlet></router-outlet>
-    </div>
+  <div class="recipe-extended">
+    <router-outlet></router-outlet>
+  </div>
 </div>

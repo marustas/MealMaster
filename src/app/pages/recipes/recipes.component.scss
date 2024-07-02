@@ -5,11 +5,10 @@
   box-sizing: border-box;
   height: 100vh;
   overflow: hidden;
-  grid-template-columns: 1.1fr 5fr;
+  grid-template-columns: 1fr 3fr 1fr;
   grid-template-rows: 1fr 4fr 5fr;
-  gap: 0px 0px;
   grid-auto-flow: row;
-  grid-template-areas: 'Pagination actions actions' 'Pagination Recipe-photo Recipe-photo' 'Pagination Recipe-details Recipe-details';
+  grid-template-areas: 'Pagination Actions Actions' 'Pagination Recipe-extended Recipe-extended' 'Pagination Recipe-extended Recipe-extended';
   background-color: #f2efef;
 }
 
@@ -21,6 +20,10 @@
   padding: 20px;
 }
 
+.recipe-extended {
+  grid-area: Recipe-extended;
+}
+
 .recipe-content {
   display: flex;
   flex-direction: column;
@@ -30,7 +33,7 @@
 
 .recipe-actions {
   background-color: #d9d9d9;
-  grid-area: actions;
+  grid-area: Actions;
   padding: 10px 40px;
   display: flex;
   flex-direction: row;

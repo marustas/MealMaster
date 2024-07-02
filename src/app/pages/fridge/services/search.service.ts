@@ -14,7 +14,6 @@ export class SearchService {
 
   constructor(
     private httpService: HttpService,
-    private loader: LoaderService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -31,20 +30,11 @@ export class SearchService {
   }
 
   searchProducts(query: string): Observable<Ingredient[]> {
-    this.loader.showLoader();
-    return this.httpService.get<Ingredient[]>('ingredients', query ? { q: query } : {}).pipe(
-      delay(500),
-      tap(() => this.loader.hideLoader())
-    );
+    return this.httpService.get<Ingredient[]>('ingredients', query ? { q: query } : {}).pipe();
   }
 
   searchRecipes(query: string, filters: string[], page: number, itemsPerPage: number): Observable<any> {
-    this.loader.showLoader();
-
     const params = { q: query, page, itemsPerPage, filters };
-    return this.httpService.get<any>('recipes', params).pipe(
-      delay(500),
-      tap(() => this.loader.hideLoader())
-    );
+    return this.httpService.get<any>('recipes', params).pipe();
   }
 }
