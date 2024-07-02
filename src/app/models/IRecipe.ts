@@ -12,4 +12,5 @@ export interface IRecipe {
   ingredients: Ingredient[];
   author?: string;
   special: boolean;
+  calories: number;
 }

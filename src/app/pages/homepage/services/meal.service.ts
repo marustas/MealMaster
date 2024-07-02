@@ -11,6 +11,7 @@ import { MealType } from '../../../shared/meal-type.enum';
 export class MealService {
   private mealSubject: BehaviorSubject<IRecipe[]>;
   public meals$: Observable<IRecipe[]>;
+  public calorieIntake: number = 0;
 
   constructor(private recipesService: RecipesService) {
     this.mealSubject = new BehaviorSubject<IRecipe[]>([]);
@@ -22,6 +23,7 @@ export class MealService {
       const meals = this.mealSubject.getValue();
       const mealIndex = this.getMealIndex(newRecipe.section);
       meals[mealIndex] = newRecipe;
+      this.calorieIntake += newRecipe.calories;
       this.mealSubject.next(meals);
     });
   }
