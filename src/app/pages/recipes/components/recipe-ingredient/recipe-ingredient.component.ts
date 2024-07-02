@@ -11,8 +11,8 @@ import { ProductsService } from 'src/app/pages/fridge/services/products.service'
 export class RecipeIngredientComponent implements OnDestroy {
   @Input() ingredient!: Ingredient;
 
-  missingUrl: string = '../../../../../assets/missing.svg';
-  presentUrl: string = '../../../../../assets/present.svg';
+  missingUrl = '../../../../../assets/missing.svg';
+  presentUrl = '../../../../../assets/present.svg';
 
   products!: Ingredient[];
   productSubscription: Subscription;

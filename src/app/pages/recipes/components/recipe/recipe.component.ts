@@ -10,7 +10,7 @@ import { IRecipe } from 'src/app/models/IRecipe';
 })
 export class RecipeComponent {
   @Input() recipe!: IRecipe;
-  section: string = '';
+  section = '';
 
   private routeSubscription!: Subscription;
 
