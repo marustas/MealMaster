@@ -8,9 +8,11 @@ const routes: Routes = [
   {
     path: '',
     component: RecipesComponent,
-    children: [{ path: ':recipeID', component: RecipeExtendedComponent }],
+    children: [
+      { path: ':section', component: RecipesComponent },
+      { path: ':section/:recipeID', component: RecipeExtendedComponent },
+    ],
   },
-  { path: ':section', component: RecipesComponent },
 ];
 
 export const recipesRouting = RouterModule.forChild(routes);

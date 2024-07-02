@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./meal-filter.component.scss'],
 })
 export class MealFilterComponent implements OnDestroy {
-  private routeSubscription: Subscription;
+  private routeSubscription!: Subscription;
 
   filters: { [key: string]: boolean } = {
     breakfast: false,
@@ -21,13 +21,16 @@ export class MealFilterComponent implements OnDestroy {
     private filterService: FilterService,
     private activeRoute: ActivatedRoute
   ) {
-    this.routeSubscription = this.activeRoute.paramMap.subscribe((params) => {
-      const section = params.get('section');
-      if (section && this.filters.hasOwnProperty(section)) {
-        this.filters[section] = true;
-      }
-      this.updateFilters();
-    });
+    if (this.activeRoute.firstChild) {
+      this.routeSubscription = this.activeRoute.firstChild.paramMap.subscribe((params) => {
+        const section = params.get('section');
+        console.log(section);
+        if (section && this.filters.hasOwnProperty(section)) {
+          this.filters[section] = true;
+        }
+        this.updateFilters();
+      });
+    }
   }
 
   ngOnDestroy(): void {
