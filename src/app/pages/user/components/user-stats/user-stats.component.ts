@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
-import { PieChart } from 'echarts/charts';
+import { GaugeChart } from 'echarts/charts';
 import { LegendComponent, TooltipComponent } from 'echarts/components';
 import { Subscription } from 'rxjs';
 import { MealService } from 'src/app/pages/homepage/services/meal.service';
@@ -14,7 +14,8 @@ export class UserStatsComponent implements OnInit, OnDestroy {
   calorieSubscription!: Subscription;
 
   currentCalories = 1400;
-  calorieGoal = 2000;
+  calorieGoal = 1000;
+  currentCaloriePercentage = this.currentCalories / this.calorieGoal;
   remainingCalories: number = this.calorieGoal - this.currentCalories;
   exceedGoal: boolean = this.currentCalories > this.calorieGoal;
 
@@ -26,12 +27,15 @@ export class UserStatsComponent implements OnInit, OnDestroy {
     this.calorieSubscription = this.mealService.currentCalories$.subscribe(
       (calories) => (this.currentCalories = calories)
     );
-    this.echartsExtentions = [PieChart, TooltipComponent, TooltipComponent, LegendComponent];
+    this.echartsExtentions = [GaugeChart, TooltipComponent, TooltipComponent, LegendComponent];
+
     if (this.exceedGoal) {
       this.subtextColor = '#f61616';
     } else {
       this.subtextColor = '#399a18';
     }
+
+    this.currentCaloriePercentage = +((this.currentCalories / this.calorieGoal) * 100).toFixed(2);
   }
 
   ngOnInit(): void {
@@ -46,36 +50,57 @@ export class UserStatsComponent implements OnInit, OnDestroy {
         },
         subtext: `${this.currentCalories} / ${this.calorieGoal}`,
         subtextStyle: {
-          fontSize: 22,
+          fontSize: 16,
           color: this.subtextColor,
         },
       },
       series: [
         {
-          name: 'Calories',
-          type: 'pie',
-          radius: ['64%', '70%'],
-          label: {
-            show: false,
-            position: 'center',
-          },
-          labelLine: {
+          type: 'gauge',
+          startAngle: 90,
+          endAngle: -270,
+          pointer: {
             show: false,
           },
-          data: [
-            { value: this.currentCalories, name: 'Current Calories' },
-            { value: Math.max(this.remainingCalories, 0), name: 'Remaining Calories' },
-          ],
-          itemStyle: {
-            color: (params: any) => {
-              if (params.data.name === 'Current Calories') {
-                return this.exceedGoal ? '#f61616' : '#399a18';
-              }
-              return '#d9d9d9';
+
+          progress: {
+            show: true,
+            overlap: false,
+            roundCap: true,
+            clip: false,
+            itemStyle: {
+              borderWidth: 1,
+              borderColor: '#3c3e3c',
+              color: this.subtextColor,
             },
-            borderColor: '#3c3e3c',
-            borderWidth: 1,
-            borderRadius: 8,
+          },
+          axisLine: {
+            lineStyle: {
+              width: 13,
+              color: [
+                [this.currentCaloriePercentage / 100, '#bfbebe'],
+                [1, '#bfbebe'],
+              ],
+            },
+          },
+          splitLine: {
+            show: false,
+            distance: 0,
+            length: 10,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLabel: {
+            show: false,
+            distance: 50,
+          },
+          data: [{ value: this.currentCaloriePercentage }],
+          title: {
+            fontSize: 14,
+          },
+          detail: {
+            show: false,
           },
         },
       ],
