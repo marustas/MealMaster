@@ -12,6 +12,10 @@
       <div class="recipe-description">{{ recipe.description | titlecase }}</div>
       <div class="recipe-stats">
         <p class="stat">
+          <img src="../../../../../assets/calories.svg" alt="calories" />
+          <b>{{ recipe.calories }}</b>
+        </p>
+        <p class="stat">
           <img src="../../../../../assets/clock.svg" alt="time" />
           <b>{{ recipe.cookingTime }}</b> min
         </p>

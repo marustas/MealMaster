@@ -29,7 +29,7 @@ export class IngredientService implements OnDestroy {
   }
 
   showMissing(ingredients: Ingredient[]): void {
-    this.missingIngredients = ingredients.filter((ingredient) => !this.isPresent(ingredient));
+    this.missingIngredients = ingredients?.filter((ingredient) => !this.isPresent(ingredient));
   }
 
   private parseQuantity(quantity: string): number {

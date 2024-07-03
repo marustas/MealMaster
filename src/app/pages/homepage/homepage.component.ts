@@ -16,8 +16,4 @@ export class HomepageComponent {
   constructor(mealService: MealService) {
     this.meals$ = mealService.meals$;
   }
-
-  shouldDisplayButton(meals: (IRecipe | null)[], mealSection: string): boolean {
-    return !meals.some((meal) => meal?.section === mealSection);
-  }
 }

@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { PieChart } from 'echarts/charts';
 import { LegendComponent, TooltipComponent } from 'echarts/components';
+import { Subscription } from 'rxjs';
+import { MealService } from 'src/app/pages/homepage/services/meal.service';
 
 @Component({
   selector: 'app-user-stats',
   templateUrl: './user-stats.component.html',
   styleUrls: ['./user-stats.component.scss'],
 })
-export class UserStatsComponent implements OnInit {
-  currentCalories = 1700;
+export class UserStatsComponent implements OnInit, OnDestroy {
+  calorieSubscription!: Subscription;
+
+  currentCalories = 1400;
   calorieGoal = 2000;
   remainingCalories: number = this.calorieGoal - this.currentCalories;
   exceedGoal: boolean = this.currentCalories > this.calorieGoal;
-  subtextColor: string;
 
+  subtextColor: string;
   readonly echartsExtentions: any[];
   echartsOptions: EChartsOption = {};
 
-  constructor() {
+  constructor(private mealService: MealService) {
+    this.calorieSubscription = this.mealService.currentCalories$.subscribe(
+      (calories) => (this.currentCalories = calories)
+    );
     this.echartsExtentions = [PieChart, TooltipComponent, TooltipComponent, LegendComponent];
     if (this.exceedGoal) {
       this.subtextColor = '#f61616';
@@ -26,6 +33,7 @@ export class UserStatsComponent implements OnInit {
       this.subtextColor = '#399a18';
     }
   }
+
   ngOnInit(): void {
     this.echartsOptions = {
       title: {
@@ -63,7 +71,7 @@ export class UserStatsComponent implements OnInit {
               if (params.data.name === 'Current Calories') {
                 return this.exceedGoal ? '#f61616' : '#399a18';
               }
-              return '#a8e694';
+              return '#d9d9d9';
             },
             borderColor: '#3c3e3c',
             borderWidth: 1,
@@ -72,5 +80,9 @@ export class UserStatsComponent implements OnInit {
         },
       ],
     };
+  }
+
+  ngOnDestroy(): void {
+    this.calorieSubscription.unsubscribe();
   }
 }

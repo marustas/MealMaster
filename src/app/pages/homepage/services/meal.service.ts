@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
@@ -12,6 +12,7 @@ import { MealType } from '../../../shared/meal-type.enum';
 export class MealService {
   private mealSubject: BehaviorSubject<(IRecipe | null)[]>;
   public meals$: Observable<(IRecipe | null)[]>;
+  public currentCalories$: Observable<number>;
 
   constructor(
     private recipesService: RecipesService,
@@ -19,15 +20,16 @@ export class MealService {
   ) {
     this.mealSubject = new BehaviorSubject<(IRecipe | null)[]>([null, null, null]);
     this.meals$ = this.mealSubject.asObservable();
+    this.meals$ = this.mealSubject.asObservable().pipe(filter((meals) => meals.some((meal) => meal !== null)));
     this.loadMeals();
-  }
-  private loadMeals(): void {
-    this.httpService.get<IRecipe[]>('meal').subscribe((meals) => {
-      this.mealSubject.next(meals);
-    });
+    this.currentCalories$ = this.meals$.pipe(map((meals) => this.calculateTotalCalories(meals)));
   }
 
-  public addMeal(recipeID: number): void {
+  calculateTotalCalories(meals: (IRecipe | null)[]): number {
+    return meals.reduce((total, recipe) => total + (recipe ? recipe.calories : 0), 0);
+  }
+
+  addMeal(recipeID: number): void {
     this.recipesService.getRecipeById(recipeID).subscribe((newRecipe) => {
       const meals = this.mealSubject.getValue();
       const mealIndex = this.getMealIndex(newRecipe.section);
@@ -38,7 +40,7 @@ export class MealService {
     });
   }
 
-  public deleteMeal(recipeID: number): void {
+  deleteMeal(recipeID: number): void {
     const meals = this.mealSubject.getValue();
     const recipeIndex = meals.findIndex((meal) => meal && meal.id === recipeID);
 
@@ -48,6 +50,12 @@ export class MealService {
         this.mealSubject.next(meals);
       });
     }
+  }
+
+  private loadMeals(): void {
+    this.httpService.get<IRecipe[]>('meal').subscribe((meals) => {
+      this.mealSubject.next(meals);
+    });
   }
 
   private getMealIndex(mealType: MealType): number {
