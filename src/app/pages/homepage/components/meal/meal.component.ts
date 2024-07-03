@@ -10,7 +10,8 @@ import { MealService } from '../../services/meal.service';
   styleUrls: ['./meal.component.scss'],
 })
 export class MealComponent {
-  @Input() meal!: IRecipe;
+  @Input() meal!: IRecipe | null;
+  @Input() mealSection!: string;
   isModalVisible = false;
 
   constructor(
@@ -18,12 +19,16 @@ export class MealComponent {
     private router: Router
   ) {}
 
+  onAddMeal(): void {
+    this.router.navigate(['/recipes', this.mealSection, 1]);
+  }
+
   onDeleteMeal(): void {
-    this.mealService.deleteMeal(this.meal.id);
+    this.mealService.deleteMeal(this.meal?.id!);
   }
 
   onEditMeal(): void {
-    this.router.navigate(['/recipes', this.meal.section, this.meal.id]);
+    this.router.navigate(['/recipes', this.meal?.section, this.meal?.id]);
   }
 
   showModal(): void {

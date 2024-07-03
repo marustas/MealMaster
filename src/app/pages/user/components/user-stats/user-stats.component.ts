@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { PieChart } from 'echarts/charts';
-import { TooltipComponent, LegendComponent } from 'echarts/components';
+import { LegendComponent, TooltipComponent } from 'echarts/components';
 
 @Component({
   selector: 'app-user-stats',
@@ -9,8 +9,8 @@ import { TooltipComponent, LegendComponent } from 'echarts/components';
   styleUrls: ['./user-stats.component.scss'],
 })
 export class UserStatsComponent implements OnInit {
-  currentCalories: number = 1700;
-  calorieGoal: number = 2000;
+  currentCalories = 1700;
+  calorieGoal = 2000;
   remainingCalories: number = this.calorieGoal - this.currentCalories;
   exceedGoal: boolean = this.currentCalories > this.calorieGoal;
   subtextColor: string;

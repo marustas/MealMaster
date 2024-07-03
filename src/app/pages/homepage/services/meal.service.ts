@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
+import { HttpService } from 'src/app/shared/services/http.service';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
 
 import { MealType } from '../../../shared/meal-type.enum';
@@ -9,29 +10,44 @@ import { MealType } from '../../../shared/meal-type.enum';
   providedIn: 'root',
 })
 export class MealService {
-  private mealSubject: BehaviorSubject<IRecipe[]>;
-  public meals$: Observable<IRecipe[]>;
-  public calorieIntake: number = 0;
+  private mealSubject: BehaviorSubject<(IRecipe | null)[]>;
+  public meals$: Observable<(IRecipe | null)[]>;
 
-  constructor(private recipesService: RecipesService) {
-    this.mealSubject = new BehaviorSubject<IRecipe[]>([]);
+  constructor(
+    private recipesService: RecipesService,
+    private httpService: HttpService
+  ) {
+    this.mealSubject = new BehaviorSubject<(IRecipe | null)[]>([null, null, null]);
     this.meals$ = this.mealSubject.asObservable();
+    this.loadMeals();
+  }
+  private loadMeals(): void {
+    this.httpService.get<IRecipe[]>('meal').subscribe((meals) => {
+      this.mealSubject.next(meals);
+    });
   }
 
   public addMeal(recipeID: number): void {
     this.recipesService.getRecipeById(recipeID).subscribe((newRecipe) => {
       const meals = this.mealSubject.getValue();
       const mealIndex = this.getMealIndex(newRecipe.section);
-      meals[mealIndex] = newRecipe;
-      this.calorieIntake += newRecipe.calories;
-      this.mealSubject.next(meals);
+      this.httpService.post(`meal`, { recipe: newRecipe, section: mealIndex }).subscribe(() => {
+        meals[mealIndex] = newRecipe;
+        this.mealSubject.next(meals);
+      });
     });
   }
 
   public deleteMeal(recipeID: number): void {
     const meals = this.mealSubject.getValue();
-    const newMeals = meals.filter((meal) => meal.id !== recipeID);
-    this.mealSubject.next(newMeals);
+    const recipeIndex = meals.findIndex((meal) => meal && meal.id === recipeID);
+
+    if (recipeIndex !== -1) {
+      this.httpService.delete(`meal/${recipeID}`).subscribe(() => {
+        meals[recipeIndex] = null;
+        this.mealSubject.next(meals);
+      });
+    }
   }
 
   private getMealIndex(mealType: MealType): number {
@@ -43,7 +59,7 @@ export class MealService {
       case MealType.dinner:
         return 2;
       default:
-        throw new Error('Invalid meal type');
+        return -1;
     }
   }
 }

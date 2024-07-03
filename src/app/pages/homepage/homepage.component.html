@@ -1,19 +1,16 @@
 <div class="main">
   <h1 class="title">{{ "today's meal" | uppercase }}</h1>
   <div class="meals">
-    <ng-container *ngIf="meals$ | async as meals">
-      <app-meal *ngFor="let meal of meals" [meal]="meal"></app-meal>
-      <div class="btn-container">
-        <ng-container *ngFor="let mealSection of mealSections">
-          <button
-            class="add-btn"
-            *ngIf="shouldDisplayButton(meals, mealSection)"
-            (click)="onAddMeal(mealSection)"
-          >
-            Add {{ mealSection | titlecase }} Recipe
-          </button>
-        </ng-container>
-      </div>
+    <ng-container *ngIf="meals$ | async as meals; else spinnerTemplate">
+      <app-meal
+        *ngFor="let meal of meals; index as i"
+        [meal]="meal"
+        [mealSection]="mealSections[i]"
+      ></app-meal>
     </ng-container>
   </div>
 </div>
+
+<ng-template #spinnerTemplate>
+  <app-spinner></app-spinner>
+</ng-template>

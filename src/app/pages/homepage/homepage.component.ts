@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 
@@ -11,21 +10,14 @@ import { MealService } from './services/meal.service';
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent {
-  meals$: Observable<IRecipe[]>;
+  meals$: Observable<(IRecipe | null)[]>;
   mealSections = ['breakfast', 'lunch', 'dinner'];
 
-  constructor(
-    mealService: MealService,
-    private router: Router
-  ) {
+  constructor(mealService: MealService) {
     this.meals$ = mealService.meals$;
   }
 
-  onAddMeal(mealSection: string): void {
-    this.router.navigate(['/recipes', mealSection, 1]);
-  }
-
-  shouldDisplayButton(meals: IRecipe[], mealSection: string): boolean {
-    return !meals.some((meal) => meal.section === mealSection);
+  shouldDisplayButton(meals: (IRecipe | null)[], mealSection: string): boolean {
+    return !meals.some((meal) => meal?.section === mealSection);
   }
 }
