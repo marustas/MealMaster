@@ -17,10 +17,13 @@
     <h2 class="meal-title">{{ meal.title }}</h2>
     <p class="meal-description">{{ meal.description | uppercase }}</p>
     <p class="missing-details">
-      <b>Missing:</b> <span>Missing ingredient</span>
-      <span>Missing ingredient</span> <span>Missing ingredient</span>
-      <span>Missing ingredient</span>
-      <span>Missing ingredient</span>
+      <b>Missing:</b>
+      <span
+        class="missing-ing"
+        *ngFor="let missingIngredient of missingIngredients"
+      >
+        {{ missingIngredient.name }},
+      </span>
     </p>
   </div>
   <div class="meal-actions">

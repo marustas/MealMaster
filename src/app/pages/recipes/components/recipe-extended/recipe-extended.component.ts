@@ -22,7 +22,6 @@ export class RecipeExtendedComponent {
     this.recipe$ = this.activeRoute.paramMap.pipe(
       switchMap((params) => {
         const recipeID = params.get('recipeID');
-        console.log(recipeID);
         return iif(() => isNaN(+recipeID!), recipesService.getRecipeById(1), recipesService.getRecipeById(+recipeID!));
       })
     );
