@@ -9,11 +9,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FridgeModule } from './pages/fridge/fridge.module';
 import { HomepageModule } from './pages/homepage/homepage.module';
+import { LoginModule } from './pages/login/login.module';
 import { RecipesModule } from './pages/recipes/recipes.module';
 import { UserModule } from './pages/user/user.module';
-import { LoginModule } from './pages/login/login.module';
-import { AuthService } from './shared/services/auth.service';
 import { AuthInterceptor } from './shared/guards/auth.interceptor';
+import { AuthService } from './shared/services/auth.service';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],

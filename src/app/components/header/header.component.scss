@@ -28,8 +28,12 @@
   flex-direction: row;
   gap: 40px;
   width: fit-content;
+  img {
+    width: 60px;
+  }
   a {
     align-content: center;
+    justify-content: center;
     height: 100%;
     padding: 0 5px;
     transition: 0.3s;

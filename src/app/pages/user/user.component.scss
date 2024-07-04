@@ -1,18 +1,43 @@
 @import '../../shared/styles/variables.scss';
 .main {
-    padding: 80px 25px;
-    color: $grey;
-    box-sizing: border-box;
-    overflow-y: hidden;
-    h1 {
-        width: 100%;
-        justify-content: flex-start;
-        font-weight: 400;
-        margin: 0;
-        margin-bottom: 20px;
-        .username {
-            color: $grass-green;
-            font-weight: 600;
-        }
+  padding: 80px;
+  color: $grey;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  gap: 500px;
+  h1 {
+    width: 100%;
+    justify-content: flex-start;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 20px;
+    .username {
+      color: $grass-green;
+      font-weight: 600;
     }
+  }
+  .user-info {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
+  .credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    p {
+      margin: 0;
+    }
+  }
+  button {
+    background-color: $grass-green;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: medium;
+  }
+  .profile {
+    width: 80px;
+  }
 }

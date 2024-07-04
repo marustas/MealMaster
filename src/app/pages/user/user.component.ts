@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ProfilePictureService } from './services/profile-picture.service';
-import { UserService } from 'src/app/shared/services/user.service';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { IUser } from 'src/app/models/IUser';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -10,14 +9,14 @@ import { IUser } from 'src/app/models/IUser';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
-  profilePicture!: string;
   user$: Observable<IUser>;
-  constructor(
-    profilePictureService: ProfilePictureService,
-    private userService: UserService
-  ) {
-    this.user$ = this.userService
-      .getUser()
-      .pipe(tap((user) => (this.profilePicture = profilePictureService.createProfilePicture(user.username))));
+  isHidden = true;
+
+  constructor(private userService: UserService) {
+    this.user$ = this.userService.getUser();
+  }
+
+  showDetails(): void {
+    this.isHidden = !this.isHidden;
   }
 }

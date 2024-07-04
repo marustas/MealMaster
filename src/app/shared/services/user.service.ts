@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpService } from './http.service';
-import { IUser } from 'src/app/models/IUser';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { IUser } from 'src/app/models/IUser';
+
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { HttpService } from './http.service';
 import * as moment from 'moment';
-import { UserService } from './user.service';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +11,12 @@ export class AuthService {
   private authStateSubject: BehaviorSubject<boolean>;
   public authState$: Observable<boolean>;
 
-  constructor(
-    private httpService: HttpService,
-    private userService: UserService
-  ) {
+  constructor(private httpService: HttpService) {
     this.authStateSubject = new BehaviorSubject(this.isLoggedIn());
     this.authState$ = this.authStateSubject.asObservable();
   }
 
   login(email: string, password: string) {
-    console.log(email, password);
     return this.httpService.post<any>('login', { email, password }).pipe(
       tap((response) => {
         this.setSession(response.expiresIn, response.token);

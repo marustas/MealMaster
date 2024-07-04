@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { passwordValidator } from '../../validators/password.validator';
-import { emailValidator } from '../../validators/email.validator';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { IUser } from 'src/app/models/IUser';
+import { AuthService } from 'src/app/shared/services/auth.service';
+
+import { emailValidator } from '../../validators/email.validator';
+import { passwordValidator } from '../../validators/password.validator';
 
 @Component({
   selector: 'app-login-form',

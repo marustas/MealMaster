@@ -1,12 +1,14 @@
 <div *ngIf="user$ | async as user" class="main">
-    <h1>
-        Welcome, <span class="username">{{ user.username }}</span
+  <h1>
+    Welcome, <span class="username">{{ user.username }}</span
     >!
   </h1>
-  <img [src]="profilePicture" alt="profile" />
   <div class="user-info">
-    <p>User's email</p>
-    <p>User's password</p>
+    <div class="credentials">
+      <p>Email: {{ isHidden ? '********' : user.email }}</p>
+      <p>Password: {{ isHidden ? '********' : user.password }}</p>
+    </div>
+    <button (click)="showDetails()">Show</button>
   </div>
   <app-user-stats> </app-user-stats>
 </div>
