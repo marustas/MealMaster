@@ -12,9 +12,33 @@
         placeholder="Enter password"
         type="password"
       />
+      <div
+        *ngIf="
+          passwordControl?.invalid &&
+          (passwordControl?.dirty || passwordControl?.touched)
+        "
+      >
+        <span class="error" *ngIf="passwordControl?.errors?.['required']"
+          >Password is required.</span
+        >
+        <span class="error" *ngIf="passwordControl?.errors?.['minLength']">{{
+          passwordControl?.errors?.['minLength']
+        }}</span>
+
+        <span
+          class="error"
+          *ngIf="passwordControl?.errors?.['specialCharacter']"
+          >{{ passwordControl?.errors?.['specialCharacter'] }}</span
+        >
+        <span class="error" *ngIf="passwordControl?.errors?.['fourNumbers']">{{
+          passwordControl?.errors?.['fourNumbers']
+        }}</span>
+      </div>
     </div>
-    <button [disabled]="loginForm.invalid" class="submit-btn" type="submit">
-      Login
-    </button>
+    <div class="btn-container">
+      <button [disabled]="loginForm.invalid" class="submit-btn" type="submit">
+        Login
+      </button>
+    </div>
   </form>
 </div>

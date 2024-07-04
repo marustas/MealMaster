@@ -4,16 +4,27 @@ form {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  width: 400px;
+  padding: 20px;
+  border-radius: 4px;
+  background-color: $olive-green;
+  color: $grey;
 }
 
 input {
-  width: 200px;
   padding: 7px;
   border: 1.5px $grey solid;
   border-radius: 3px;
   color: $grey;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h2 {
+  color: $grey;
+  margin-top: 20px;
 }
 
 .form-row {
@@ -21,27 +32,43 @@ input {
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
+  padding: 10px;
+  width: 100%;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .submit-btn {
   background-color: $grass-green;
   border-radius: 4px;
   color: white;
-  padding: 7px;
+  padding: 8px;
   border: none;
+  cursor: pointer;
   &:disabled {
     background-color: $disabled-grey;
+    cursor: not-allowed;
   }
 }
 
 label {
   display: block;
   margin-bottom: 5px;
-  color: #333;
-  font-size: large;
-  font-weight: 300;
+  font-size: medium;
+  font-weight: 400;
 }
 
 .required {
   color: $red;
+}
+
+.error {
+  color: $red;
+  margin-top: 5px;
+  font-size: 0.875em;
 }
