@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, map, Observable } from 'rxjs';
+import { BehaviorSubject, filter, Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
@@ -11,8 +11,9 @@ import { MealType } from '../../../shared/meal-type.enum';
 })
 export class MealService {
   private mealSubject: BehaviorSubject<(IRecipe | null)[]>;
+  private calorieSubject: BehaviorSubject<number>;
   public meals$: Observable<(IRecipe | null)[]>;
-  public currentCalories$: Observable<number>;
+  public calories$: Observable<number>;
 
   constructor(
     private recipesService: RecipesService,
@@ -20,13 +21,9 @@ export class MealService {
   ) {
     this.mealSubject = new BehaviorSubject<(IRecipe | null)[]>([null, null, null]);
     this.meals$ = this.mealSubject.asObservable();
-    this.meals$ = this.mealSubject.asObservable().pipe(filter((meals) => meals.some((meal) => meal !== null)));
+    this.calorieSubject = new BehaviorSubject<number>(0);
+    this.calories$ = this.calorieSubject.asObservable();
     this.loadMeals();
-    this.currentCalories$ = this.meals$.pipe(map((meals) => this.calculateTotalCalories(meals)));
-  }
-
-  calculateTotalCalories(meals: (IRecipe | null)[]): number {
-    return meals.reduce((total, recipe) => total + (recipe ? recipe.calories : 0), 0);
   }
 
   addMeal(recipeID: number): void {
@@ -35,6 +32,7 @@ export class MealService {
       const mealIndex = this.getMealIndex(newRecipe.section);
       this.httpService.post(`meal`, { recipe: newRecipe, section: mealIndex }).subscribe(() => {
         meals[mealIndex] = newRecipe;
+        this.calorieSubject.next(this.calculateTotalCalories(meals));
         this.mealSubject.next(meals);
       });
     });
@@ -47,6 +45,8 @@ export class MealService {
     if (recipeIndex !== -1) {
       this.httpService.delete(`meal/${recipeID}`).subscribe(() => {
         meals[recipeIndex] = null;
+        this.calculateTotalCalories(meals);
+        this.calorieSubject.next(this.calculateTotalCalories(meals));
         this.mealSubject.next(meals);
       });
     }
@@ -54,6 +54,8 @@ export class MealService {
 
   private loadMeals(): void {
     this.httpService.get<IRecipe[]>('meal').subscribe((meals) => {
+      this.calculateTotalCalories(meals);
+      this.calorieSubject.next(this.calculateTotalCalories(meals));
       this.mealSubject.next(meals);
     });
   }
@@ -69,5 +71,9 @@ export class MealService {
       default:
         return -1;
     }
+  }
+
+  private calculateTotalCalories(meals: (IRecipe | null)[]): number {
+    return meals.reduce((total, recipe) => total + (recipe ? recipe.calories : 0), 0);
   }
 }

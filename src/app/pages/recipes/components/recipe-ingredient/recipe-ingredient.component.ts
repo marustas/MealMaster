@@ -12,7 +12,7 @@ export class RecipeIngredientComponent implements OnInit {
   missingUrl = '../../../../../assets/missing.svg';
   presentUrl = '../../../../../assets/present.svg';
 
-  isPresent: string = '';
+  isPresent = '';
 
   constructor(private ingredientService: IngredientService) {}
 
