@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IUser } from 'src/app/models/IUser';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { emailValidator } from '../../validators/email.validator';

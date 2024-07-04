@@ -52,6 +52,10 @@
     color: #ffff;
     font-size: 18px;
     cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      background-color: $highlight-green;
+    }
   }
   .active-link {
     text-decoration: underline;

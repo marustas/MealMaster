@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { HttpService } from './http.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,10 @@ export class AuthService {
   private authStateSubject: BehaviorSubject<boolean>;
   public authState$: Observable<boolean>;
 
-  constructor(private httpService: HttpService) {
+  constructor(
+    private httpService: HttpService,
+    private router: Router
+  ) {
     this.authStateSubject = new BehaviorSubject(this.isLoggedIn());
     this.authState$ = this.authStateSubject.asObservable();
   }
@@ -21,6 +25,7 @@ export class AuthService {
       tap((response) => {
         this.setSession(response.expiresIn, response.token);
         this.authStateSubject.next(true);
+        this.router.navigate(['/home']);
       })
     );
   }
@@ -36,6 +41,7 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     this.authStateSubject.next(false);
+    this.router.navigate(['/login']);
   }
 
   public isLoggedIn(): boolean {

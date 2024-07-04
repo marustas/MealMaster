@@ -1,0 +1,21 @@
+@import '../../shared/styles/variables.scss';
+.container {
+  text-align: center;
+  padding: 200px;
+}
+
+h1 {
+  font-size: larger;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: large;
+  color: $grey;
+}
+
+a {
+  color: $grass-green;
+  text-decoration: none;
+  font-weight: bold;
+}
