@@ -21,6 +21,8 @@
         "@angular/router": "^15.2.0",
         "echarts": "^5.5.1",
         "echarts-for-angular": "^0.4.0",
+        "minidenticons": "^4.2.1",
+        "moment": "^2.30.1",
         "ngx-echarts": "^15.0.3",
         "prettier-eslint": "^16.3.0",
         "rxjs": "~7.8.0",

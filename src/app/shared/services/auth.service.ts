@@ -1,44 +1,58 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { IUser } from 'src/app/models/IUser';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { HttpService } from './http.service';
+import * as moment from 'moment';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  public authState$: Observable<boolean>;
-  public userState$: Observable<IUser | null>;
-
-  private userStateSubject: BehaviorSubject<IUser | null>;
   private authStateSubject: BehaviorSubject<boolean>;
+  public authState$: Observable<boolean>;
 
-  constructor() {
-    this.authStateSubject = new BehaviorSubject(false);
-    this.userStateSubject = new BehaviorSubject<IUser | null>(this.getUserInfo());
-
+  constructor(
+    private httpService: HttpService,
+    private userService: UserService
+  ) {
+    this.authStateSubject = new BehaviorSubject(this.isLoggedIn());
     this.authState$ = this.authStateSubject.asObservable();
-    this.userState$ = this.userStateSubject.asObservable();
   }
 
-  login(user: IUser): void {
-    this.authStateSubject.next(true);
-    this.userStateSubject.next(user);
+  login(email: string, password: string) {
+    console.log(email, password);
+    return this.httpService.post<any>('login', { email, password }).pipe(
+      tap((response) => {
+        this.setSession(response.expiresIn, response.token);
+        this.authStateSubject.next(true);
+      })
+    );
   }
 
-  logout(): void {
+  private setSession(expiresIn: number, idToken: any) {
+    const expiresAt = moment().add(expiresIn, 'seconds');
+
+    localStorage.setItem('id_token', idToken);
+    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+  }
+
+  logout() {
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
     this.authStateSubject.next(false);
-    this.userStateSubject.next(null);
   }
 
-  getUserInfo(): IUser | null {
-    const dummyUser = {
-      id: 0,
-      email: 'email@man.com',
-      password: 'password#567',
-      username: 'username',
-      calorieGoal: 2000,
-    };
+  public isLoggedIn(): boolean {
+    if (!this.getExpiration()) {
+      return false;
+    }
+    return moment().isBefore(this.getExpiration());
+  }
 
-    return dummyUser;
+  getExpiration() {
+    const expiration = localStorage.getItem('expires_at');
+    if (!expiration) return;
+    const expiresAt = JSON.parse(expiration);
+    return moment(expiresAt);
   }
 }

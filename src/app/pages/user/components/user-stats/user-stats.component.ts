@@ -31,11 +31,7 @@ export class UserStatsComponent {
           this.currentCaloriePercentage = +((this.currentCalories / this.calorieGoal) * 100).toFixed(2);
           this.exceedGoal = this.currentCalories > this.calorieGoal;
           this.subtextColor = this.exceedGoal ? '#f61616' : '#399a18';
-          if (this.exceedGoal) {
-            this.subtextColor = '#f61616';
-          } else {
-            this.subtextColor = '#399a18';
-          }
+
           this.echartsOptions = displayChart(
             this.currentCalories,
             this.calorieGoal,

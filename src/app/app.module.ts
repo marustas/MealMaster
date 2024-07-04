@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -12,6 +12,8 @@ import { HomepageModule } from './pages/homepage/homepage.module';
 import { RecipesModule } from './pages/recipes/recipes.module';
 import { UserModule } from './pages/user/user.module';
 import { LoginModule } from './pages/login/login.module';
+import { AuthService } from './shared/services/auth.service';
+import { AuthInterceptor } from './shared/guards/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -29,5 +31,6 @@ import { LoginModule } from './pages/login/login.module';
     }),
   ],
   bootstrap: [AppComponent],
+  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
 })
 export class AppModule {}

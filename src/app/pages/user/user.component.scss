@@ -1,13 +1,18 @@
 @import '../../shared/styles/variables.scss';
 .main {
-  padding: 80px 25px;
-  color: $grey;
-  box-sizing: border-box;
-  overflow-y: hidden;
-  h1 {
-    width: 100%;
-    justify-content: flex-start;
-    font-weight: 400;
-    margin-bottom: 20px;
-  }
+    padding: 80px 25px;
+    color: $grey;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    h1 {
+        width: 100%;
+        justify-content: flex-start;
+        font-weight: 400;
+        margin: 0;
+        margin-bottom: 20px;
+        .username {
+            color: $grass-green;
+            font-weight: 600;
+        }
+    }
 }

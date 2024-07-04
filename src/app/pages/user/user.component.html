@@ -1,8 +1,12 @@
-<div class="main">
-    <h1>Welcome, username!</h1>
-    <div class="user-info">
-        <p>User's email</p>
-        <p>User's password</p>
-    </div>
-    <app-user-stats></app-user-stats>
+<div *ngIf="user$ | async as user" class="main">
+    <h1>
+        Welcome, <span class="username">{{ user.username }}</span
+    >!
+  </h1>
+  <img [src]="profilePicture" alt="profile" />
+  <div class="user-info">
+    <p>User's email</p>
+    <p>User's password</p>
+  </div>
+  <app-user-stats> </app-user-stats>
 </div>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { passwordValidator } from '../../validators/password.validator';
 import { emailValidator } from '../../validators/email.validator';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { IUser } from 'src/app/models/IUser';
 
 @Component({
   selector: 'app-login-form',
@@ -11,7 +13,10 @@ import { emailValidator } from '../../validators/email.validator';
 export class LoginFormComponent {
   loginForm: FormGroup;
 
-  constructor(formBuilder: FormBuilder) {
+  constructor(
+    formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {
     this.loginForm = formBuilder.group({
       email: ['', [Validators.required, emailValidator()]],
       password: ['', [Validators.required, passwordValidator()]],
@@ -28,5 +33,7 @@ export class LoginFormComponent {
 
   handleLogin(e: SubmitEvent) {
     e.preventDefault();
+    const { email, password } = this.loginForm.value;
+    this.authService.login(email, password).subscribe();
   }
 }
