@@ -1,0 +1,47 @@
+@import '../../../../shared/styles/variables.scss';
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input {
+  width: 200px;
+  padding: 7px;
+  border: 1.5px $grey solid;
+  border-radius: 3px;
+  color: $grey;
+  outline: none;
+}
+
+.form-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.submit-btn {
+  background-color: $grass-green;
+  border-radius: 4px;
+  color: white;
+  padding: 7px;
+  border: none;
+  &:disabled {
+    background-color: $disabled-grey;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: large;
+  font-weight: 300;
+}
+
+.required {
+  color: $red;
+}

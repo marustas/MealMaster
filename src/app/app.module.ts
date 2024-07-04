@@ -11,6 +11,7 @@ import { FridgeModule } from './pages/fridge/fridge.module';
 import { HomepageModule } from './pages/homepage/homepage.module';
 import { RecipesModule } from './pages/recipes/recipes.module';
 import { UserModule } from './pages/user/user.module';
+import { LoginModule } from './pages/login/login.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -22,6 +23,7 @@ import { UserModule } from './pages/user/user.module';
     RecipesModule,
     HttpClientModule,
     UserModule,
+    LoginModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
