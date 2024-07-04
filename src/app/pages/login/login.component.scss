@@ -1,6 +1,13 @@
+@import '../../shared/styles/variables.scss';
 .main {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100%;
+  h1 {
+    color: $grey;
+    margin: 20px;
+    font-weight: 400;
+  }
 }

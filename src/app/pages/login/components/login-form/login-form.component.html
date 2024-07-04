@@ -1,9 +1,21 @@
 <div>
-  <h2>Login</h2>
   <form [formGroup]="loginForm" (submit)="handleLogin($event)">
     <div class="form-row">
       <label for="email">Email<span class="required">*</span></label>
       <input formControlName="email" placeholder="Enter e-mail" type="email" />
+      <div
+        *ngIf="
+          emailControl?.invalid &&
+          (emailControl?.dirty || emailControl?.touched)
+        "
+      >
+        <span class="error" *ngIf="emailControl?.errors?.['required']"
+          >Email is required.</span
+        >
+        <span class="error" *ngIf="emailControl?.errors?.['invalidEmail']">{{
+          emailControl?.errors?.['invalidEmail']?.message
+        }}</span>
+      </div>
     </div>
     <div class="form-row">
       <label for="password">Password <span class="required">*</span></label>

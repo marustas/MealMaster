@@ -6,7 +6,7 @@ form {
   flex-direction: column;
   gap: 20px;
   width: 400px;
-  padding: 20px;
+  padding: 40px;
   border-radius: 4px;
   background-color: $olive-green;
   color: $grey;
@@ -20,11 +20,7 @@ input {
   outline: none;
   width: 100%;
   box-sizing: border-box;
-}
-
-h2 {
-  color: $grey;
-  margin-top: 20px;
+  font-size: medium;
 }
 
 .form-row {
@@ -50,6 +46,7 @@ h2 {
   padding: 8px;
   border: none;
   cursor: pointer;
+  font-size: medium;
   &:disabled {
     background-color: $disabled-grey;
     cursor: not-allowed;
@@ -61,6 +58,7 @@ label {
   margin-bottom: 5px;
   font-size: medium;
   font-weight: 400;
+  font-size: medium;
 }
 
 .required {
