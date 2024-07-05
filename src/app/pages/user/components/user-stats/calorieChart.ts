@@ -37,7 +37,7 @@ export function displayChart(
           clip: false,
           itemStyle: {
             borderWidth: 1,
-            borderColor: '#3c3e3c',
+            borderColor: subtextColor,
             color: subtextColor,
           },
         },

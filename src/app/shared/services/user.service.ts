@@ -19,4 +19,8 @@ export class UserService {
   getUser(): Observable<IUser> {
     return this.httpService.get<IUser>('user');
   }
+
+  setCalorieGoal(calories: number): Observable<number> {
+    return this.httpService.put<number>('user', { calories });
+  }
 }

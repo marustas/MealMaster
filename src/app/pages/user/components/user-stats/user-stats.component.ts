@@ -6,6 +6,7 @@ import { tap } from 'rxjs';
 import { MealService } from 'src/app/pages/homepage/services/meal.service';
 
 import { displayChart } from './calorieChart';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-user-stats',
@@ -15,6 +16,7 @@ import { displayChart } from './calorieChart';
 export class UserStatsComponent {
   currentCalories = 0;
   calorieGoal = 2000;
+  newCalorieGoal = 0;
   currentCaloriePercentage = 0;
   exceedGoal = false;
   subtextColor = '';
@@ -22,24 +24,47 @@ export class UserStatsComponent {
   readonly echartsExtentions: any[];
   echartsOptions: EChartsOption = {};
 
-  constructor(private mealService: MealService) {
+  constructor(
+    private mealService: MealService,
+    private userService: UserService
+  ) {
     this.echartsExtentions = [GaugeChart, TooltipComponent, TooltipComponent, LegendComponent];
+    this.userService.getUser().subscribe((user) => {
+      this.calorieGoal = user.calorieGoal;
+      if (this.calorieGoal > 0) {
+        this.calculateCalories();
+      }
+    });
+
     this.mealService.calories$
       .pipe(
         tap((calories) => {
           this.currentCalories = calories;
-          this.currentCaloriePercentage = +((this.currentCalories / this.calorieGoal) * 100).toFixed(2);
-          this.exceedGoal = this.currentCalories > this.calorieGoal;
-          this.subtextColor = this.exceedGoal ? '#f61616' : '#399a18';
-
-          this.echartsOptions = displayChart(
-            this.currentCalories,
-            this.calorieGoal,
-            this.currentCaloriePercentage,
-            this.subtextColor
-          );
+          if (this.calorieGoal > 0) {
+            this.calculateCalories();
+          }
         })
       )
       .subscribe();
+  }
+
+  calculateCalories(): void {
+    this.currentCaloriePercentage = +((this.currentCalories / this.calorieGoal) * 100).toFixed(2);
+    this.exceedGoal = this.currentCalories > this.calorieGoal;
+    this.subtextColor = this.exceedGoal ? '#f61616' : '#399a18';
+
+    this.echartsOptions = displayChart(
+      this.currentCalories,
+      this.calorieGoal,
+      this.currentCaloriePercentage,
+      this.subtextColor
+    );
+  }
+
+  setCalorieGoal(): void {
+    this.userService.setCalorieGoal(this.newCalorieGoal).subscribe((response) => {
+      this.calorieGoal = response;
+      console.log('Calorie goal updated successfully:', response);
+    });
   }
 }

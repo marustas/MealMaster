@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { HttpService } from './http.service';
 import { Router } from '@angular/router';
-import { response } from 'express';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +41,7 @@ export class AuthService {
   }
 
   private setSession(expiresIn: number, idToken: any) {
-    const expiresAt = moment().add(expiresIn, 'seconds');
+    const expiresAt = moment().add(expiresIn, 'second');
 
     localStorage.setItem('id_token', idToken);
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
