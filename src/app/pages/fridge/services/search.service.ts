@@ -39,7 +39,7 @@ export class SearchService {
   }
 
   searchRecipes(query: string, filters: string[], page: number, itemsPerPage: number): Observable<any> {
-    const params = { q: query, page, itemsPerPage, filters };
+    const params = { q: query ? query : '', page, itemsPerPage, filters };
     this.loader.showLoader();
     return this.httpService.get<any>('recipes', params).pipe(
       delay(500),
