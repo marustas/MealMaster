@@ -4,6 +4,7 @@ import { emailValidator } from '../../validators/email.validator';
 import { passwordValidator } from '../../validators/password.validator';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router } from '@angular/router';
+import { generateMediumPassword, generateStrongPassword, generateWeakPassword } from '../../utils';
 
 @Component({
   selector: 'app-signup-form',
@@ -12,6 +13,8 @@ import { Router } from '@angular/router';
 })
 export class SignupFormComponent {
   signupForm: FormGroup;
+  generatedPassword: string = '';
+  showPasswordField: boolean = true;
 
   constructor(
     formBuilder: FormBuilder,
@@ -31,6 +34,28 @@ export class SignupFormComponent {
 
   get passwordControl() {
     return this.signupForm.get('password');
+  }
+
+  onShowPassword(): void {
+    this.showPasswordField = !this.showPasswordField;
+  }
+
+  generatePassword(event: Event): void {
+    const strength = parseInt((event.target as HTMLInputElement).value);
+    switch (true) {
+      case strength >= 0 && strength < 33:
+        this.generatedPassword = generateWeakPassword();
+        break;
+      case strength >= 33 && strength < 66:
+        this.generatedPassword = generateMediumPassword();
+        break;
+      case strength >= 66:
+        this.generatedPassword = generateStrongPassword();
+        break;
+      default:
+        throw new Error('Invalid password strength');
+    }
+    this.signupForm.patchValue({ password: this.generatedPassword });
   }
 
   switchToLogin() {
