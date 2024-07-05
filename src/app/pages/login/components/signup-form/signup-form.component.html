@@ -1,6 +1,6 @@
 <div>
-  <h1>Login</h1>
-  <form [formGroup]="loginForm" (submit)="handleLogin($event)">
+  <h1>Signup</h1>
+  <form [formGroup]="signupForm" (submit)="handleSignUp($event)">
     <div class="form-row">
       <label for="email">Email<span class="required">*</span></label>
       <input formControlName="email" placeholder="Enter e-mail" type="email" />
@@ -48,15 +48,23 @@
         }}</span>
       </div>
     </div>
+    <div class="form-row">
+      <label for="username">Username<span class="required">*</span></label>
+      <input
+        formControlName="username"
+        placeholder="Enter a username"
+        type="text"
+      />
+    </div>
     <div class="btn-container">
-      <button [disabled]="loginForm.invalid" class="submit-btn" type="submit">
-        Login
+      <button [disabled]="signupForm.invalid" class="submit-btn" type="submit">
+        Sign up
       </button>
     </div>
   </form>
   <div class="switch-btn-container">
-    <button class="switch-btn" (click)="switchToSignup()">
-      Switch to Signup
+    <button class="switch-btn" (click)="switchToLogin()">
+      Switch to Login
     </button>
   </div>
 </div>

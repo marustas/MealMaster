@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { HttpService } from './http.service';
 import { Router } from '@angular/router';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,17 @@ export class AuthService {
     this.authState$ = this.authStateSubject.asObservable();
   }
 
-  login(email: string, password: string) {
+  signUp(email: string, password: string, username: string): Observable<any> {
+    return this.httpService.post<any>('signup', { email, password, username }).pipe(
+      tap((response) => {
+        this.setSession(response.expiresIn, response.token);
+        this.authStateSubject.next(true);
+        this.router.navigate(['/home']);
+      })
+    );
+  }
+
+  login(email: string, password: string): Observable<any> {
     return this.httpService.post<any>('login', { email, password }).pipe(
       tap((response) => {
         this.setSession(response.expiresIn, response.token);
@@ -37,11 +48,11 @@ export class AuthService {
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     this.authStateSubject.next(false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth']);
   }
 
   public isLoggedIn(): boolean {

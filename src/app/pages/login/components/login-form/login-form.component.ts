@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 
 import { emailValidator } from '../../validators/email.validator';
 import { passwordValidator } from '../../validators/password.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +16,8 @@ export class LoginFormComponent {
 
   constructor(
     formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = formBuilder.group({
       email: ['', [Validators.required, emailValidator()]],
@@ -29,6 +31,10 @@ export class LoginFormComponent {
 
   get emailControl() {
     return this.loginForm.get('email');
+  }
+
+  switchToSignup() {
+    this.router.navigate(['auth', 'signup']);
   }
 
   handleLogin(e: SubmitEvent) {
