@@ -33,7 +33,6 @@ export class RecipesComponent {
       switchMap(([page, query, filters]) =>
         searchService.searchRecipes(query, filters, page, this.paginationService.itemsPerPage).pipe(
           map((response) => {
-            console.log(response);
             this.paginationService.getPages(response.totalItems);
             this.currentPage = +response.currentPage;
             return response.items;
