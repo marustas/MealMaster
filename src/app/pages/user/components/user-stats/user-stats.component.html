@@ -1,15 +1,11 @@
-<div class="stats">
-    <h2 *ngIf="calorieGoal > 0; else calorieGoalTemplate">
-        Your calorie goal is {{ calorieGoal }}
-    </h2>
-    <ng-container *ngIf="currentCalories > 0">
-        <div echarts [options]="echartsOptions" class="demo-chart"></div>
-    </ng-container>
+<div class="stats" *ngIf="calorieGoal > 0; else calorieGoalTemplate">
+    <h2 *>Your calorie goal is {{ calorieGoal }}</h2>
+    <div echarts [options]="echartsOptions" class="demo-chart"></div>
 </div>
 
 <ng-template #calorieGoalTemplate>
     <form (ngSubmit)="setCalorieGoal()">
-        <input placeholder="Enter your calorie goal" [(ngModel)]="newCalorieGoal" name="calorieGoal" type="text" />
+        <input class="calorie-input" placeholder="Enter your calorie goal" [(ngModel)]="newCalorieGoal" name="calorieGoal" type="text" />
         <button type="submit">Set calorie goal</button>
     </form>
 </ng-template>
