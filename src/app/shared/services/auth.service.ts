@@ -10,14 +10,19 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private authStateSubject: BehaviorSubject<boolean>;
+  private roleSubject: BehaviorSubject<string>;
+
   public authState$: Observable<boolean>;
+  public roleState$: Observable<string>;
 
   constructor(
     private httpService: HttpService,
     private router: Router
   ) {
+    this.roleSubject = new BehaviorSubject<string>('guest');
     this.authStateSubject = new BehaviorSubject(this.isLoggedIn());
     this.authState$ = this.authStateSubject.asObservable();
+    this.roleState$ = this.roleSubject.asObservable();
   }
 
   signUp(email: string, password: string, username: string): Observable<any> {
@@ -25,6 +30,7 @@ export class AuthService {
       tap((response) => {
         this.setSession(response.expiresIn, response.token);
         this.authStateSubject.next(true);
+        this.roleSubject.next('user');
         this.router.navigate(['/home']);
       })
     );
@@ -35,6 +41,7 @@ export class AuthService {
       tap((response) => {
         this.setSession(response.expiresIn, response.token);
         this.authStateSubject.next(true);
+        this.roleSubject.next('user');
         this.router.navigate(['/home']);
       })
     );
@@ -51,6 +58,7 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     this.authStateSubject.next(false);
+    this.roleSubject.next('guest');
     this.router.navigate(['/auth']);
   }
 
@@ -59,6 +67,15 @@ export class AuthService {
       return false;
     }
     return moment().isBefore(this.getExpiration());
+  }
+
+  subscribe(subscription: string): Observable<any> {
+    return this.httpService.post<any>('user', { subscription }).pipe(
+      tap((response) => {
+        this.setSession(response.expiresIn, response.token);
+        this.roleSubject.next('subscribed');
+      })
+    );
   }
 
   getExpiration() {

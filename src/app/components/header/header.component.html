@@ -1,17 +1,27 @@
 <header class="header">
   <div class="header-content">
     <div class="navigation">
-      <a routerLinkActive="active-link" routerLink="/products">Products</a>
+      <a *appRole="true" routerLinkActive="active-link" routerLink="/products"
+        >Products</a
+      >
       <a routerLinkActive="active-link" routerLink="/recipes/all/1">Recipes</a>
-      <a routerLinkActive="active-link" routerLink="/home">Home</a>
+      <a *appRole="true" routerLinkActive="active-link" routerLink="/home"
+        >Home</a
+      >
     </div>
     <div class="user-actions">
-      <a routerLinkActive="active-link" routerLink="/user">
+      <a *appRole="true" routerLinkActive="active-link" routerLink="/user">
         <img [src]="profilePicture" alt="profile" />
       </a>
-      <button type="button" (click)="onLogOut()" class="logout-btn">
+      <button
+        *appRole="true"
+        type="button"
+        (click)="onLogOut()"
+        class="logout-btn"
+      >
         Logout
       </button>
+      <a *appRole="false" routerLink="/auth/login">Login</a>
     </div>
   </div>
 </header>
