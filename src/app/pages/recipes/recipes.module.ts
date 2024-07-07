@@ -8,6 +8,7 @@ import { RecipeExtendedComponent } from './components/recipe-extended/recipe-ext
 import { RecipeIngredientComponent } from './components/recipe-ingredient/recipe-ingredient.component';
 import { RecipesComponent } from './recipes.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RecipesRoutingModule } from './recipes-routing.module';
     MealFilterComponent,
     RecipeExtendedComponent,
     RecipeIngredientComponent,
+    SubscriptionComponent,
   ],
   imports: [CommonModule, RecipesRoutingModule, SharedModule],
   exports: [RecipesComponent],
