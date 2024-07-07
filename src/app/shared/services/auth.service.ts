@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { HttpService } from './http.service';
 import { Router } from '@angular/router';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class AuthService {
   public roleState$: Observable<string>;
 
   constructor(
+    private userService: UserService,
     private httpService: HttpService,
     private router: Router
   ) {
@@ -23,6 +25,7 @@ export class AuthService {
     this.authStateSubject = new BehaviorSubject(this.isLoggedIn());
     this.authState$ = this.authStateSubject.asObservable();
     this.roleState$ = this.roleSubject.asObservable();
+    this.getRole();
   }
 
   signUp(email: string, password: string, username: string): Observable<any> {
@@ -70,12 +73,15 @@ export class AuthService {
   }
 
   subscribe(subscription: string): Observable<any> {
-    return this.httpService.post<any>('user', { subscription }).pipe(
-      tap((response) => {
-        this.setSession(response.expiresIn, response.token);
-        this.roleSubject.next('subscribed');
-      })
-    );
+    return this.httpService
+      .put<any>('subscribe', { subscription })
+      .pipe(tap(() => this.roleSubject.next('subscribed')));
+  }
+
+  getRole(): void {
+    this.userService.getUser().subscribe((user) => {
+      this.roleSubject.next(user.role);
+    });
   }
 
   getExpiration() {

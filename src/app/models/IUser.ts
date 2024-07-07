@@ -4,4 +4,6 @@ export interface IUser {
   password: string;
   username: string;
   calorieGoal: number;
+  subscription?: string;
+  role: string;
 }

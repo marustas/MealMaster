@@ -64,7 +64,6 @@ export class UserStatsComponent {
   setCalorieGoal(): void {
     this.userService.setCalorieGoal(this.newCalorieGoal).subscribe((response) => {
       this.calorieGoal = response;
-      console.log('Calorie goal updated successfully:', response);
     });
   }
 }
