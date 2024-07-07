@@ -9,6 +9,7 @@ import { RecipeIngredientComponent } from './components/recipe-ingredient/recipe
 import { RecipesComponent } from './recipes.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { SubscriptionPlanComponent } from './components/subscription-plan/subscription-plan.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
     RecipeExtendedComponent,
     RecipeIngredientComponent,
     SubscriptionComponent,
+    SubscriptionPlanComponent,
   ],
   imports: [CommonModule, RecipesRoutingModule, SharedModule],
   exports: [RecipesComponent],

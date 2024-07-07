@@ -1,0 +1,9 @@
+<div class="plan-card">
+    <div class="plan-header" *ngIf="plan.flag === 'popular' || plan.flag === 'best-value'">
+        {{ plan.flag === 'popular' ? 'Popular' : 'Best value' }}
+    </div>
+    <div class="plan-body">
+        <div class="plan-duration">{{ plan.duration }}</div>
+        <div class="plan-price">only €{{ plan.price }}/wk</div>
+    </div>
+</div>

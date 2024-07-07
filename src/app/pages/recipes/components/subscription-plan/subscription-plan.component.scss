@@ -1,0 +1,36 @@
+@import '../../../../shared/styles/variables.scss';
+.plan-card {
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.plan-header {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: $grass-green;
+}
+
+.plan-body {
+    margin-top: 20px;
+}
+
+.plan-duration {
+    font-size: larger;
+    font-weight: bold;
+    color: $grey;
+}
+
+.plan-price {
+    font-size: medium;
+}

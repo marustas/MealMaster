@@ -2,7 +2,9 @@
     <div class="modal-content">
         <h2>Unlock all recipes with <span class="highlight">Master Plan</span></h2>
         <p>Select plan</p>
-        <div class="plans-container"></div>
+        <div class="plans-container">
+            <app-subscription-plan *ngFor="let plan of subscriptionPlans" [plan]="plan"></app-subscription-plan>
+        </div>
         <ul class="benefits">
             <li>Unlock recipes from famous chefs</li>
             <li>Save the recipes you liked</li>
