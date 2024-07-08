@@ -31,7 +31,7 @@ export class UserStatsComponent {
     this.echartsExtentions = [GaugeChart, TooltipComponent, TooltipComponent, LegendComponent];
     this.userService.getUser().subscribe((user) => {
       this.calorieGoal = user.calorieGoal;
-      if (this.calorieGoal > 0) {
+      if (this.calorieGoal) {
         this.calculateCalories();
       }
     });
@@ -40,7 +40,7 @@ export class UserStatsComponent {
       .pipe(
         tap((calories) => {
           this.currentCalories = calories;
-          if (this.calorieGoal > 0) {
+          if (this.calorieGoal) {
             this.calculateCalories();
           }
         })

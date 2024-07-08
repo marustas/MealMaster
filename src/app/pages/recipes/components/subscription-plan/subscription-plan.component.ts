@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ISubscription } from 'src/app/models/ISubscription';
+import { Flags } from '../subscription/subscriptions';
 
 @Component({
   selector: 'app-subscription-plan',
@@ -8,4 +9,6 @@ import { ISubscription } from 'src/app/models/ISubscription';
 })
 export class SubscriptionPlanComponent {
   @Input() plan!: ISubscription;
+  popular = Flags.Popular;
+  best = Flags.Best;
 }

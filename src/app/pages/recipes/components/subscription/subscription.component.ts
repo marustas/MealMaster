@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ISubscription } from 'src/app/models/ISubscription';
-import { subscriptions } from './subscriptions';
+import { SUBSCRIPTIONS } from './subscriptions';
 
 @Component({
   selector: 'app-subscription',
@@ -8,5 +8,5 @@ import { subscriptions } from './subscriptions';
   styleUrls: ['./subscription.component.scss'],
 })
 export class SubscriptionComponent {
-  subscriptionPlans: ISubscription[] = subscriptions;
+  subscriptionPlans: ISubscription[] = SUBSCRIPTIONS;
 }

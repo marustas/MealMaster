@@ -1,4 +1,4 @@
-<div class="stats" *ngIf="calorieGoal > 0; else calorieGoalTemplate">
+<div class="stats" *ngIf="calorieGoal; else calorieGoalTemplate">
     <h2 *>Your calorie goal is {{ calorieGoal }}</h2>
     <div echarts [options]="echartsOptions" class="demo-chart"></div>
 </div>
