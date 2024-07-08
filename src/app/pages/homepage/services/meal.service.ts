@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { RecipesService } from 'src/app/shared/services/recipes.service';
@@ -54,9 +54,13 @@ export class MealService {
 
   private loadMeals(): void {
     this.httpService.get<IRecipe[]>('meal').subscribe((meals) => {
-      this.calculateTotalCalories(meals);
-      this.calorieSubject.next(this.calculateTotalCalories(meals));
-      this.mealSubject.next(meals);
+      const fullMeals: (IRecipe | null)[] = [null, null, null];
+      meals.forEach((meal) => {
+        const mealIndex = this.getMealIndex(meal.section);
+        fullMeals[mealIndex] = meal;
+      });
+      this.calorieSubject.next(this.calculateTotalCalories(fullMeals));
+      this.mealSubject.next(fullMeals);
     });
   }
 

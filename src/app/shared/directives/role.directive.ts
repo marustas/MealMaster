@@ -34,9 +34,8 @@ export class RoleDirective implements OnDestroy {
 
   private updateView(role: string): void {
     this.viewContainer.clear();
-    const roles = this.inputRole.split(',');
-    console.log(roles);
-    if (roles.includes(role)) {
+    const roles = this.inputRole?.split(',');
+    if (roles?.includes(role)) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();

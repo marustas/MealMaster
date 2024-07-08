@@ -2,18 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { LoaderService } from './loader.service';
-
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
   private baseUrl = 'http://localhost:3000';
 
-  constructor(
-    private http: HttpClient,
-    private loader: LoaderService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   get<T>(url: string, params?: any): Observable<T> {
     let httpParams = new HttpParams();
