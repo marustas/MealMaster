@@ -73,12 +73,6 @@ export class AuthService {
     return moment().isBefore(this.getExpiration());
   }
 
-  subscribe(subscription: string): Observable<any> {
-    return this.httpService
-      .put<any>('subscribe', { subscription })
-      .pipe(tap(() => this.roleSubject.next('subscribed')));
-  }
-
   getRole(): void {
     this.userService.getUser().subscribe((user) => {
       this.roleSubject.next(user.role);

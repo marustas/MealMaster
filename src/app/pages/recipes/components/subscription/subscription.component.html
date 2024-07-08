@@ -6,6 +6,7 @@
       <app-subscription-plan
         *ngFor="let plan of subscriptionPlans"
         [plan]="plan"
+        (subscriptionEmit)="setChosenSubscription($event)"
       ></app-subscription-plan>
     </div>
     <ul class="benefits">
@@ -17,6 +18,6 @@
       <span>1 Week</span>
       <span>€15/wk</span>
     </div>
-    <button class="continue-btn">Continue</button>
+    <button (click)="onSubscribe()" class="continue-btn">Continue</button>
   </div>
 </div>

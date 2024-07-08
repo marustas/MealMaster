@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ISubscription } from 'src/app/models/ISubscription';
 
 import { Flags } from '../subscription/subscriptions';
@@ -10,6 +10,12 @@ import { Flags } from '../subscription/subscriptions';
 })
 export class SubscriptionPlanComponent {
   @Input() plan!: ISubscription;
+  @Output() subscriptionEmit = new EventEmitter<ISubscription>();
+
   popular = Flags.Popular;
   best = Flags.Best;
+
+  emitSubscriptionPlan() {
+    this.subscriptionEmit.emit(this.plan);
+  }
 }

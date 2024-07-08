@@ -1,9 +1,11 @@
+import { ISubscription } from './ISubscription';
+
 export interface IUser {
   id: number;
   email: string;
   password: string;
   username: string;
   calorieGoal: number;
-  subscription?: string;
+  subscription?: ISubscription;
   role: string;
 }
