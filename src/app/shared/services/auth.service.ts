@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { HttpService } from './http.service';
-import { Router } from '@angular/router';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -67,6 +67,7 @@ export class AuthService {
 
   public isLoggedIn(): boolean {
     if (!this.getExpiration()) {
+      this.roleSubject.next('guest');
       return false;
     }
     return moment().isBefore(this.getExpiration());

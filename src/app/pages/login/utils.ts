@@ -1,6 +1,6 @@
-const letters: string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const numbers: string = '0123456789';
-const specialChars: string = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
+const letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const numbers = '0123456789';
+const specialChars = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
 
 export function generateWeakPassword(): string {
   return generateRandomPassword(8);

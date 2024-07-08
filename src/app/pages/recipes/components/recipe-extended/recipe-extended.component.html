@@ -9,7 +9,9 @@
       </div>
     </div>
     <div class="recipe-details">
-      <div class="recipe-description">{{ recipe.description | titlecase }}</div>
+      <div class="recipe-description">
+        {{ recipe.description | titlecase }}
+      </div>
       <div class="recipe-stats">
         <p class="stat">
           <img src="../../../../../assets/calories.svg" alt="calories" />
@@ -43,4 +45,8 @@
 
 <ng-template #spinnerTemplate>
   <app-spinner></app-spinner>
+</ng-template>
+
+<ng-template #subscriptionTemplate>
+  <app-subscription></app-subscription>
 </ng-template>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+
 import { generateMediumPassword, generateStrongPassword, generateWeakPassword } from '../../utils';
 
 @Component({
@@ -8,7 +9,7 @@ import { generateMediumPassword, generateStrongPassword, generateWeakPassword } 
 })
 export class PasswordGenerationComponent {
   @Output() passwordGeneration = new EventEmitter<string>();
-  generatedPassword: string = '';
+  generatedPassword = '';
 
   generatePassword(event: Event): void {
     const strength = parseInt((event.target as HTMLInputElement).value);

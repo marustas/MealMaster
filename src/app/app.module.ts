@@ -12,9 +12,9 @@ import { HomepageModule } from './pages/homepage/homepage.module';
 import { LoginModule } from './pages/login/login.module';
 import { RecipesModule } from './pages/recipes/recipes.module';
 import { UserModule } from './pages/user/user.module';
+import { RoleDirective } from './shared/directives/role.directive';
 import { AuthInterceptor } from './shared/guards/auth.interceptor';
 import { AuthService } from './shared/services/auth.service';
-import { RoleDirective } from './shared/directives/role.directive';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, RoleDirective],

@@ -1,19 +1,22 @@
 <div class="modal-overlay">
-    <div class="modal-content">
-        <h2>Unlock all recipes with <span class="highlight">Master Plan</span></h2>
-        <p>Select plan</p>
-        <div class="plans-container">
-            <app-subscription-plan *ngFor="let plan of subscriptionPlans" [plan]="plan"></app-subscription-plan>
-        </div>
-        <ul class="benefits">
-            <li>Unlock recipes from famous chefs</li>
-            <li>Save the recipes you liked</li>
-            <li>Add your own recipes</li>
-        </ul>
-        <div class="summary">
-            <span>1 Week</span>
-            <span>€15/wk</span>
-        </div>
-        <button class="continue-btn">Continue</button>
+  <div class="modal-content">
+    <h2>Unlock all recipes with <span class="highlight">Master Plan</span></h2>
+    <p>Select plan</p>
+    <div class="plans-container">
+      <app-subscription-plan
+        *ngFor="let plan of subscriptionPlans"
+        [plan]="plan"
+      ></app-subscription-plan>
     </div>
+    <ul class="benefits">
+      <li>Unlock recipes from famous chefs</li>
+      <li>Save the recipes you liked</li>
+      <li>Add your own recipes</li>
+    </ul>
+    <div class="summary">
+      <span>1 Week</span>
+      <span>€15/wk</span>
+    </div>
+    <button class="continue-btn">Continue</button>
+  </div>
 </div>

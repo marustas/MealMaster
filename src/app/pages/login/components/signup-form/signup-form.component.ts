@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
+
 import { emailValidator } from '../../validators/email.validator';
 import { passwordValidator } from '../../validators/password.validator';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SignupFormComponent {
   signupForm: FormGroup;
-  showPasswordField: boolean = true;
+  showPasswordField = true;
 
   constructor(
     formBuilder: FormBuilder,
