@@ -33,7 +33,7 @@ export class AuthService {
       tap((response) => {
         this.setSession(response.expiresIn, response.token);
         this.authStateSubject.next(true);
-        this.roleSubject.next('user');
+        this.getRole();
         this.router.navigate(['/home']);
       })
     );
@@ -44,7 +44,7 @@ export class AuthService {
       tap((response) => {
         this.setSession(response.expiresIn, response.token);
         this.authStateSubject.next(true);
-        this.roleSubject.next('user');
+        this.getRole();
         this.router.navigate(['/home']);
       })
     );

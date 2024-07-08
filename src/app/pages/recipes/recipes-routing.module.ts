@@ -3,12 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RecipeExtendedComponent } from './components/recipe-extended/recipe-extended.component';
 import { RecipesComponent } from './recipes.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
 
 const routes: Routes = [
   {
     path: '',
     component: RecipesComponent,
     children: [
+      {
+        path: 'subscription',
+        component: SubscriptionComponent,
+      },
       { path: ':section', component: RecipesComponent },
       { path: ':section/:recipeID', component: RecipeExtendedComponent },
     ],

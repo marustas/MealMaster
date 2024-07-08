@@ -9,7 +9,7 @@ import { SubscriptionService } from 'src/app/shared/services/subscription.servic
   styleUrls: ['./subscription.component.scss'],
 })
 export class SubscriptionComponent {
-  private chosenSubscription!: ISubscription;
+  chosenSubscription!: ISubscription;
 
   subscriptionPlans: ISubscription[] = this.subscriptonService.availableSubscriptions;
   constructor(private subscriptonService: SubscriptionService) {}

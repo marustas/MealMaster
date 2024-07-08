@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-recipe[recipe]',
@@ -11,10 +12,16 @@ import { IRecipe } from 'src/app/models/IRecipe';
 export class RecipeComponent {
   @Input() recipe!: IRecipe;
   section = '';
+  currentRole!: string;
 
   private routeSubscription!: Subscription;
 
-  constructor(private activeRoute: ActivatedRoute) {
+  constructor(
+    private authService: AuthService,
+    private activeRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.authService.roleState$.subscribe((role) => (this.currentRole = role));
     if (this.activeRoute.firstChild) {
       this.routeSubscription = this.activeRoute.firstChild.paramMap.subscribe((params) => {
         this.section = params.get('section')!;
@@ -25,6 +32,15 @@ export class RecipeComponent {
   ngOnDestroy(): void {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
+    }
+  }
+
+  showFullRecipe(): void {
+    console.log(this.recipe.special && this.currentRole === 'subscribed');
+    if ((this.recipe.special && this.currentRole === 'subscribed') || !this.recipe.special) {
+      this.router.navigate(['/recipes', this.section, this.recipe.id]);
+    } else {
+      this.router.navigate(['/recipes', 'subscription']);
     }
   }
 }

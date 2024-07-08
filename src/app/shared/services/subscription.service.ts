@@ -30,7 +30,7 @@ export class SubscriptionService {
 
   subscribeUser(newSubscription: ISubscription): void {
     this.httpService
-      .put<any>('subscribe', { newSubscription })
+      .put<any>('subscribe', { subscription: newSubscription })
       .pipe(tap(() => this.subcriptionSubject.next(newSubscription)))
       .subscribe();
   }

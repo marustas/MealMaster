@@ -1,7 +1,4 @@
-<a
-  routerLinkActive="active-recipe"
-  [routerLink]="['/recipes', section, recipe.id]"
->
+<a routerLinkActive="active-recipe" (click)="showFullRecipe()">
   <div class="recipe-content">
     <img class="recipe-image" alt="recipe" [src]="recipe.image" />
     <p>{{ recipe.title }}</p>

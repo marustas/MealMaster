@@ -1,6 +1,6 @@
 <div class="modal-overlay">
   <div class="modal-content">
-    <h2>Unlock all recipes with <span class="highlight">Master Plan</span></h2>
+    <h2>Unlock all recipes with <span class="highlight">Master</span> Plan</h2>
     <p>Select plan</p>
     <div class="plans-container">
       <app-subscription-plan
@@ -15,9 +15,11 @@
       <li>Add your own recipes</li>
     </ul>
     <div class="summary">
-      <span>1 Week</span>
-      <span>€15/wk</span>
+      <div *ngIf="chosenSubscription" class="price">
+        <span>{{ chosenSubscription.duration }}</span>
+        <span>€{{ chosenSubscription.price }}/wk</span>
+      </div>
+      <button (click)="onSubscribe()" class="continue-btn">Continue</button>
     </div>
-    <button (click)="onSubscribe()" class="continue-btn">Continue</button>
   </div>
 </div>

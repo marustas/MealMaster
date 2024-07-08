@@ -1,36 +1,45 @@
 @import '../../../../shared/styles/variables.scss';
 .plan-card {
-    border: none;
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  min-height: 100px;
+  background-color: #ffff;
+  &:hover,
+  &:active {
+    box-shadow: 0 2px 5px $highlight-green;
+  }
 }
 
 .plan-header {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.9em;
-    font-weight: bold;
-    color: $grass-green;
+  background-color: #fff;
+  border-radius: 4px;
+  font-size: large;
+  font-weight: 300;
+  color: $grass-green;
+  width: 100%;
+  text-align: left;
 }
 
 .plan-body {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .plan-duration {
-    font-size: larger;
-    font-weight: bold;
-    color: $grey;
+  font-size: larger;
+  font-weight: 500;
+  color: $grey;
+  width: 100%;
+  text-align: left;
 }
 
 .plan-price {
-    font-size: medium;
+  font-size: medium;
+  font-weight: 300;
+  color: $grey;
 }

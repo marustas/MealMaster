@@ -1,9 +1,9 @@
-<div (click)="emitSubscriptionPlan()" class="plan-card">
+<button (click)="emitSubscriptionPlan()" class="plan-card">
   <div class="plan-header" *ngIf="plan.flag === popular || plan.flag === best">
-    {{ plan.flag }}
+    {{ plan.flag | titlecase }}
   </div>
   <div class="plan-body">
     <div class="plan-duration">{{ plan.duration }}</div>
     <div class="plan-price">only €{{ plan.price }}/wk</div>
   </div>
-</div>
+</button>
