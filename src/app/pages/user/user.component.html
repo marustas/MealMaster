@@ -3,5 +3,8 @@
     Welcome, <span class="username">{{ user.username }}</span
     >!
   </h1>
+  <div class="subscription-plan">
+    Your chosen plan is {{ user?.subscription }}
+  </div>
   <app-user-stats></app-user-stats>
 </div>

@@ -36,7 +36,7 @@ export class SubscriptionService {
       .pipe(
         tap(() => {
           this.subcriptionSubject.next(newSubscription);
-          this.router.navigate(['/recipes']);
+          this.router.navigate(['/home']);
         })
       )
       .subscribe();

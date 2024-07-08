@@ -19,7 +19,13 @@
         <span>{{ chosenSubscription.duration }}</span>
         <span>€{{ chosenSubscription.price }}/wk</span>
       </div>
-      <button (click)="onSubscribe()" class="continue-btn">Continue</button>
+      <button
+        [disabled]="!chosenSubscription"
+        (click)="onSubscribe()"
+        class="continue-btn"
+      >
+        Continue
+      </button>
     </div>
   </div>
 </div>
