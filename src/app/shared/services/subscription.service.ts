@@ -4,6 +4,7 @@ import { ISubscription } from 'src/app/models/ISubscription';
 import { SUBSCRIPTIONS } from 'src/app/pages/recipes/components/subscription/subscriptions';
 import { HttpService } from './http.service';
 import { UserService } from './user.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class SubscriptionService {
   public availableSubscriptions: ISubscription[] = SUBSCRIPTIONS;
 
   constructor(
+    private router: Router,
     private httpService: HttpService,
     private userService: UserService
   ) {
@@ -31,7 +33,12 @@ export class SubscriptionService {
   subscribeUser(newSubscription: ISubscription): void {
     this.httpService
       .put<any>('subscribe', { subscription: newSubscription })
-      .pipe(tap(() => this.subcriptionSubject.next(newSubscription)))
+      .pipe(
+        tap(() => {
+          this.subcriptionSubject.next(newSubscription);
+          this.router.navigate(['/recipes']);
+        })
+      )
       .subscribe();
   }
 }
