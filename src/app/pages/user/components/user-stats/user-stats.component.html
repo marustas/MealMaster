@@ -5,7 +5,9 @@
 
 <ng-template #calorieGoalTemplate>
     <form (ngSubmit)="setCalorieGoal()">
-        <input class="calorie-input" placeholder="Enter your calorie goal" [(ngModel)]="newCalorieGoal" name="calorieGoal" type="text" />
-        <button type="submit">Set calorie goal</button>
+        <div class="calorie-addition">
+            <input class="calorie-input" placeholder="Enter your calorie goal" [(ngModel)]="newCalorieGoal" name="calorieGoal" type="text" />
+            <button type="submit">Set calorie goal</button>
+        </div>
     </form>
 </ng-template>
