@@ -1,22 +1,108 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddProductComponent } from './add-product.component';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ProductsService } from '../../services/products.service';
+import { HttpService } from 'src/app/shared/services/http.service';
+
+class MockHttpService {}
+
+class MockProductService {
+  currentLength = 100;
+}
 
 describe('AddProductComponent', () => {
   let component: AddProductComponent;
   let fixture: ComponentFixture<AddProductComponent>;
+  let formBuilder: FormBuilder;
+  let mockProductService: MockProductService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
       declarations: [AddProductComponent],
+      providers: [
+        { provide: ProductsService, useClass: MockProductService },
+        { provide: HttpService, useClass: MockHttpService },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddProductComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    formBuilder = TestBed.inject(FormBuilder);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create expiration date if none provided', () => {
+    component.productForm = formBuilder.group({
+      name: ['Test Product'],
+      expiresAt: [''],
+      quantity: ['100 g'],
+    });
+    component.productID = '';
+
+    const product = (component as any).buildProduct();
+
+    expect(product.name).toBe('Test Product');
+    expect(product.quantity).toBe('100 g');
+    expect(product.expiresAt).toMatch(/\d{1,2}\/\d{1,2}\/\d{4}/);
+    expect(product.id).toBeGreaterThanOrEqual(mockProductService.currentLength);
+  });
+
+  it('should keep the productID if provided', () => {
+    component.productForm = formBuilder.group({
+      name: ['Test Product'],
+      expiresAt: [''],
+      quantity: ['100 g'],
+    });
+    component.productID = '123';
+
+    const product = (component as any).buildProduct();
+
+    expect(product.id).toBe(123);
+    expect(product.name).toBe('Test Product');
+    expect(product.quantity).toBe('100 g');
+    expect(product.expiresAt).toMatch(/\d{1,2}\/\d{1,2}\/\d{4}/);
+  });
+
+  it('should create a productID if none is provided', () => {
+    component.productForm = formBuilder.group({
+      name: ['Test Product'],
+      expiresAt: [''],
+      quantity: ['100 g'],
+    });
+    component.productID = '';
+
+    const product = (component as any).buildProduct();
+
+    expect(product.id).toBeGreaterThanOrEqual(mockProductService.currentLength);
+    expect(product.name).toBe('Test Product');
+    expect(product.quantity).toBe('100 g');
+    expect(product.expiresAt).toMatch(/\d{1,2}\/\d{1,2}\/\d{4}/);
+  });
+
+  it('should convert "N/A" quantity to " "', () => {
+    component.productForm = formBuilder.group({
+      name: ['Test Product'],
+      expiresAt: [''],
+      quantity: ['100 N/A'],
+    });
+    component.productID = '';
+
+    const product = (component as any).buildProduct();
+
+    expect(product.quantity).toBe('100');
+  });
+
+  it('should handle "undefined" quantity to " "', () => {
+    component.productForm = formBuilder.group({
+      name: ['Test Product'],
+      expiresAt: [''],
+      quantity: ['100 undefined'],
+    });
+    component.productID = '';
+
+    const product = (component as any).buildProduct();
+
+    expect(product.quantity).toBe('100');
   });
 });
