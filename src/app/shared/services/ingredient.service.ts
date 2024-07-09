@@ -21,20 +21,24 @@ export class IngredientService implements OnDestroy {
   }
 
   isPresent(ingredient: Ingredient): boolean {
-    return this.products.some(
-      (product) =>
-        product.name.toLowerCase() === ingredient.name.toLowerCase() &&
-        this.parseQuantity(product.quantity) >= this.parseQuantity(ingredient.quantity)
-    );
+    const product = this.products.find((product) => product.name.toLowerCase() === ingredient.name.toLowerCase());
+
+    if (!product) return false;
+
+    const productQuantity = this.parseQuantity(product.quantity);
+    const ingredientQuantity = this.parseQuantity(ingredient.quantity);
+
+    return productQuantity.value >= ingredientQuantity.value && productQuantity.unit === ingredientQuantity.unit;
   }
 
   showMissing(ingredients: Ingredient[]): void {
     this.missingIngredients = ingredients?.filter((ingredient) => !this.isPresent(ingredient));
   }
 
-  private parseQuantity(quantity: string): number {
+  private parseQuantity(quantity: string): { value: number; unit: string } {
     const parts = quantity.split(' ');
     const value = parseFloat(parts[0]);
-    return +value;
+    const unit = parts[1] || '';
+    return { value, unit };
   }
 }
