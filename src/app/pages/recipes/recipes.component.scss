@@ -77,3 +77,11 @@
   background-color: $disabled-grey;
   cursor: not-allowed;
 }
+
+.no-data {
+  color: $grey;
+  font-size: large;
+  font-weight: 400;
+  width: 100%;
+  text-align: center;
+}

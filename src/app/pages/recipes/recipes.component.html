@@ -5,7 +5,7 @@
         <app-spinner></app-spinner>
       </div>
       <ng-template #dataTemplate>
-        <div class="recipe-content">
+        <div *ngIf="recipes.length; else noDataTemplate" class="recipe-content">
           <app-recipe
             *ngFor="let recipe of recipes; trackBy: trackById"
             [recipe]="recipe"
@@ -16,14 +16,14 @@
       <div class="pagination-btns">
         <button
           class="prev-btn"
-          [disabled]="currentPage === 1"
+          [disabled]="currentPage === 1 || !recipes.length"
           (click)="onPreviousPage()"
         >
           Previous
         </button>
         <button
           class="next-btn"
-          [disabled]="currentPage === totalPages"
+          [disabled]="currentPage === totalPages || !recipes.length"
           (click)="onNextPage()"
         >
           Next
@@ -33,6 +33,10 @@
 
     <ng-template #spinnerTemplate>
       <app-spinner></app-spinner>
+    </ng-template>
+
+    <ng-template #noDataTemplate>
+      <span class="no-data">No such recipe</span>
     </ng-template>
   </div>
 
