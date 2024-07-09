@@ -3,9 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddProductComponent } from './add-product.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ProductsService } from '../../services/products.service';
-import { HttpService } from 'src/app/shared/services/http.service';
-
-class MockHttpService {}
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 class MockProductService {
   currentLength = 100;
@@ -21,10 +19,8 @@ describe('AddProductComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ReactiveFormsModule],
       declarations: [AddProductComponent],
-      providers: [
-        { provide: ProductsService, useClass: MockProductService },
-        { provide: HttpService, useClass: MockHttpService },
-      ],
+      providers: [{ provide: ProductsService, useClass: MockProductService }],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AddProductComponent);
