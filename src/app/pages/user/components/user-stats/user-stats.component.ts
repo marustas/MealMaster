@@ -36,19 +36,22 @@ export class UserStatsComponent {
       }
     });
 
-    this.mealService.calories$
-      .pipe(
-        tap((calories) => {
-          this.currentCalories = calories;
-          if (this.calorieGoal) {
-            this.calculateCalories();
-          }
-        })
-      )
-      .subscribe();
+    this.mealService.calories$.pipe(
+      tap((calories) => {
+        this.currentCalories = calories;
+        this.calculateCalories();
+      })
+    );
   }
 
-  calculateCalories(): void {
+  setCalorieGoal(): void {
+    this.userService.setCalorieGoal(this.newCalorieGoal).subscribe((response) => {
+      this.calorieGoal = response;
+      this.calculateCalories();
+    });
+  }
+
+  private calculateCalories(): void {
     this.currentCaloriePercentage = +((this.currentCalories / this.calorieGoal) * 100).toFixed(2);
     this.exceedGoal = this.currentCalories > this.calorieGoal;
     this.subtextColor = this.exceedGoal ? '#f61616' : '#399a18';
@@ -59,11 +62,5 @@ export class UserStatsComponent {
       this.currentCaloriePercentage,
       this.subtextColor
     );
-  }
-
-  setCalorieGoal(): void {
-    this.userService.setCalorieGoal(this.newCalorieGoal).subscribe((response) => {
-      this.calorieGoal = response;
-    });
   }
 }

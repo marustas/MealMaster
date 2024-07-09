@@ -17,12 +17,10 @@ export class HeaderComponent {
     private userService: UserService,
     private profilePictureService: ProfilePictureService
   ) {
-    this.userService
-      .getUser()
-      .subscribe(
-        (user) =>
-          (this.profilePicture = `data:image/svg+xml;utf8,${this.profilePictureService.createProfilePicture(user.username)}`)
-      );
+    this.userService.getUser().subscribe((user) => {
+      this.profilePicture = `data:image/svg+xml;utf8,${this.profilePictureService.createProfilePicture(user.username)}`;
+      console.log(this.profilePicture);
+    });
   }
 
   onLogOut(): void {
