@@ -4,6 +4,8 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { ProductsService } from '../../services/products.service';
 import { AddProductComponent } from './add-product.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 class MockProductService {
   currentLength = 100;
@@ -17,7 +19,7 @@ describe('AddProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule],
       declarations: [AddProductComponent],
       providers: [{ provide: ProductsService, useClass: MockProductService }],
       schemas: [NO_ERRORS_SCHEMA],
@@ -41,7 +43,7 @@ describe('AddProductComponent', () => {
     expect(product.name).toBe('Test Product');
     expect(product.quantity).toBe('100 g');
     expect(product.expiresAt).toMatch(/\d{1,2}\/\d{1,2}\/\d{4}/);
-    expect(product.id).toBeGreaterThanOrEqual(mockProductService.currentLength);
+    expect(product.id).toBeGreaterThanOrEqual(mockProductService?.currentLength);
   });
 
   it('should keep the productID if provided', () => {

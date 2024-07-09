@@ -15,7 +15,7 @@ import { UserService } from '../../../../shared/services/user.service';
 })
 export class UserStatsComponent {
   currentCalories = 0;
-  calorieGoal = 2000;
+  calorieGoal!: number;
   newCalorieGoal = 0;
   currentCaloriePercentage = 0;
   exceedGoal = false;
@@ -30,7 +30,7 @@ export class UserStatsComponent {
   ) {
     this.echartsExtentions = [GaugeChart, TooltipComponent, TooltipComponent, LegendComponent];
     this.userService.getUser().subscribe((user) => {
-      this.calorieGoal = user.calorieGoal;
+      this.calorieGoal = +user.calorieGoal;
       if (this.calorieGoal) {
         this.calculateCalories();
       }

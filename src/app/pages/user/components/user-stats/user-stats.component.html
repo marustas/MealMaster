@@ -1,19 +1,27 @@
 <div class="stats" *ngIf="calorieGoal; else calorieGoalTemplate">
-  <h2 *>Your calorie goal is {{ calorieGoal }}</h2>
+  <h2>Your calorie goal is {{ calorieGoal }}</h2>
   <div echarts [options]="echartsOptions" class="demo-chart"></div>
 </div>
 
 <ng-template #calorieGoalTemplate>
   <form (ngSubmit)="setCalorieGoal()">
     <div class="calorie-addition">
-      <input
-        class="calorie-input"
-        placeholder="Enter your calorie goal"
-        [(ngModel)]="newCalorieGoal"
-        name="calorieGoal"
-        type="text"
-      />
-      <button type="submit">Set calorie goal</button>
+      <div class="row">
+        <input
+          class="calorie-input"
+          placeholder="Enter your calorie goal"
+          [(ngModel)]="newCalorieGoal"
+          name="calorieGoal"
+          type="text"
+          #calorieGoal="ngModel"
+          required
+          pattern="^[0-9]*$"
+        />
+        <button type="submit">Set calorie goal</button>
+      </div>
+      <div class="error" *ngIf="calorieGoal.errors?.['pattern']">
+        Please enter a valid number.
+      </div>
     </div>
   </form>
 </ng-template>

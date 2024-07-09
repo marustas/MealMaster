@@ -3,7 +3,7 @@
     Welcome, <span class="username">{{ user.username }}</span
     >!
   </h1>
-  <div class="subscription-plan">
+  <div *ngIf="user.subscription" class="subscription-plan">
     Your chosen plan is
     <span class="subscription-price">€{{ user?.subscription?.price }}/wk</span>
   </div>
