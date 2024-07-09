@@ -37,6 +37,7 @@ export class RecipeComponent {
   }
 
   showFullRecipe(): void {
+    this.authService.getRole();
     if ((this.recipe.special && this.currentRole === 'subscribed') || !this.recipe.special) {
       this.router.navigate(['/recipes', this.section, this.recipe.id]);
     } else {
