@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IRecipe } from 'src/app/models/IRecipe';
-import { AuthService } from 'src/app/shared/services/auth.service';
+
+import { AuthService } from '../../../../shared/services/auth.service';
+import { IRecipe } from '../../../../models/IRecipe';
 
 @Component({
   selector: 'app-recipe[recipe]',

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpService } from '../../../shared/services/http.service';
 
 import { ProductsService } from './products.service';
-import { HttpService } from 'src/app/shared/services/http.service';
 
 describe('ProductsService', () => {
   let service: ProductsService;

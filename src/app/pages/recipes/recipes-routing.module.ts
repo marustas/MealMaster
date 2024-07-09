@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { RecipeExtendedComponent } from './components/recipe-extended/recipe-extended.component';
-import { RecipesComponent } from './recipes.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { RecipesComponent } from './recipes.component';
 
 const routes: Routes = [
   {

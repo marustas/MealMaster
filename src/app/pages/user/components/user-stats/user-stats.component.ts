@@ -3,10 +3,10 @@ import { EChartsOption } from 'echarts';
 import { GaugeChart } from 'echarts/charts';
 import { LegendComponent, TooltipComponent } from 'echarts/components';
 import { tap } from 'rxjs';
-import { MealService } from 'src/app/pages/homepage/services/meal.service';
-import { UserService } from 'src/app/shared/services/user.service';
 
+import { MealService } from '../../../homepage/services/meal.service';
 import { displayChart } from './calorieChart';
+import { UserService } from '../../../../shared/services/user.service';
 
 @Component({
   selector: 'app-user-stats',

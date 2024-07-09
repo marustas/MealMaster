@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ISubscription } from 'src/app/models/ISubscription';
-
-import { SubscriptionService } from 'src/app/shared/services/subscription.service';
+import { SubscriptionService } from '../../../../shared/services/subscription.service';
 
 @Component({
   selector: 'app-subscription',

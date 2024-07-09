@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/models/Ingredient';
-import { ProductsService } from 'src/app/pages/fridge/services/products.service';
+import { ProductsService } from '../../pages/fridge/services/products.service';
 
 @Injectable({
   providedIn: 'root',

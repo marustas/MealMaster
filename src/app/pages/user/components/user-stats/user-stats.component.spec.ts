@@ -1,7 +1,7 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserStatsComponent } from './user-stats.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('UserStatsComponent', () => {
   let component: UserStatsComponent;

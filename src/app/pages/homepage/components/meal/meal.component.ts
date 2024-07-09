@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Ingredient } from 'src/app/models/Ingredient';
-import { IRecipe } from 'src/app/models/IRecipe';
-import { IngredientService } from 'src/app/shared/services/ingredient.service';
 
+import { IngredientService } from '../../../../shared/services/ingredient.service';
 import { MealService } from '../../services/meal.service';
+import { IRecipe } from '../../../../models/IRecipe';
+import { Ingredient } from '../../../../models/Ingredient';
 
 @Component({
   selector: 'app-meal[meal]',

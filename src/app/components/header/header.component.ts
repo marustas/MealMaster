@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ProfilePictureService } from 'src/app/pages/user/services/profile-picture.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
-import { UserService } from 'src/app/shared/services/user.service';
+
+import { AuthService } from '../../shared/services/auth.service';
+import { UserService } from '../../shared/services/user.service';
+import { ProfilePictureService } from '../../pages/user/services/profile-picture.service';
 
 @Component({
   selector: 'app-header',

@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { AddProductComponent } from './add-product.component';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ProductsService } from '../../services/products.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+
+import { ProductsService } from '../../services/products.service';
+import { AddProductComponent } from './add-product.component';
 
 class MockProductService {
   currentLength = 100;

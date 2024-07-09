@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { iif, Observable, switchMap } from 'rxjs';
-import { IRecipe } from 'src/app/models/IRecipe';
-import { MealService } from 'src/app/pages/homepage/services/meal.service';
-import { RecipesService } from 'src/app/shared/services/recipes.service';
+
+import { MealService } from '../../../homepage/services/meal.service';
+import { IRecipe } from '../../../../models/IRecipe';
+import { RecipesService } from '../../../../shared/services/recipes.service';
 
 @Component({
   selector: 'app-recipe-extended',
