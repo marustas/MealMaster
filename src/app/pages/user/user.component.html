@@ -4,7 +4,8 @@
     >!
   </h1>
   <div class="subscription-plan">
-    Your chosen plan is {{ user?.subscription }}
+    Your chosen plan is
+    <span class="subscription-price">€{{ user?.subscription?.price }}/wk</span>
   </div>
   <app-user-stats></app-user-stats>
 </div>

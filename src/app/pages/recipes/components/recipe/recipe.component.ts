@@ -36,7 +36,6 @@ export class RecipeComponent {
   }
 
   showFullRecipe(): void {
-    console.log(this.recipe.special && this.currentRole === 'subscribed');
     if ((this.recipe.special && this.currentRole === 'subscribed') || !this.recipe.special) {
       this.router.navigate(['/recipes', this.section, this.recipe.id]);
     } else {
