@@ -17,12 +17,10 @@ export class PaginationService {
 
   getPages(totalItems: number): void {
     this.totalPages = Math.ceil(totalItems / this.itemsPerPage);
-    console.log(this.totalPages);
   }
 
   nextPage(): void {
     const currentPage = this.currentPageSubject.getValue();
-    console.log(currentPage, this.totalPages);
     if (currentPage < this.totalPages) {
       this.currentPageSubject.next(currentPage + 1);
     }
@@ -30,7 +28,6 @@ export class PaginationService {
 
   previousPage(): void {
     const currentPage = this.currentPageSubject.getValue();
-    console.log(currentPage, this.totalPages);
     if (currentPage > 1) {
       this.currentPageSubject.next(currentPage - 1);
     }

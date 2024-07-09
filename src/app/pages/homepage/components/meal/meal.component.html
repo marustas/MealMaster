@@ -1,5 +1,4 @@
 <div *ngIf="meal; else buttonTemplate" class="meal-container">
-  <div></div>
   <app-modal
     [isVisible]="isModalVisible"
     (confirm)="onDeleteMeal()"
@@ -20,7 +19,7 @@
       <b>Missing:</b>
       <span
         class="missing-ing"
-        *ngFor="let missingIngredient of missingIngredients"
+        *ngFor="let missingIngredient of missingIngredients$ | async"
       >
         {{ missingIngredient.name }},
       </span>

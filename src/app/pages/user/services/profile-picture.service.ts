@@ -6,7 +6,6 @@ import * as minidenticons from 'minidenticons';
 })
 export class ProfilePictureService {
   createProfilePicture(username: string): string {
-    console.log(username);
     return minidenticons.minidenticon(username);
   }
 }

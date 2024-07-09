@@ -5,6 +5,7 @@ import { IngredientService } from '../../../../shared/services/ingredient.servic
 import { MealService } from '../../services/meal.service';
 import { IRecipe } from '../../../../models/IRecipe';
 import { Ingredient } from '../../../../models/Ingredient';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-meal[meal]',
@@ -15,7 +16,7 @@ export class MealComponent implements OnInit {
   @Input() meal!: IRecipe | null;
   @Input() mealSection!: string;
   isModalVisible = false;
-  missingIngredients: Ingredient[] = [];
+  missingIngredients$!: Observable<Ingredient[]>;
 
   constructor(
     private mealService: MealService,
@@ -24,8 +25,9 @@ export class MealComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ingredientService.showMissing(this.meal?.ingredients!);
-    this.missingIngredients = this.ingredientService.missingIngredients;
+    if (this.meal?.ingredients) {
+      this.missingIngredients$ = this.ingredientService.showMissing(this.meal?.ingredients!);
+    }
   }
 
   onAddMeal(): void {

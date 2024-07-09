@@ -19,7 +19,6 @@ export class HeaderComponent {
   ) {
     this.userService.getUser().subscribe((user) => {
       this.profilePicture = `data:image/svg+xml;utf8,${this.profilePictureService.createProfilePicture(user.username)}`;
-      console.log(this.profilePicture);
     });
   }
 
