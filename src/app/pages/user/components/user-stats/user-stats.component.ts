@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { GaugeChart } from 'echarts/charts';
 import { LegendComponent, TooltipComponent } from 'echarts/components';
-import { tap } from 'rxjs';
+import { combineLatest, tap } from 'rxjs';
 
 import { UserService } from '../../../../shared/services/user.service';
 import { MealService } from '../../../homepage/services/meal.service';
@@ -29,19 +29,11 @@ export class UserStatsComponent {
     private userService: UserService
   ) {
     this.echartsExtentions = [GaugeChart, TooltipComponent, TooltipComponent, LegendComponent];
-    this.userService.getUser().subscribe((user) => {
+    combineLatest(this.userService.getUser(), this.mealService.calories$).subscribe(([user, calories]) => {
       this.calorieGoal = +user.calorieGoal;
-      if (this.calorieGoal) {
-        this.calculateCalories();
-      }
+      this.currentCalories = calories;
+      this.calculateCalories();
     });
-
-    this.mealService.calories$.pipe(
-      tap((calories) => {
-        this.currentCalories = calories;
-        this.calculateCalories();
-      })
-    );
   }
 
   setCalorieGoal(): void {

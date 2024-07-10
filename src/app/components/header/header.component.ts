@@ -16,10 +16,17 @@ export class HeaderComponent {
   constructor(
     private authService: AuthService,
     private profilePictureService: ProfilePictureService,
-    userService: UserService
+    private userService: UserService
   ) {
-    userService.getUser().pipe(tap((user) => profilePictureService.createProfilePicture(user.username)));
     this.profilePicture$ = this.profilePictureService.currentProfile$;
+    this.userService
+      .getUser()
+      .pipe(
+        tap((user) => {
+          profilePictureService.createProfilePicture(user.username);
+        })
+      )
+      .subscribe();
   }
 
   onLogOut(): void {
