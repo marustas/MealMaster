@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ProductsService } from '../../services/products.service';
 import { AddProductComponent } from './add-product.component';
+import { HttpClientModule } from '@angular/common/http';
 
 class MockProductService {
   currentLength = 100;
@@ -19,7 +20,7 @@ describe('AddProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule],
+      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule, HttpClientModule],
       declarations: [AddProductComponent],
       providers: [{ provide: ProductsService, useClass: MockProductService }],
       schemas: [NO_ERRORS_SCHEMA],

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecipeIngredientComponent } from './recipe-ingredient.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
 
 describe('RecipeIngredientComponent', () => {
   let component: RecipeIngredientComponent;
@@ -9,6 +11,7 @@ describe('RecipeIngredientComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RecipeIngredientComponent],
+      providers: [HttpClientTestingModule, HttpClient],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RecipeIngredientComponent);
