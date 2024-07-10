@@ -21,7 +21,7 @@
         routerLinkActive="active-link"
         routerLink="/user"
       >
-        <img [src]="profilePicture" alt="profile" />
+        <img [src]="profilePicture$ | async" alt="profile" />
       </a>
       <button
         *appRole="'user,subscribed'"

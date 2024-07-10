@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { HttpService } from './http.service';
 import { UserService } from './user.service';
+import { ProfilePictureService } from 'src/app/pages/user/services/profile-picture.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class AuthService {
   public roleState$: Observable<string>;
 
   constructor(
+    private profilePicture: ProfilePictureService,
     private userService: UserService,
     private httpService: HttpService,
     private router: Router
@@ -34,6 +36,7 @@ export class AuthService {
         this.setSession(response.expiresIn, response.token);
         this.authStateSubject.next(true);
         this.getRole();
+        this.profilePicture.createProfilePicture(username);
         this.router.navigate(['/home']);
       })
     );

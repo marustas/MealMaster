@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 import { ProfilePictureService } from '../../pages/user/services/profile-picture.service';
 import { AuthService } from '../../shared/services/auth.service';
-import { UserService } from '../../shared/services/user.service';
+import { Observable, tap } from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +11,15 @@ import { UserService } from '../../shared/services/user.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  profilePicture!: string;
+  profilePicture$!: Observable<string>;
 
   constructor(
     private authService: AuthService,
-    private userService: UserService,
-    private profilePictureService: ProfilePictureService
+    private profilePictureService: ProfilePictureService,
+    userService: UserService
   ) {
-    this.userService.getUser().subscribe((user) => {
-      console.log(user);
-      this.profilePicture = `data:image/svg+xml;utf8,${this.profilePictureService.createProfilePicture(user.username)}`;
-    });
+    userService.getUser().pipe(tap((user) => profilePictureService.createProfilePicture(user.username)));
+    this.profilePicture$ = this.profilePictureService.currentProfile$;
   }
 
   onLogOut(): void {
