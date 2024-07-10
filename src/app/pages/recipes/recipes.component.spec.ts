@@ -10,7 +10,7 @@ describe('RecipesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RecipesComponent],
-      providers: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RecipesComponent);

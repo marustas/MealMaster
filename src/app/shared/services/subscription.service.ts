@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ISubscription } from 'src/app/models/ISubscription';
-import { SUBSCRIPTIONS } from 'src/app/pages/recipes/components/subscription/subscriptions';
+import { SUBSCRIPTIONS } from '../../pages/recipes/components/subscription/subscriptions';
 
 import { HttpService } from './http.service';
 import { UserService } from './user.service';

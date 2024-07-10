@@ -10,7 +10,7 @@ describe('RecipeExtendedComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RecipeExtendedComponent],
-      providers: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RecipeExtendedComponent);
