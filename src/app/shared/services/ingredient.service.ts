@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Ingredient } from 'src/app/models/Ingredient';
-import { ProductsService } from '../../pages/fridge/services/products.service';
 import { Observable, of } from 'rxjs';
+import { Ingredient } from 'src/app/models/Ingredient';
+
+import { ProductsService } from '../../pages/fridge/services/products.service';
 
 @Injectable({
   providedIn: 'root',

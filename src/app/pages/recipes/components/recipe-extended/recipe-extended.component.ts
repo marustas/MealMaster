@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { iif, Observable, switchMap } from 'rxjs';
 
-import { MealService } from '../../../homepage/services/meal.service';
 import { IRecipe } from '../../../../models/IRecipe';
 import { RecipesService } from '../../../../shared/services/recipes.service';
+import { MealService } from '../../../homepage/services/meal.service';
 
 @Component({
   selector: 'app-recipe-extended',

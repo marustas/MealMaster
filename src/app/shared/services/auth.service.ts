@@ -75,7 +75,7 @@ export class AuthService {
 
   getRole(): void {
     this.userService.getUser().subscribe((user) => {
-      if (this.authStateSubject.getValue() === false) {
+      if (!this.authStateSubject.getValue()) {
         this.roleSubject.next('guest');
       } else {
         this.roleSubject.next(user.role);

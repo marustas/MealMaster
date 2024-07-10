@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
+import { ProfilePictureService } from '../../pages/user/services/profile-picture.service';
 import { AuthService } from '../../shared/services/auth.service';
 import { UserService } from '../../shared/services/user.service';
-import { ProfilePictureService } from '../../pages/user/services/profile-picture.service';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +18,7 @@ export class HeaderComponent {
     private profilePictureService: ProfilePictureService
   ) {
     this.userService.getUser().subscribe((user) => {
+      console.log(user);
       this.profilePicture = `data:image/svg+xml;utf8,${this.profilePictureService.createProfilePicture(user.username)}`;
     });
   }

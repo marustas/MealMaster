@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
+import { Ingredient } from '../../../../models/Ingredient';
 import { ProductsService } from '../../services/products.service';
 import { expirationDateValidator } from '../../validators/expirationDateValidator';
-import { Ingredient } from '../../../../models/Ingredient';
 
 @Component({
   selector: 'app-add-product',

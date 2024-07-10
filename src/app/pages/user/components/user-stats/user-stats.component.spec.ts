@@ -25,8 +25,7 @@ describe('UserStatsComponent', () => {
   it('should make subtextColor green if exceedsGoal is false', () => {
     component.currentCalories = 1500;
     component.calorieGoal = 2000;
-    component.calculateCalories();
-
+    fixture.detectChanges();
     expect(component.currentCaloriePercentage).toBe(75);
     expect(component.exceedGoal).toBe(false);
     expect(component.subtextColor).toBe('#399a18');
@@ -35,10 +34,10 @@ describe('UserStatsComponent', () => {
   it('should make subtextColor red if exceedsGoal is true', () => {
     component.currentCalories = 1500;
     component.calorieGoal = 1000;
-    component.calculateCalories();
+    fixture.detectChanges();
 
-    expect(component.currentCaloriePercentage).toBe(75);
-    expect(component.exceedGoal).toBe(false);
+    expect(component.currentCaloriePercentage).toBe(150);
+    expect(component.exceedGoal).toBe(true);
     expect(component.subtextColor).toBe('#f61616');
   });
 });

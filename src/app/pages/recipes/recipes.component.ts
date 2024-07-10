@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { combineLatest, map, Observable, of, switchMap, tap } from 'rxjs';
 import { IRecipe } from 'src/app/models/IRecipe';
-import { LoaderService } from '../../shared/services/loader.service';
 
+import { LoaderService } from '../../shared/services/loader.service';
 import { SearchService } from '../fridge/services/search.service';
 import { FilterService } from './services/filter.service';
 import { PaginationService } from './services/pagination.service';

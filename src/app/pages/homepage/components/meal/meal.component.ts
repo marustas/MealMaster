@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
+import { Ingredient } from '../../../../models/Ingredient';
+import { IRecipe } from '../../../../models/IRecipe';
 import { IngredientService } from '../../../../shared/services/ingredient.service';
 import { MealService } from '../../services/meal.service';
-import { IRecipe } from '../../../../models/IRecipe';
-import { Ingredient } from '../../../../models/Ingredient';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-meal[meal]',

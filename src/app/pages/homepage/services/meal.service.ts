@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import { MealType } from '../../../shared/meal-type.enum';
-import { RecipesService } from '../../../shared/services/recipes.service';
-import { HttpService } from '../../../shared/services/http.service';
 import { IRecipe } from '../../../models/IRecipe';
+import { MealType } from '../../../shared/meal-type.enum';
+import { HttpService } from '../../../shared/services/http.service';
+import { RecipesService } from '../../../shared/services/recipes.service';
 
 @Injectable({
   providedIn: 'root',
