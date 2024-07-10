@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { IUser } from 'src/app/models/IUser';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from '../../shared/services/user.service';
 import { ProfilePictureService } from './services/profile-picture.service';
 
 @Component({

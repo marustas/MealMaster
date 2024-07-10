@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FallbackComponent } from './fallback.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('FallbackComponent', () => {
   let component: FallbackComponent;
@@ -9,6 +10,7 @@ describe('FallbackComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FallbackComponent],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FallbackComponent);

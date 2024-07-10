@@ -9,9 +9,7 @@ describe('ProductsCardsComponent', () => {
   let component: ProductsCardsComponent;
   let fixture: ComponentFixture<ProductsCardsComponent>;
 
-  let searchServiceStub: Partial<SearchService>;
-
-  searchServiceStub = {
+  let searchServiceStub: Partial<SearchService> = {
     searchQuery$: of(''),
     searchProducts: jest.fn().mockReturnValue(of([])),
   };
