@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { HttpService } from './http.service';
 import { UserService } from './user.service';
-import { ProfilePictureService } from 'src/app/pages/user/services/profile-picture.service';
+import { ProfilePictureService } from '../../pages/user/services/profile-picture.service';
+import moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
