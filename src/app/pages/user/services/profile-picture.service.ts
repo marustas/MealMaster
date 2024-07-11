@@ -8,7 +8,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ProfilePictureService {
   currentProfileSubject: BehaviorSubject<string>;
   currentProfile$: Observable<string>;
-
   constructor() {
     this.currentProfileSubject = new BehaviorSubject<string>('');
     this.currentProfile$ = this.currentProfileSubject.asObservable();
