@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -16,22 +16,15 @@ import { RoleDirective } from './shared/directives/role.directive';
 import { AuthInterceptor } from './shared/guards/auth.interceptor';
 import { AuthService } from './shared/services/auth.service';
 
-@NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, RoleDirective],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HomepageModule,
-    FridgeModule,
-    RecipesModule,
-    HttpClientModule,
-    UserModule,
-    LoginModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-  ],
-  bootstrap: [AppComponent],
-  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
-})
+@NgModule({ declarations: [AppComponent, HeaderComponent, FooterComponent, RoleDirective],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        HomepageModule,
+        FridgeModule,
+        RecipesModule,
+        UserModule,
+        LoginModule,
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts'),
+        })], providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
