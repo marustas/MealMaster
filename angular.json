@@ -58,10 +58,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "meal-master:build:production"
+              "buildTarget": "meal-master:build:production"
             },
             "development": {
-              "browserTarget": "meal-master:build:development"
+              "buildTarget": "meal-master:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -69,7 +69,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "meal-master:build"
+            "buildTarget": "meal-master:build"
           }
         },
         "lint": {
