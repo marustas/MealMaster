@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as minidenticons from 'minidenticons';
+import minidenticons from 'minidenticons';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
