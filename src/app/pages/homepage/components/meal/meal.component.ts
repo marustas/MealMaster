@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -13,8 +13,8 @@ import { MealService } from '../../services/meal.service';
   styleUrls: ['./meal.component.scss'],
 })
 export class MealComponent implements OnInit {
-  @Input() meal!: IRecipe | null;
-  @Input() mealSection!: string;
+  meal = input<IRecipe | null>();
+  mealSection = input<string>();
   isModalVisible = false;
   missingIngredients$!: Observable<Ingredient[]>;
 
@@ -25,21 +25,21 @@ export class MealComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.meal?.ingredients) {
-      this.missingIngredients$ = this.ingredientService.showMissing(this.meal?.ingredients!);
+    if (this.meal()?.ingredients) {
+      this.missingIngredients$ = this.ingredientService.showMissing(this.meal()?.ingredients!);
     }
   }
 
   onAddMeal(): void {
-    this.router.navigate(['/recipes', this.mealSection, 1]);
+    this.router.navigate(['/recipes', this.mealSection(), 1]);
   }
 
   onDeleteMeal(): void {
-    this.mealService.deleteMeal(this.meal?.id!);
+    this.mealService.deleteMeal(this.meal()?.id!);
   }
 
   onEditMeal(): void {
-    this.router.navigate(['/recipes', this.meal?.section, this.meal?.id]);
+    this.router.navigate(['/recipes', this.meal()?.section, this.meal()?.id]);
   }
 
   showModal(): void {

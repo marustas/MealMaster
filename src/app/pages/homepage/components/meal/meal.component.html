@@ -1,44 +1,43 @@
-<div *ngIf="meal; else buttonTemplate" class="meal-container">
-  <app-modal
-    [isVisible]="isModalVisible"
-    (confirm)="onDeleteMeal()"
-    (cancel)="hideModal()"
-  ></app-modal>
-  <div class="badge">
-    <img
-      *ngIf="meal.special"
-      src="../../../../../assets/stamp.svg"
-      alt="badge"
-    />
-  </div>
-  <div class="meal-details">
-    <img alt="recipe" [src]="meal.image" />
-    <h2 class="meal-title">{{ meal.title }}</h2>
-    <p class="meal-description">{{ meal.description | uppercase }}</p>
-    <p class="missing-details">
-      <b>Missing:</b>
-      <span
-        class="missing-ing"
-        *ngFor="let missingIngredient of missingIngredients$ | async"
-      >
-        {{ missingIngredient.name }},
-      </span>
-    </p>
-  </div>
-  <div class="meal-actions">
-    <button (click)="onEditMeal()" class="change-btn">
-      <img src="../../../../../assets/edit.svg" alt="edit" />
-    </button>
-    <button (click)="showModal()" class="delete-btn">
-      <img src="../../../../../assets/delete.svg" alt="delete" />
-    </button>
-  </div>
-</div>
+<div class="meal-container">
+  @if (meal()) {
+    <app-modal
+      [isVisible]="isModalVisible"
+      (confirm)="onDeleteMeal()"
+      (cancel)="hideModal()"
+    ></app-modal>
 
-<ng-template #buttonTemplate>
-  <div class="btn-container">
-    <button class="add-btn" (click)="onAddMeal()">
-      Add {{ mealSection | titlecase }} Recipe
-    </button>
-  </div>
-</ng-template>
+    @if (meal()?.special) {
+      <div class="badge">
+        <img src="../../../../../assets/stamp.svg" alt="badge" />
+      </div>
+    }
+    <div class="meal-details">
+      <img alt="recipe" [src]="meal()?.image" />
+      <h2 class="meal-title">{{ meal()?.title }}</h2>
+      <p class="meal-description">{{ meal()?.description | uppercase }}</p>
+      <p class="missing-details">
+        <b>Missing:</b>
+        <span
+          class="missing-ing"
+          *ngFor="let missingIngredient of missingIngredients$ | async"
+        >
+          {{ missingIngredient.name }},
+        </span>
+      </p>
+    </div>
+    <div class="meal-actions">
+      <button (click)="onEditMeal()" class="change-btn">
+        <img src="../../../../../assets/edit.svg" alt="edit" />
+      </button>
+      <button (click)="showModal()" class="delete-btn">
+        <img src="../../../../../assets/delete.svg" alt="delete" />
+      </button>
+    </div>
+  } @else {
+    <div class="btn-container">
+      <button class="add-btn" (click)="onAddMeal()">
+        Add {{ mealSection() | titlecase }} Recipe
+      </button>
+    </div>
+  }
+</div>
