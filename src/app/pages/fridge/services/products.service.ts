@@ -19,7 +19,7 @@ export class ProductsService {
     this.currentLength = this.productsSubject.getValue().length;
   }
 
-  private loadInitialProducts(): void {
+  public loadInitialProducts(): void {
     this.httpService.get<Ingredient[]>('ingredients').subscribe((products) => {
       this.productsSubject.next(products);
     });
@@ -42,17 +42,14 @@ export class ProductsService {
       .subscribe();
   }
 
-  deleteProduct(productID: number): void {
-    this.httpService
-      .delete<void>(`ingredients/${productID}`)
-      .pipe(
-        tap(() => {
-          const currentProducts = this.productsSubject.getValue();
-          const updatedProducts = currentProducts.filter((product) => product.id !== productID);
-          this.productsSubject.next(updatedProducts);
-        })
-      )
-      .subscribe();
+  deleteProduct(productID: number): Observable<void> {
+    return this.httpService.delete<void>(`ingredients/${productID}`).pipe(
+      tap(() => {
+        const currentProducts = this.productsSubject.getValue();
+        const updatedProducts = currentProducts.filter((product) => product.id !== productID);
+        this.productsSubject.next(updatedProducts);
+      })
+    );
   }
 
   changeProduct(productID: number, newProductData: Ingredient): void {

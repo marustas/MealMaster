@@ -16,15 +16,25 @@ import { RoleDirective } from './shared/directives/role.directive';
 import { AuthInterceptor } from './shared/guards/auth.interceptor';
 import { AuthService } from './shared/services/auth.service';
 
-@NgModule({ declarations: [AppComponent, HeaderComponent, FooterComponent, RoleDirective],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        AppRoutingModule,
-        HomepageModule,
-        FridgeModule,
-        RecipesModule,
-        UserModule,
-        LoginModule,
-        NgxEchartsModule.forRoot({
-            echarts: () => import('echarts'),
-        })], providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  declarations: [AppComponent, HeaderComponent, FooterComponent, RoleDirective],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HomepageModule,
+    FridgeModule,
+    RecipesModule,
+    UserModule,
+    LoginModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+  ],
+  providers: [
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class AppModule {}

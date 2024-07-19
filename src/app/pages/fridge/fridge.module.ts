@@ -12,6 +12,8 @@ import { ViewSwitchComponent } from './components/view-switch/view-switch.compon
 import { FridgeComponent } from './fridge.component';
 import { FridgeRoutingModule } from './fridge-routing.module';
 import { StringToDatePipe } from './pipes/string-to-date.pipe';
+import { DraggableDirective } from 'src/app/shared/directives/draggable.directive';
+import { DroppableDirective } from 'src/app/shared/directives/droppable.directive';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { StringToDatePipe } from './pipes/string-to-date.pipe';
     ProductsCardsComponent,
     ProductCardComponent,
     ProductUnitComponent,
+    DraggableDirective,
+    DroppableDirective,
   ],
   imports: [CommonModule, FridgeRoutingModule, ReactiveFormsModule, SharedModule],
   exports: [FridgeComponent],
